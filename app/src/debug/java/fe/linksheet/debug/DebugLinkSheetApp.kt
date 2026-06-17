@@ -4,13 +4,11 @@ import android.os.StrictMode
 import androidx.lifecycle.lifecycleScope
 import app.linksheet.compose.debug.DebugMenuSlotProvider
 import app.linksheet.compose.debug.DebugPreferenceProvider
-import app.linksheet.feature.analytics.aptabase.aptabaseAnalyticsClientModule
 import app.linksheet.feature.analytics.client.DebugLogAnalyticsClient
 import app.linksheet.feature.app.DebugAppModule
 import app.linksheet.feature.devicecompat.miui.MiuiCompatProvider
 import app.linksheet.feature.devicecompat.oneui.OneUiCompatProvider
 import app.linksheet.feature.devicecompat.oneui.RealOneUiCompatProvider
-import app.linksheet.testing.Testing
 import fe.linksheet.LinkSheetApp
 import fe.linksheet.debug.module.debug.RealDebugMenuSlotProvider
 import fe.linksheet.debug.module.debug.RealDebugPreferenceProvider
@@ -51,10 +49,7 @@ class DebugLinkSheetApp : LinkSheetApp() {
         }
     }
 
-    override fun provideAnalyticsClient(): Module = when {
-        Testing.IsTestRunner -> DebugLogAnalyticsClient.module
-        else -> aptabaseAnalyticsClientModule
-    }
+    override fun provideAnalyticsClient(): Module = DebugLogAnalyticsClient.module
 
     override fun provideDebugModule(): Module {
         return module {

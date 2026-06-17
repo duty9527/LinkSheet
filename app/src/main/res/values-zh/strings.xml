@@ -455,6 +455,8 @@
     </plurals>
     <string name="settings_verified_link_handlers__text_browser">浏览器</string>
     <string name="app_host_dialog__title_hosts">默认主机</string>
+    <string name="app_host_dialog__label_custom_host">自定义主机</string>
+    <string name="app_host_dialog__text_invalid_host">请输入有效主机，例如 github.com</string>
     <string name="app_host_dialog__text_no_hosts">没有设置默认在此应用中打开的主机！</string>
     <string name="settings_main_experiment_changelog__title_changelog">实验更新日志</string>
     <string name="settings_main_miui_compat__title_linksheet_auto_start_failure">需要额外配置</string>

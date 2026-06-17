@@ -9,7 +9,6 @@ import app.linksheet.feature.browser.preference.browserPreferences
 import app.linksheet.feature.downloader.preference.downloaderPreferences
 import app.linksheet.feature.libredirect.preference.libRedirectPreferences
 import app.linksheet.feature.profile.preference.profilePreferences
-import app.linksheet.feature.remoteconfig.preference.remoteConfigPreferences
 import app.linksheet.feature.shizuku.preference.shizukuPreferences
 import com.google.gson.JsonArray
 import fe.android.preference.helper.UnsafePreferenceInteraction
@@ -73,7 +72,6 @@ object AppPreferences : LinkSheetPreferenceDefinition(
     val browser = browserPreferences(registry)
     val profileSwitcher = profilePreferences(registry)
     val analytics = analyticsPreferences(registry)
-    val remoteConfig = remoteConfigPreferences(registry)
 
     init {
         migrate("theme") { repository ->
@@ -116,5 +114,4 @@ object AppPreferences : LinkSheetPreferenceDefinition(
         return jsonArrayItems(objs)
     }
 }
-
 

@@ -315,10 +315,6 @@ internal class DatabaseExportImportTest : BaseUnitTest {
 //            "value": "true"
 //        },
 //        {
-//            "name": "remote_config",
-//            "value": "true"
-//        },
-//        {
 //            "name": "theme",
 //            "value": "0"
 //        }

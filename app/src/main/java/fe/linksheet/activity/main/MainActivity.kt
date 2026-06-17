@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.rememberNavController
 import app.linksheet.feature.analytics.ui.rememberAnalyticDialog
-import app.linksheet.feature.remoteconfig.ui.RemoteConfigDialogLauncher
 import app.linksheet.util.buildconfig.StaticBuildInfo
 import fe.composekit.preference.collectAsStateWithLifecycle
 import fe.linksheet.activity.UiEventReceiverBaseComponentActivity
@@ -51,7 +50,6 @@ class MainActivity : UiEventReceiverBaseComponentActivity() {
                 }
 
                 AddIntentDeepLinkHandler(navController = navController)
-                RemoteConfigDialogLauncher(useCase = viewModel.remoteConfigUseCase)
 
                 if (StaticBuildInfo.IsDebug) {
                     navController.ObserveDestination { _, destination, args ->

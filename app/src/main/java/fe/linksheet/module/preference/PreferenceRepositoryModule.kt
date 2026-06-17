@@ -8,8 +8,6 @@ import app.linksheet.feature.downloader.preference.DownloaderPreferences
 import app.linksheet.feature.libredirect.preference.Experiment
 import app.linksheet.feature.libredirect.preference.LibRedirectPreferences
 import app.linksheet.feature.profile.preference.ProfilePreferences
-import app.linksheet.feature.remoteconfig.preference.RemoteConfigPreferences
-import app.linksheet.feature.remoteconfig.preference.RemoteConfigStatePreferences
 import app.linksheet.feature.shizuku.preference.ShizukuPreferences
 import fe.composekit.preference.asFunction
 import fe.linksheet.module.preference.app.AppPreferences
@@ -43,8 +41,6 @@ fun PreferenceRepositoryModule(appPreferenceRepository: DefaultAppPreferenceRepo
         single<BrowserPreferences> { AppPreferences.browser }
         single<ProfilePreferences> { AppPreferences.profileSwitcher }
         single<AnalyticsPreferences> { AppPreferences.analytics }
-        single<RemoteConfigPreferences> { AppPreferences.remoteConfig }
-        single<RemoteConfigStatePreferences> { AppStatePreferences.remoteConfig }
         single<DownloaderPreferences> { AppPreferences.downloader }
     }
 }

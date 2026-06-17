@@ -6,6 +6,7 @@ import android.content.pm.ResolveInfo
 import android.net.Uri
 import app.linksheet.feature.app.core.PackageIntentHandler
 import app.linksheet.feature.app.core.PackageLauncherService
+import app.linksheet.feature.app.core.AppInfoCreator
 import app.linksheet.feature.browser.core.PrivateBrowsingService
 import app.linksheet.feature.engine.core.EngineScenarioInput
 import app.linksheet.feature.engine.core.ForwardOtherProfileResult
@@ -43,6 +44,8 @@ import fe.linksheet.module.resolver.ResolveModuleStatus
 import fe.linksheet.module.resolver.ResolveOptions
 import fe.linksheet.module.resolver.ResolverInteraction
 import fe.linksheet.module.resolver.module.IntentResolverSettings
+import fe.linksheet.module.resolver.personal.PersonalLinkRuleEngine
+import fe.linksheet.module.resolver.personal.PersonalPreferredAppSelector
 import fe.linksheet.module.resolver.util.AppSorter
 import fe.linksheet.module.resolver.util.CustomTabHandler
 import fe.linksheet.module.resolver.util.CustomTabInfo2
@@ -70,12 +73,14 @@ class LinkEngineIntentResolver(
     private val packageIntentHandler: PackageIntentHandler,
     private val packageLauncherService: PackageLauncherService,
     private val appSorter: AppSorter,
+    private val appInfoCreator: AppInfoCreator,
     private val browserHandler: ImprovedBrowserHandler,
     private val inAppBrowserHandler: InAppBrowserHandler,
     private val networkStateService: NetworkStateService,
     private val selector: ScenarioSelector,
     private val privateBrowsingService: PrivateBrowsingService,
     private val settings: IntentResolverSettings,
+    private val personalLinkRuleEngine: PersonalLinkRuleEngine,
 ) : IntentResolver {
     private val logger = Logger("LinkEngineIntentResolver")
     private val browserSettings = settings.browserSettings
@@ -193,7 +198,8 @@ class LinkEngineIntentResolver(
         }
 
         val resultUrl = (result as UrlEngineResult).url
-        val resultUri = resultUrl.toAndroidUri()
+        val personalRuleResult = personalLinkRuleEngine.apply(resultUrl.toAndroidUri())
+        val resultUri = personalRuleResult.uri
 
 
         val allowCustomTab = inAppBrowserHandler.shouldAllowCustomTab(
@@ -237,14 +243,36 @@ class LinkEngineIntentResolver(
         )
 
         emitEvent(ResolveEvent.SortingApps)
-        val (sorted, filtered) = appSorter.sort(
+        val (sortedByUsage, filteredByHistory) = appSorter.sort(
             appList = appList,
             lastChosen = app,
             historyMap = lastUsedApps,
             returnLastChosen = !settings.bottomSheetSettings.dontShowFilteredItem()
         )
 
-        val isRegularPreferredApp = app?.alwaysPreferred == true && filtered != null
+        var finalFilteredByHistory = filteredByHistory
+        if (finalFilteredByHistory == null && app?.alwaysPreferred == true) {
+            val matchedResolveInfo = resolveList.firstOrNull { it.activityInfo.packageName == app.pkg }
+                ?: browsers.firstOrNull { it.activityInfo.packageName == app.pkg }
+            if (matchedResolveInfo != null) {
+                finalFilteredByHistory = appInfoCreator.toActivityAppInfo(matchedResolveInfo, null)
+            } else {
+                val resolveInfo = packageLauncherService.getLauncherOrNull(app.pkg)
+                if (resolveInfo != null) {
+                    finalFilteredByHistory = appInfoCreator.toActivityAppInfo(resolveInfo, null)
+                }
+            }
+        }
+
+        val hasUserAlwaysPreferredApp = app?.alwaysPreferred == true && finalFilteredByHistory != null
+        val personalSelection = PersonalPreferredAppSelector.select(
+            sorted = sortedByUsage,
+            filtered = finalFilteredByHistory,
+            hasUserAlwaysPreferredApp = hasUserAlwaysPreferredApp,
+            ruleResult = personalRuleResult
+        )
+        val isRegularPreferredApp = hasUserAlwaysPreferredApp ||
+                (personalSelection.selected && personalRuleResult.autoLaunch)
         scenario.fetch(resultUrl, context).collect { fetchHandle ->
             when (fetchHandle) {
                 null -> clearInteraction()
@@ -271,8 +299,8 @@ class LinkEngineIntentResolver(
             referrer = options.referrer,
             unfurlResult = sealedContext[ContextResultId.Preview]?.toUnfurlResult(),
             referringPackageName = referringPackage?.packageName,
-            resolved = sorted,
-            filteredItem = filtered,
+            resolved = personalSelection.sorted,
+            filteredItem = personalSelection.filtered,
             isRegularPreferredApp = isRegularPreferredApp,
             hasSingleMatchingOption = appList.isSingleOption || appList.noBrowsersOnlySingleApp,
             resolveModuleStatus = ResolveModuleStatus(),

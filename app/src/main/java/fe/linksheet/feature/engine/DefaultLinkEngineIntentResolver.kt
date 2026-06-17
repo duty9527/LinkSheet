@@ -3,6 +3,7 @@ package fe.linksheet.feature.engine
 import android.content.Context
 import app.linksheet.feature.app.core.PackageIntentHandler
 import app.linksheet.feature.app.core.PackageLauncherService
+import app.linksheet.feature.app.core.AppInfoCreator
 import app.linksheet.feature.browser.core.PrivateBrowsingService
 import app.linksheet.feature.downloader.core.Downloader
 import app.linksheet.feature.engine.core.EngineScenario
@@ -27,6 +28,7 @@ import fe.linksheet.module.resolver.ImprovedBrowserHandler
 import fe.linksheet.module.resolver.InAppBrowserHandler
 import fe.linksheet.module.resolver.IntentResolver
 import fe.linksheet.module.resolver.module.IntentResolverSettings
+import fe.linksheet.module.resolver.personal.PersonalLinkRuleEngine
 import fe.linksheet.module.resolver.util.AppSorter
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.Dispatchers
@@ -43,6 +45,7 @@ fun DefaultLinkEngineIntentResolver(
     packageIntentHandler: PackageIntentHandler,
     packageLauncherService: PackageLauncherService,
     appSorter: AppSorter,
+    appInfoCreator: AppInfoCreator,
     downloader: Downloader,
     browserHandler: ImprovedBrowserHandler,
     inAppBrowserHandler: InAppBrowserHandler,
@@ -51,6 +54,7 @@ fun DefaultLinkEngineIntentResolver(
     networkStateService: NetworkStateService,
     privateBrowsingService: PrivateBrowsingService,
     settings: IntentResolverSettings,
+    personalLinkRuleEngine: PersonalLinkRuleEngine,
 ): IntentResolver {
     val dispatcher = Dispatchers.IO
     val pipeline = LinkEngine(
@@ -140,11 +144,13 @@ fun DefaultLinkEngineIntentResolver(
         packageIntentHandler = packageIntentHandler,
         packageLauncherService = packageLauncherService,
         appSorter = appSorter,
+        appInfoCreator = appInfoCreator,
         browserHandler = browserHandler,
         inAppBrowserHandler = inAppBrowserHandler,
         networkStateService = networkStateService,
         selector = selector,
         privateBrowsingService = privateBrowsingService,
-        settings = settings
+        settings = settings,
+        personalLinkRuleEngine = personalLinkRuleEngine
     )
 }

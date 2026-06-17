@@ -69,12 +69,15 @@ internal class DefaultPackageIntentHandler(
             .addCategory(Intent.CATEGORY_BROWSABLE)
             .setPackage(packageName)
 
-        val httpInfos = queryIntentActivities(httpIntent, ResolveInfoFlags.MATCH_ALL)
-        val httpsInfos = queryIntentActivities(httpIntent.setData(httpsSchemeUri), ResolveInfoFlags.MATCH_ALL)
+        val httpInfos = queryIntentActivities(httpIntent, QUERY_FLAGS)
+        val httpsInfos = queryIntentActivities(httpIntent.setData(httpsSchemeUri), QUERY_FLAGS)
         return (httpInfos + httpsInfos)
-            .distinctBy { it.activityInfo.activityDescriptor }
             .filter { it.isLaunchable() }
             .filter { !isSelf(it.packageName) }
+            .groupBy { it.activityInfo.activityDescriptor }
+            .mapNotNull { (_, infos) ->
+                infos.firstOrNull { it.filter?.isGenericWebHandler() == true }
+            }
     }
 
     override fun findSupportedHosts(packageName: String): Set<String> {
@@ -115,6 +118,10 @@ internal class DefaultPackageIntentHandler(
 
     private fun IntentFilter.getDataAuthorities(): List<IntentFilter.AuthorityEntry> {
         return (0 until countDataAuthorities()).map { getDataAuthority(it) }
+    }
+
+    private fun IntentFilter.isGenericWebHandler(): Boolean {
+        return countDataAuthorities() == 0 && (hasDataScheme("http") || hasDataScheme("https"))
     }
 
     private fun IntentFilter.getHosts(): List<String> {

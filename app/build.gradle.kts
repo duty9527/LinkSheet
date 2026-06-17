@@ -288,7 +288,6 @@ dependencies {
     implementation(project(":feature-shizuku"))
     implementation(project(":feature-systeminfo"))
     implementation(project(":feature-profile"))
-    implementation(project(":feature-remoteconfig"))
     implementation(project(":feature-wiki"))
     implementation(project(":integration-clearurl"))
     implementation(project(":integration-embed-resolve"))
@@ -358,8 +357,6 @@ dependencies {
 
     implementation("io.coil-kt.coil3:coil-compose:_")
     implementation("io.coil-kt.coil3:coil-core:_")
-    implementation("io.coil-kt.coil3:coil-compose:_")
-    implementation("io.coil-kt.coil3:coil-network-okhttp:_")
     implementation("io.coil-kt.coil3:coil-network-okhttp:_")
     implementation("io.coil-kt.coil3:coil-network-ktor3:_")
     implementation("io.coil-kt.coil3:coil-svg:_")

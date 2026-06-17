@@ -28,7 +28,6 @@ import app.linksheet.feature.engine.LinkEngineFeatureModule
 import app.linksheet.feature.libredirect.LibRedirectFeatureModule
 import app.linksheet.feature.libredirect.LibRedirectMigratorModule
 import app.linksheet.feature.profile.ProfileFeatureModule
-import app.linksheet.feature.remoteconfig.RemoteConfigFeatureModule
 import app.linksheet.feature.shizuku.ShizukuFeatureModule
 import app.linksheet.feature.wiki.WikiFeatureModule
 import app.linksheet.testing.Testing
@@ -150,7 +149,6 @@ open class LinkSheetApp : Application(), DependencyProvider {
             RepositoryModule,
             HttpModule,
             DownloaderFeatureModule,
-            RemoteConfigFeatureModule,
             UrlResolverModule,
             ResolverModule,
             ViewModelModule,
@@ -167,7 +165,6 @@ open class LinkSheetApp : Application(), DependencyProvider {
             LibRedirectFeatureModule,
             LinkEngineFeatureModule,
             WikiFeatureModule,
-            PrivateBrowsingModule,
             BackupFeatureConfigurationModule,
             BackupFeatureModule()
         )

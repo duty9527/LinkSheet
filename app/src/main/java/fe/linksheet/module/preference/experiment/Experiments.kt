@@ -40,7 +40,8 @@ object Experiments : PreferenceDefinition(
         key = "experiment_no_bottom_sheet_state_save"
     )
     val linkEngine = boolean(
-        key = "experiment_link_engine"
+        key = "experiment_link_engine",
+        default = true
     )
     val disableLogging = boolean(
         key = "experiment_disable_log_persistence"

@@ -460,6 +460,8 @@
     <string name="settings__subtitle_advanced"><![CDATA[Experiments, Backup & Restore]]></string>
     <string name="bottom_sheet__button_manual_redirect">Follow redirects</string>
     <string name="app_host_dialog__title_hosts">Default hosts</string>
+    <string name="app_host_dialog__label_custom_host">Custom host</string>
+    <string name="app_host_dialog__text_invalid_host">Enter a valid host, for example github.com</string>
     <string name="generic__button_text_save">Save</string>
     <string name="app_host_dialog__text_no_hosts">No hosts have been set to open by default in this app!</string>
     <string name="generic__button_text_close">Close</string>

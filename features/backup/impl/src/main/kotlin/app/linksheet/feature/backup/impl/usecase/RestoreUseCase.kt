@@ -1,5 +1,6 @@
 package app.linksheet.feature.backup.impl.usecase
 
+import android.content.SharedPreferences
 import app.linksheet.feature.backup.api.ExportModel
 import app.linksheet.feature.backup.api.ImportSettings
 import app.linksheet.feature.backup.api.RestoreMode
@@ -159,7 +160,7 @@ class RestoreUseCase internal constructor(
 
         val entries = mutableListOf<PreferenceRestoreEntry>()
         if (settings.mode == RestoreMode.EraseRestore) {
-            holder.repository.edit { clearAll() }
+            holder.repository.clearStoredValues()
         }
 
         holder.repository.edit {
@@ -173,6 +174,13 @@ class RestoreUseCase internal constructor(
             holder.repository.reload(entry.preference.key)
         }
         return entries
+    }
+
+    private fun PreferenceRepository.clearStoredValues() {
+        val field = raw.javaClass.getDeclaredField("preferences")
+        field.isAccessible = true
+        val preferences = field.get(raw) as SharedPreferences
+        preferences.edit().clear().commit()
     }
 }
 

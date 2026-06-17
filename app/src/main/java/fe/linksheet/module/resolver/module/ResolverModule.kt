@@ -24,6 +24,7 @@ import fe.linksheet.module.resolver.ImprovedIntentResolver
 import fe.linksheet.module.resolver.InAppBrowserHandler
 import fe.linksheet.module.resolver.IntentResolver
 import fe.linksheet.module.resolver.IntentResolverDelegate
+import fe.linksheet.module.resolver.personal.PersonalLinkRuleEngine
 import fe.linksheet.module.resolver.browser.BrowserMode
 import fe.linksheet.module.resolver.util.AppSorter
 import fe.linksheet.module.resolver.util.DefaultIntentLauncher
@@ -53,6 +54,9 @@ val ResolverModule = module {
         )
     }
     singleOf(::InAppBrowserHandler)
+    single {
+        PersonalLinkRuleEngine()
+    }
     single<IntentResolver> {
         val settings = createSettings(get(), get(), get(), get())
         val experimentRepository = get<ExperimentRepository>()
@@ -65,6 +69,7 @@ val ResolverModule = module {
             packageIntentHandler = get(),
             packageLauncherService = get(),
             appSorter = get(),
+            appInfoCreator = get(),
             downloader = get(),
             browserHandler = get(),
             inAppBrowserHandler = get(),
@@ -73,6 +78,7 @@ val ResolverModule = module {
             networkStateService = get(),
             privateBrowsingService = get(),
             scenarioRepository = get(),
+            personalLinkRuleEngine = get(),
         )
 
         IntentResolverDelegate(
@@ -93,6 +99,7 @@ val ResolverModule = module {
                 networkStateService = get(),
                 privateBrowsingService = get(),
                 settings = settings,
+                personalLinkRuleEngine = get(),
             ),
             linkEngineIntentResolver = realLinkEngine.createResolver(settings),
             useLinkEngine = experimentRepository.asFunction(Experiments.linkEngine)

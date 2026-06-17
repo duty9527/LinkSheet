@@ -19,7 +19,6 @@ import app.linksheet.feature.analytics.service.TelemetryLevel
 import app.linksheet.feature.app.core.PackageIntentHandler
 import app.linksheet.feature.devicecompat.miui.MiuiCompat
 import app.linksheet.feature.devicecompat.miui.MiuiCompatProvider
-import app.linksheet.feature.remoteconfig.usecase.RemoteConfigUseCase
 import app.linksheet.feature.shizuku.service.ShizukuService
 import app.linksheet.feature.shizuku.usecase.ShizukuStatusUseCase
 import fe.composekit.extension.getSystemServiceOrThrow
@@ -53,12 +52,6 @@ class MainViewModel(
         repository = preferenceRepository,
         clipboardManager = context.getSystemServiceOrThrow<ClipboardManager>(),
         coroutineScope = viewModelScope
-    )
-    val remoteConfigUseCase = RemoteConfigUseCase(
-        repository = preferenceRepository,
-        stateRepository = appStateRepository,
-        remoteConfigPreferences = AppPreferences.remoteConfig,
-        remoteConfigStatePreferences = AppStatePreferences.remoteConfig
     )
     val shizukuStatusUseCase = ShizukuStatusUseCase(
         shizukuService = shizukuService
@@ -118,4 +111,3 @@ class MainViewModel(
         CrossProfileAccess("android.settings.MANAGE_CROSS_PROFILE_ACCESS")
     }
 }
-

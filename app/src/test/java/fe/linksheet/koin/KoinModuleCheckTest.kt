@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.os.Build
 import androidx.lifecycle.SavedStateHandle
-import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import app.linksheet.api.BuildConstants
 import app.linksheet.api.BuildInfo
@@ -44,9 +43,6 @@ import app.linksheet.feature.libredirect.preference.LibRedirectPreferences
 import app.linksheet.feature.libredirect.viewmodel.LibRedirectServiceSettingsViewModel
 import app.linksheet.feature.libredirect.viewmodel.LibRedirectSettingsViewModel
 import app.linksheet.feature.profile.service.ProfileService
-import app.linksheet.feature.remoteconfig.preference.RemoteConfigRepository
-import app.linksheet.feature.remoteconfig.service.RemoteConfigClient
-import app.linksheet.feature.remoteconfig.service.RemoteConfigService
 import app.linksheet.feature.shizuku.preference.ShizukuPreferences
 import app.linksheet.feature.shizuku.service.ShizukuFeatureService
 import app.linksheet.feature.shizuku.service.ShizukuService
@@ -254,7 +250,7 @@ internal class KoinModuleCheckTest : BaseUnitTest {
         definition<AppLocaleService>(List::class),
         definition<LanguageSettingsViewModel>(AppLocaleService::class),
         definition<SettingsViewModel>(AppLocaleService::class),
-        definition<ThemeSettingsViewModel>(RemoteConfigRepository::class),
+        definition<ThemeSettingsViewModel>(),
         definition<RedirectResolveRequest>(HttpClient::class),
         definition<Amp2HtmlResolveRequest>(HttpClient::class),
         definition<VerifiedLinkHandlerViewModel>(
@@ -279,8 +275,6 @@ internal class KoinModuleCheckTest : BaseUnitTest {
         definition<LibRedirectUserInstanceRepository>(LibRedirectUserInstanceDao::class),
         definition<ProfileService>(MetaDataHandler::class),
         definition<ExportImportUseCase>(PreferenceRepository::class, Gson::class, Toml::class),
-        definition<RemoteConfigClient>(HttpClient::class),
-        definition<RemoteConfigService>(WorkManager::class, StateFlow::class),
         definition<ShizukuFeatureService>(BroadcastEventBus::class)
     )
 

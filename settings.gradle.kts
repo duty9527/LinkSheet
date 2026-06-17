@@ -101,7 +101,6 @@ buildSettings {
         includeProject(":feature-devicecompat", "devicecompat")
         includeProject(":feature-downloader", "downloader")
         includeProject(":feature-libredirect", "libredirect")
-        includeProject(":feature-remoteconfig", "remoteconfig")
         includeProject(":feature-shizuku", "shizuku")
         includeProject(":feature-systeminfo", "systeminfo")
         includeProject(":feature-profile", "profile")
@@ -149,4 +148,3 @@ buildSettings {
         }
     }
 }
-

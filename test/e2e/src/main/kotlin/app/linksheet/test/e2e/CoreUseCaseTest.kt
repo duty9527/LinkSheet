@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.test.uiautomator.uiAutomator
 import app.linksheet.test.e2e.dialog.AnalyticsDialog
-import app.linksheet.test.e2e.dialog.RemoteConfigDialog
 import app.linksheet.test.e2e.story.ChromeSetupStory
 import app.linksheet.test.e2e.story.DefaultBrowserStory
 import app.linksheet.test.e2e.story.GoHomeStory
@@ -28,7 +27,6 @@ internal class CoreUseCaseTest : UiAutomatorTest() {
         }
         with(LaunchAppStory) { launch(testApp.packageName) }
 
-        watchFor(RemoteConfigDialog(device)) { clickEnable() }
         watchFor(AnalyticsDialog(device)) { clickSave() }
         with(DefaultBrowserStory) { setAsDefaultBrowser(testApp.label) }
         with(GoHomeStory) { awaitHome() }

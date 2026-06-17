@@ -69,6 +69,25 @@ internal class PackageIntentHandlerTest : BaseUnitTest {
     }
 
     @org.junit.Test
+    fun `test host specific apps are not treated as browsers`() {
+        val handler: PackageIntentHandler = DefaultPackageIntentHandler(
+            queryIntentActivities = { _, _ ->
+                listOf(PackageInfoFakes.ChromeBrowser, PackageInfoFakes.Youtube).flatResolveInfos()
+            },
+            resolveActivity = { _, _ -> null },
+            isLinkSheetCompat = { false },
+            isSelf = { false },
+        )
+
+        assertThat(handler.findHttpBrowsable(null))
+            .isNotNull()
+            .transform { it.asDescriptors() }
+            .containsExactly(
+                "com.android.chrome/com.google.android.apps.chrome.Main:"
+            )
+    }
+
+    @org.junit.Test
     fun `test relative activities are correctly handled`() {
         val handler: PackageIntentHandler = DefaultPackageIntentHandler(
             queryIntentActivities = { _, _ -> MangaExtensionsPackageInfoFake.resolveInfos },

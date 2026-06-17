@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
@@ -14,12 +16,23 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.DeleteOutline
 import androidx.compose.material.icons.rounded.WebAssetOff
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.snapshots.SnapshotStateMap
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -42,11 +55,14 @@ import fe.composekit.component.list.item.type.CheckboxListItem
 import fe.linksheet.R
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
+import java.net.IDN
+import java.util.Locale
 import app.linksheet.compose.R as CommonR
 
 fun Map<String, Boolean>.createResult(selectedStates: Map<String, Boolean>): List<HostState> {
-    return mapNotNull { (host, initialState) ->
-        val currentState = selectedStates[host] ?: return@mapNotNull  null
+    return (keys + selectedStates.keys).distinct().mapNotNull { host ->
+        val initialState = this[host] ?: false
+        val currentState = selectedStates[host] ?: false
         HostState(host, initialState, currentState)
     }
 }
@@ -110,9 +126,20 @@ private fun BoxScope.DialogContent(
     hosts: List<String>,
     hostState: SnapshotStateMap<String, Boolean>,
 ) {
-    if (hosts.isEmpty()) {
+    val displayHosts = (hosts + hostState.keys).distinct().sorted()
+    Column(modifier = Modifier.matchParentSize()) {
+        CustomHostInput(
+            hostState = hostState,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(DialogDefaults.ContentPadding)
+        )
+
+    if (displayHosts.isEmpty()) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = DialogDefaults.ContentPadding),
             verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -127,32 +154,124 @@ private fun BoxScope.DialogContent(
         }
     } else {
         LazyColumn(
-            modifier = Modifier.matchParentSize(),
+            modifier = Modifier.weight(1f),
             state = state,
             contentPadding = PaddingValues(vertical = 4.dp),
             verticalArrangement = Arrangement.spacedBy(2.dp)
         ) {
-            items(items = hosts, key = { it }) { host ->
+            items(items = displayHosts, key = { it }) { host ->
+                val isCustom = host !in hosts
                 CheckboxListItem(
                     host = host,
                     isChecked = hostState[host]!!,
                     onCheckedChange = {
                         hostState[host] = it
+                    },
+                    otherContent = rememberOptionalContent(isCustom) {
+                        IconButton(onClick = { hostState.remove(host) }) {
+                            Icon(
+                                imageVector = Icons.Rounded.DeleteOutline,
+                                contentDescription = stringResource(R.string.generic__button_text_delete)
+                            )
+                        }
                     }
                 )
             }
         }
     }
+    }
 }
 
 @Composable
-fun LazyItemScope.CheckboxListItem(host: String, isChecked: Boolean, onCheckedChange: (Boolean) -> Unit) {
+private fun CustomHostInput(
+    hostState: SnapshotStateMap<String, Boolean>,
+    modifier: Modifier = Modifier,
+) {
+    var input by rememberSaveable { mutableStateOf("") }
+    var hasError by rememberSaveable { mutableStateOf(false) }
+
+    fun addHost() {
+        val host = normalizeCustomHost(input)
+        if (host == null) {
+            hasError = input.isNotBlank()
+            return
+        }
+
+        hostState[host] = true
+        input = ""
+        hasError = false
+    }
+
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        OutlinedTextField(
+            modifier = Modifier.weight(1f),
+            value = input,
+            onValueChange = {
+                input = it
+                hasError = false
+            },
+            singleLine = true,
+            label = { Text(text = stringResource(R.string.app_host_dialog__label_custom_host)) },
+            supportingText = rememberOptionalContent(hasError) {
+                Text(text = stringResource(R.string.app_host_dialog__text_invalid_host))
+            },
+            isError = hasError,
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+            keyboardActions = KeyboardActions(onDone = { addHost() })
+        )
+        IconButton(onClick = ::addHost) {
+            Icon(
+                imageVector = Icons.Rounded.Add,
+                contentDescription = stringResource(R.string.add)
+            )
+        }
+    }
+}
+
+internal fun normalizeCustomHost(input: String): String? {
+    val trimmed = input.trim()
+        .removePrefix("http://")
+        .removePrefix("https://")
+        .substringBefore("/")
+        .substringBefore("?")
+        .substringBefore("#")
+        .substringBefore(":")
+        .trim()
+        .trim('.')
+
+    if (trimmed.isBlank()) return null
+
+    val asciiHost = try {
+        IDN.toASCII(trimmed, IDN.USE_STD3_ASCII_RULES)
+    } catch (_: IllegalArgumentException) {
+        return null
+    }.lowercase(Locale.ROOT)
+
+    if (asciiHost.length > 253) return null
+    if (!asciiHost.contains(".")) return null
+    if (asciiHost.any { it != '.' && it != '-' && !it.isLetterOrDigit() }) return null
+    if (asciiHost.split(".").any { it.isBlank() || it.length > 63 || it.startsWith("-") || it.endsWith("-") }) return null
+
+    return asciiHost
+}
+
+@Composable
+fun LazyItemScope.CheckboxListItem(
+    host: String,
+    isChecked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+    otherContent: @Composable (() -> Unit)? = null,
+) {
     CheckboxListItem(
         checked = isChecked,
         onCheckedChange = onCheckedChange,
         position = ContentPosition.Leading,
         headlineContent = text(host),
-        otherContent = null,
+        otherContent = otherContent,
         innerPadding = DialogDefaults.ListItemInnerPadding.copy(
             vertical = 4.dp
         ),

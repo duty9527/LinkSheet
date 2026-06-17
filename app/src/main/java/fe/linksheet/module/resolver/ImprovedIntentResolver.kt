@@ -35,6 +35,8 @@ import fe.linksheet.module.database.entity.PreferredApp
 import fe.linksheet.module.repository.AppSelectionHistoryRepository
 import fe.linksheet.module.repository.PreferredAppRepository
 import fe.linksheet.module.resolver.module.IntentResolverSettings
+import fe.linksheet.module.resolver.personal.PersonalLinkRuleEngine
+import fe.linksheet.module.resolver.personal.PersonalPreferredAppSelector
 import fe.linksheet.module.resolver.urlresolver.base.ResolvePredicate
 import fe.linksheet.module.resolver.urlresolver.base.UrlResolver
 import fe.linksheet.module.resolver.util.AppSorter
@@ -80,6 +82,7 @@ class ImprovedIntentResolver(
     private val networkStateService: NetworkStateService,
     private val privateBrowsingService: PrivateBrowsingService,
     private val settings: IntentResolverSettings,
+    private val personalLinkRuleEngine: PersonalLinkRuleEngine,
 ) : IntentResolver {
     private val logger = Logger("ImprovedIntentResolver")
     private val browserSettings = settings.browserSettings
@@ -278,6 +281,9 @@ class ImprovedIntentResolver(
             uri = libRedirectResult.redirectedUri
         }
 
+        val personalRuleResult = personalLinkRuleEngine.apply(uri)
+        uri = personalRuleResult.uri
+
         val allowCustomTab = inAppBrowserHandler.shouldAllowCustomTab(
             referrer = options.referrer,
             inAppBrowserMode = browserSettings.inAppBrowserSettings()
@@ -314,14 +320,36 @@ class ImprovedIntentResolver(
         )
 
         emitEvent(ResolveEvent.SortingApps)
-        val (sorted, filtered) = appSorter.sort(
+        val (sortedByUsage, filteredByHistory) = appSorter.sort(
             appList,
             app,
             lastUsedApps,
             returnLastChosen = !settings.bottomSheetSettings.dontShowFilteredItem()
         )
 
-        val isRegularPreferredApp = app?.alwaysPreferred == true && filtered != null
+        var finalFilteredByHistory = filteredByHistory
+        if (finalFilteredByHistory == null && app?.alwaysPreferred == true) {
+            val matchedResolveInfo = resolveList.firstOrNull { it.activityInfo.packageName == app.pkg }
+                ?: browsers.firstOrNull { it.activityInfo.packageName == app.pkg }
+            if (matchedResolveInfo != null) {
+                finalFilteredByHistory = appInfoCreator.toActivityAppInfo(matchedResolveInfo, null)
+            } else {
+                val resolveInfo = packageLauncherService.getLauncherOrNull(app.pkg)
+                if (resolveInfo != null) {
+                    finalFilteredByHistory = appInfoCreator.toActivityAppInfo(resolveInfo, null)
+                }
+            }
+        }
+
+        val hasUserAlwaysPreferredApp = app?.alwaysPreferred == true && finalFilteredByHistory != null
+        val personalSelection = PersonalPreferredAppSelector.select(
+            sorted = sortedByUsage,
+            filtered = finalFilteredByHistory,
+            hasUserAlwaysPreferredApp = hasUserAlwaysPreferredApp,
+            ruleResult = personalRuleResult
+        )
+        val isRegularPreferredApp = hasUserAlwaysPreferredApp ||
+                (personalSelection.selected && personalRuleResult.autoLaunch)
 
         val shouldRunDownloader = shouldRunDownloader(
             enabled = downloaderSettings.enableDownloader(),
@@ -358,8 +386,8 @@ class ImprovedIntentResolver(
             referrer = options.referrer,
             unfurlResult = unfurl,
             referringPackageName = referringPackage?.packageName,
-            resolved = sorted,
-            filteredItem = filtered,
+            resolved = personalSelection.sorted,
+            filteredItem = personalSelection.filtered,
             isRegularPreferredApp = isRegularPreferredApp,
             hasSingleMatchingOption = appList.isSingleOption || appList.noBrowsersOnlySingleApp,
             resolveModuleStatus = resolveStatus,

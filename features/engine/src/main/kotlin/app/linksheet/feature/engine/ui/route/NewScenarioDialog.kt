@@ -92,9 +92,6 @@ private fun NewScenarioDialog(
             placeholder = { Text(text = stringResource(R.string.settings_scenario__text_placeholder_instance)) }
         )
 
-//        TextContentWrapper(
-//            textContent = annotatedStringResource(R.string.settings_remote_config__text_content)
-//        )
     }
 }
 

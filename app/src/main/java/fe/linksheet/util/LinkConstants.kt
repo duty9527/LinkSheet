@@ -2,7 +2,6 @@ package fe.linksheet.util
 
 import android.util.Log
 import androidx.compose.runtime.Immutable
-import app.linksheet.feature.remoteconfig.util.LinkAssets
 import app.linksheet.feature.wiki.core.WikiPage
 import fe.android.span.helper.LinkTags
 import fe.linksheet.R

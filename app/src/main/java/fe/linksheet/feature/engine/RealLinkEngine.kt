@@ -3,6 +3,7 @@
 package fe.linksheet.feature.engine
 
 import android.content.Context
+import app.linksheet.feature.app.core.AppInfoCreator
 import app.linksheet.feature.app.core.PackageIntentHandler
 import app.linksheet.feature.app.core.PackageLauncherService
 import app.linksheet.feature.browser.core.PrivateBrowsingService
@@ -37,6 +38,7 @@ import fe.linksheet.module.repository.PreferredAppRepository
 import fe.linksheet.module.resolver.ImprovedBrowserHandler
 import fe.linksheet.module.resolver.InAppBrowserHandler
 import fe.linksheet.module.resolver.module.IntentResolverSettings
+import fe.linksheet.module.resolver.personal.PersonalLinkRuleEngine
 import fe.linksheet.module.resolver.util.AppSorter
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.CoroutineDispatcher
@@ -52,6 +54,7 @@ class RealLinkEngine(
     private val packageIntentHandler: PackageIntentHandler,
     private val packageLauncherService: PackageLauncherService,
     private val appSorter: AppSorter,
+    private val appInfoCreator: AppInfoCreator,
     private val downloader: Downloader,
     private val browserHandler: ImprovedBrowserHandler,
     private val inAppBrowserHandler: InAppBrowserHandler,
@@ -60,6 +63,7 @@ class RealLinkEngine(
     private val networkStateService: NetworkStateService,
     private val privateBrowsingService: PrivateBrowsingService,
     private val scenarioRepository: ScenarioRepository,
+    private val personalLinkRuleEngine: PersonalLinkRuleEngine,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
     private val logger = Logger("RealLinkEngine")
@@ -78,12 +82,14 @@ class RealLinkEngine(
             packageIntentHandler = packageIntentHandler,
             packageLauncherService = packageLauncherService,
             appSorter = appSorter,
+            appInfoCreator = appInfoCreator,
             browserHandler = browserHandler,
             inAppBrowserHandler = inAppBrowserHandler,
             networkStateService = networkStateService,
             selector = ScenarioSelector(scenarioFlow = scenarios, dispatcher = dispatcher),
             privateBrowsingService = privateBrowsingService,
-            settings = settings
+            settings = settings,
+            personalLinkRuleEngine = personalLinkRuleEngine
         )
     }
 

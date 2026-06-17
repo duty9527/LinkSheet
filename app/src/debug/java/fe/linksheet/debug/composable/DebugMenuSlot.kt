@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import app.linksheet.compose.DebugMenuButton
-import app.linksheet.feature.remoteconfig.ui.rememberRemoteConfigDialog
 import app.linksheet.feature.shizuku.shizukuDebugItem
 import fe.composekit.preference.collectAsStateWithLifecycle
 import fe.linksheet.activity.onboarding.OnboardingActivity
@@ -33,7 +32,6 @@ import fe.linksheet.debug.activity.LocaleDebugActivity
 import fe.linksheet.debug.activity.ManifestParserActivity
 import fe.linksheet.debug.activity.MetaDataHandlerActivity
 import fe.linksheet.debug.activity.SnapTesterActivity
-import fe.linksheet.debug.activity.WorkManagerActivity
 import fe.linksheet.debug.module.viewmodel.DebugViewModel
 import fe.linksheet.extension.compose.dashedBorder
 import fe.linksheet.navigation.Routes
@@ -65,18 +63,6 @@ fun DebugMenuSlot(viewModel: DebugViewModel, navigate: (String) -> Unit) {
                     )
                 }
             }
-            item(key = "remote-config-dialog") {
-                val result = rememberRemoteConfigDialog {
-                }
-
-                DebugMenuButton(
-                    text = "Remote config dialog",
-                    onClick = {
-                        result.open()
-                    }
-                )
-            }
-
             if (activity != null) {
                 item(key = "metadata-handler") {
                     FilledTonalActivityLauncher(
@@ -90,13 +76,6 @@ fun DebugMenuSlot(viewModel: DebugViewModel, navigate: (String) -> Unit) {
                         activity = activity,
                         text = "Manifest parser",
                         intent = createIntent(activity, ManifestParserActivity::class)
-                    )
-                }
-                item(key = "remoteconfig-assets") {
-                    FilledTonalActivityLauncher(
-                        activity = activity,
-                        text = "Work manager",
-                        intent = createIntent(activity, WorkManagerActivity::class)
                     )
                 }
                 item(key = "component-state") {

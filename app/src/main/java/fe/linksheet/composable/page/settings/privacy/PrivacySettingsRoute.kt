@@ -7,7 +7,6 @@ import androidx.compose.ui.semantics.Role
 import app.linksheet.compose.list.item.PreferenceSwitchListItem
 import app.linksheet.compose.page.SaneScaffoldSettingsPage
 import app.linksheet.feature.analytics.ui.rememberAnalyticDialog
-import app.linksheet.feature.remoteconfig.ui.remoteConfigListItem
 import app.linksheet.util.buildconfig.StaticBuildInfo
 import fe.android.compose.text.StringResourceContent.Companion.textContent
 import fe.composekit.component.list.column.shape.ClickableShapeListItem
@@ -41,8 +40,6 @@ fun PrivacySettingsRoute(
                     supportingContent = textContent(R.string.show_linksheet_referrer_explainer),
                 )
             }
-
-            remoteConfigListItem(statePreference = viewModel.remoteConfig)
         }
 
         if (StaticBuildInfo.IsDebug || enableAnalytics) {
