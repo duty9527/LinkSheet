@@ -65,7 +65,6 @@
     <string name="use_clear_urls">Lietot ClearURLs</string>
     <string name="loading_link">Apstrādā saiti…</string>
     <string name="follow_redirects">Sekot pāradresēšanām</string>
-    <string name="follow_redirects_external_service">Sekot pāradresēšanām, izmantojot ārējo pakalpojumu</string>
     <string name="follow_only_known_trackers">Sekot tikai zināmiem izsekotājiem</string>
     <string name="theme_explainer">Material You, tumšais motīvs, tīri melns režīms</string>
     <string name="dark">Tumšs</string>

@@ -5,17 +5,11 @@ import android.app.Activity
 import android.app.Application
 import android.content.ClipboardManager
 import android.content.Intent
-import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavDestination
-import app.linksheet.api.SensitivePreference
 import app.linksheet.api.preference.AppPreferenceRepository
 import app.linksheet.compose.debug.DebugMenuSlotProvider
-import app.linksheet.feature.analytics.service.AnalyticsEvent
-import app.linksheet.feature.analytics.service.BaseAnalyticsService
-import app.linksheet.feature.analytics.service.TelemetryLevel
 import app.linksheet.feature.app.core.PackageIntentHandler
 import app.linksheet.feature.devicecompat.miui.MiuiCompat
 import app.linksheet.feature.devicecompat.miui.MiuiCompatProvider
@@ -41,7 +35,6 @@ class MainViewModel(
     val appStateRepository: DefaultAppStateRepository,
     val preferenceRepository: AppPreferenceRepository,
     val experimentRepository: ExperimentRepository,
-    private val analyticsService: BaseAnalyticsService,
     private val miuiCompatProvider: MiuiCompatProvider,
     private val miuiCompat: MiuiCompat,
     val debugMenu: DebugMenuSlotProvider,
@@ -67,10 +60,6 @@ class MainViewModel(
     val newDefaultsDismissed =
         appStateRepository.asViewModelState(AppStatePreferences.newDefaults_2025_12_15_InfoDismissed)
 
-    @OptIn(SensitivePreference::class)
-    val telemetryLevel = preferenceRepository.asViewModelState(AppPreferences.analytics.telemetryLevel)
-    val telemetryShowInfoDialog = preferenceRepository.asViewModelState(AppPreferences.analytics.telemetryShowInfoDialog)
-
     private val _showMiuiAlert = RefreshableStateFlow(false) {
         if (miuiCompatProvider.isRequired.value) miuiCompat.showAlert(context) else false
     }
@@ -92,18 +81,6 @@ class MainViewModel(
         if (activity == null) return false
         return activity.tryStartActivity(Intent(intent.action)).isSuccess()
     }
-
-    fun enqueueNavEvent(destination: NavDestination, args: Bundle?) = viewModelScope.launch {
-        analyticsService.enqueue(AnalyticsEvent.Navigate(destination.route ?: "<no_route>"))
-    }
-
-    fun updateTelemetryLevel(level: TelemetryLevel) = viewModelScope.launch {
-        telemetryLevel(level)
-        telemetryShowInfoDialog(false)
-        analyticsService.changeLevel(level)
-    }
-
-
 
     enum class SettingsIntent(val action: String) {
         DefaultApps(Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS),

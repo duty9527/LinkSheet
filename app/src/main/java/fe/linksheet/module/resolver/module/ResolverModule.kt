@@ -11,19 +11,17 @@ import fe.composekit.preference.asFunction
 import fe.droidkit.koin.getPackageManager
 import fe.droidkit.koin.getSystemServiceOrThrow
 import fe.kotlin.extension.iterable.mapToSet
-import fe.linksheet.BuildConfig
 import fe.linksheet.feature.engine.RealLinkEngine
 import fe.linksheet.module.preference.app.AppPreferences
+import fe.linksheet.module.repository.HostBehaviorRepository
 import fe.linksheet.module.preference.experiment.ExperimentRepository
 import fe.linksheet.module.preference.experiment.Experiments
 import fe.linksheet.module.repository.whitelisted.WhitelistedInAppBrowsersRepository
 import fe.linksheet.module.repository.whitelisted.WhitelistedNormalBrowsersRepository
 import fe.linksheet.module.resolver.FollowRedirectsMode
 import fe.linksheet.module.resolver.ImprovedBrowserHandler
-import fe.linksheet.module.resolver.ImprovedIntentResolver
 import fe.linksheet.module.resolver.InAppBrowserHandler
 import fe.linksheet.module.resolver.IntentResolver
-import fe.linksheet.module.resolver.IntentResolverDelegate
 import fe.linksheet.module.resolver.personal.PersonalLinkRuleEngine
 import fe.linksheet.module.resolver.browser.BrowserMode
 import fe.linksheet.module.resolver.util.AppSorter
@@ -32,6 +30,8 @@ import fe.linksheet.module.resolver.util.IntentLauncher
 import kotlinx.coroutines.flow.firstOrNull
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
+import org.koin.core.qualifier.qualifier
+import fe.gson.GsonQualifier
 import kotlin.time.ExperimentalTime
 
 val ResolverModule = module {
@@ -46,11 +46,9 @@ val ResolverModule = module {
         )
     }
     single<IntentLauncher> {
-        val appPreferenceRepository = get<AppPreferenceRepository>()
         DefaultIntentLauncher(
+            context = get(),
             getComponentEnabledSetting = getPackageManager()::getComponentEnabledSetting,
-            showAsReferrer = appPreferenceRepository.asFunction(AppPreferences.showLinkSheetAsReferrer),
-            selfPackage = BuildConfig.APPLICATION_ID
         )
     }
     singleOf(::InAppBrowserHandler)
@@ -58,8 +56,12 @@ val ResolverModule = module {
         PersonalLinkRuleEngine()
     }
     single<IntentResolver> {
-        val settings = createSettings(get(), get(), get(), get())
-        val experimentRepository = get<ExperimentRepository>()
+        val settings = createSettings(
+            prefRepo = get<AppPreferenceRepository>(),
+            experimentRepository = get<ExperimentRepository>(),
+            normalBrowsersRepository = get<WhitelistedNormalBrowsersRepository>(),
+            inAppBrowsersRepository = get<WhitelistedInAppBrowsersRepository>(),
+        )
 
         val realLinkEngine = RealLinkEngine(
             context = get(),
@@ -79,31 +81,12 @@ val ResolverModule = module {
             privateBrowsingService = get(),
             scenarioRepository = get(),
             personalLinkRuleEngine = get(),
+            hostBehaviorRepository = get(),
+            appPreferenceRepository = get(),
+            gson = get(qualifier(GsonQualifier.Compact)),
         )
 
-        IntentResolverDelegate(
-            improvedIntentResolver = ImprovedIntentResolver(
-                context = get(),
-                appSelectionHistoryRepository = get(),
-                preferredAppRepository = get(),
-                appInfoCreator = get(),
-                packageIntentHandler = get(),
-                packageLauncherService = get(),
-                appSorter = get(),
-                downloader = get(),
-                urlResolver = get(),
-                browserHandler = get(),
-                inAppBrowserHandler = get(),
-                libRedirectResolver = get(),
-                unfurler = get(),
-                networkStateService = get(),
-                privateBrowsingService = get(),
-                settings = settings,
-                personalLinkRuleEngine = get(),
-            ),
-            linkEngineIntentResolver = realLinkEngine.createResolver(settings),
-            useLinkEngine = experimentRepository.asFunction(Experiments.linkEngine)
-        )
+        realLinkEngine.createResolver(settings)
     }
 }
 
@@ -144,7 +127,6 @@ data class FollowRedirectsSettings(
     val followRedirectsSkipBrowser: () -> Boolean,
     val followOnlyKnownTrackers: () -> Boolean,
     val followRedirectsLocalCache: () -> Boolean,
-    val followRedirectsExternalService: () -> Boolean,
     val followRedirectsAllowDarknets: () -> Boolean,
     val followRedirectsAllowLocalNetwork: () -> Boolean,
     val followRedirectsAggressive: () -> Boolean
@@ -153,7 +135,6 @@ data class FollowRedirectsSettings(
 data class Amp2HtmlSettings(
     val enableAmp2Html: () -> Boolean,
     val amp2HtmlLocalCache: () -> Boolean,
-    val amp2HtmlExternalService: () -> Boolean,
     val amp2HtmlAllowDarknets: () -> Boolean,
     val amp2HtmlAllowLocalNetwork: () -> Boolean,
     val amp2HtmlSkipBrowser: () -> Boolean,
@@ -212,7 +193,6 @@ fun createSettings(
         amp2HtmlSettings = Amp2HtmlSettings(
             enableAmp2Html = prefRepo.asFunction(AppPreferences.amp2Html.enable),
             amp2HtmlLocalCache = prefRepo.asFunction(AppPreferences.amp2Html.localCache),
-            amp2HtmlExternalService = prefRepo.asFunction(AppPreferences.amp2Html.externalService),
             amp2HtmlAllowDarknets = prefRepo.asFunction(AppPreferences.amp2Html.allowDarknets),
             amp2HtmlAllowLocalNetwork = prefRepo.asFunction(AppPreferences.amp2Html.allowLocalNetwork),
             amp2HtmlSkipBrowser = prefRepo.asFunction(AppPreferences.amp2Html.skipBrowser),
@@ -223,7 +203,6 @@ fun createSettings(
             followRedirectsSkipBrowser = prefRepo.asFunction(AppPreferences.followRedirects.skipBrowser),
             followOnlyKnownTrackers = prefRepo.asFunction(AppPreferences.followRedirects.onlyKnownTrackers),
             followRedirectsLocalCache = prefRepo.asFunction(AppPreferences.followRedirects.localCache),
-            followRedirectsExternalService = prefRepo.asFunction(AppPreferences.followRedirects.externalService),
             followRedirectsAllowDarknets = prefRepo.asFunction(AppPreferences.followRedirects.allowDarknets),
             followRedirectsAllowLocalNetwork = prefRepo.asFunction(AppPreferences.followRedirects.allowLocalNetwork),
             followRedirectsAggressive  = prefRepo.asFunction(AppPreferences.followRedirects.aggressive)

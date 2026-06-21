@@ -87,7 +87,6 @@
     <string name="at_least_one_known_browser_installed_explainer">LinkSheet hat mindestens eine App erkannt, die als Browser bekannt ist.</string>
     <string name="enable_amp2html">Amp2Html aktivieren</string>
     <string name="use_clear_urls_explainer">Experimentelle <annotation url-id="clearurls-github">ClearURLs</annotation>-Integration verwenden (entfernt Tracking-Parameter von URLs)</string>
-    <string name="follow_only_known_trackers_explainer">Es wird nur versucht, Weiterleitungen zu folgen, wenn der Host als Tracker/Weiterleitung bekannt ist. Wenn „Weiterleitungen über einen externen Dienst folgen“ aktiviert ist, wird dies immer aktiviert sein</string>
     <string name="theme_explainer">Material You, dunkles Thema, rein schwarzer Modus</string>
     <string name="bottom_sheet">Unteres Fenster</string>
     <string name="display_grid_layout">Raster-Layout</string>
@@ -121,7 +120,6 @@
     <string name="success">Erfolg</string>
     <string name="discord_explainer">Chatten Sie auf unserem Discord-Server! Chatten Sie mit den Nutzern und Entwicklern von LinkSheet über seine Zukunft und andere Unternehmungen!</string>
     <string name="configure">Konfigurieren</string>
-    <string name="show_linksheet_referrer">LinkSheet-Referrer anzeigen</string>
     <string name="redirect_resolve_type_local">lokaler Auflöser</string>
     <string name="theme">Design</string>
     <string name="whitelisted_browsers">Browser auf der Whitelist</string>
@@ -133,18 +131,15 @@
     <string name="shizuku_explainer_short">Direkt mit System-Schnittstellen interagieren</string>
     <string name="linksheet_donation_explainer_2">Eine Spende von mehr als <b>5€</b> ermöglicht Ihnen den Zugang zu <b>LinkSheet Pro</b>, das derzeitig nur das Spendenbanner auf dem Hauptbildschirm der App ausblendet, aber in Zukunft wird es <b>Exklusive Pro-Funktionen</b> geben.</string>
     <string name="linksheet_download">LinkSheet herunterladen</string>
-    <string name="follow_redirects_external_service_explainer">Weiterleitungen über eine durch supabase.com bereitgestellte Schnittstelle folgen (<annotation url-id="supabase-privacy">Datenschutzerklärung</annotation>)</string>
     <string name="include_fingerprint">Fingerabdruck des Geräts einschließen (empfohlen)</string>
     <string name="github_pipeline_build">Erstellt und signiert durch den Github-Workflow</string>
     <string name="disable_in_selected_explainer">In-App-Browser in ausgewählten Anwendungen deaktivieren, unabhängig davon, was die Anwendung verwenden möchte</string>
     <string name="fastfoward_rules">FastForward-Regeln verwenden</string>
-    <string name="amp2html_external_service_explainer">Versucht, die Nicht-AMP-Seitenversion über eine auf supabase.com bereitgestellte API zu erhalten (<annotation url-id="supabase-privacy">Datenschutzrichtlinie</annotation>)</string>
     <string name="github_explainer">Quellcode-Repository</string>
     <string name="launch_onboarding">Onboarding starten</string>
     <string name="debug">Fehlersuche</string>
     <string name="other">Anderes</string>
     <string name="credits_explainer">Danksagungen, Lizenzierung</string>
-    <string name="amp2html_external_service">Versucht, die Nicht-AMP-Seitenversion über einen externen Dienst zu erhalten</string>
     <string name="no_handlers_found">Kein Browser oder native App gefunden!</string>
     <string name="thanks_for_donating">Danke, dass Sie gespendet haben!</string>
     <string name="app_setup">App-Setup</string>
@@ -174,7 +169,6 @@
     <string name="enable_amp2html_explainer">Leitet AMP-Seiten auf ihre normale Webversion um. Dies kann <annotation url-id="privacy-amp2html">Auswirkungen auf die Privatsphäre</annotation> haben</string>
     <string name="donate">Spenden</string>
     <string name="disable_in_selected">In Auswahl deaktivieren</string>
-    <string name="follow_redirects_external_service">Weiterleitungen über externen Dienst folgen</string>
     <string name="general_settings_explainer">Einstellungen, die die gesamte App betreffen</string>
     <string name="built_by_error">Dieser Build wurde nicht von 1fexd signiert. Dies bedeutet nicht unbedingt etwas Schlechtes, da jeder den Quellcode modifizieren und seine eigene App erstellen kann, aber er könnte dies in böswilliger Absicht tun.</string>
     <string name="follow_only_known_trackers">Nur bekannten Trackern folgen</string>
@@ -184,7 +178,6 @@
     <string name="at_least_one_known_browser_installed">Mindestens ein Browser installiert</string>
     <string name="add">Hinzufügen</string>
     <string name="follow_redirects_local_cache">Lokalen Weiterleitungs-Zwischenspeicher aktivieren</string>
-    <string name="privacy">Datenschutz</string>
     <string name="pretend_to_be_app">Abfangen von Anfragen nativer Apps</string>
     <string name="shizuku">Shizuku-Integration</string>
     <string name="dont_show_filtered_item_explainer">Zeigt niemals den oberen Abschnitt an, der die zuletzt verwendete App für den angeklickten Host vorschlägt</string>

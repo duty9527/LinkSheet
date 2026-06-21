@@ -18,7 +18,6 @@
     <string name="save">Сачувај</string>
     <string name="enable_amp2html">Омогући Amp2Html</string>
     <string name="use_clear_urls_explainer">Користите експерименталну интеграцију <annotation url-id="clearurls-github">ClearURLs</annotation> (брише параметре праћења са URL адреса)</string>
-    <string name="follow_only_known_trackers_explainer">Покушајте да пратите преусмеравања само када је познато да је хост програм за праћење/преусмеравање. Ако је омогућено „Прати преусмеравања путем спољне услуге“, ово ће увек бити омогућено</string>
     <string name="always_disable">Присилно онемогући</string>
     <string name="copy_to_clipboard">Копирај у привремену меморију</string>
     <string name="preview_url_explainer">Приказује URL адресу на коју је кликнуто (након што је обрађена)</string>
@@ -50,7 +49,6 @@
     <string name="send_to">Дели са</string>
     <string name="enable_ignore_libredirect_button">Омогући дугме „Занемари LibRedirect“</string>
     <string name="pretend_to_be_app_explainer_2">Неке апликације попут Google Chrome-а експлицитно траже изворну апликацију за руковање, на пример, YouTube линк када се додирне у резултатима претраге. LinkSheetCompat се претвара да је таква изворна апликација за подржане хостове, а затим прослеђује захтев LinkSheet-у.</string>
-    <string name="privacy_settings_explainer">Приватност упућивача, телеметрија</string>
     <string name="dont_show_filtered_item">Не приказуј одељак „последња изабрана апликација“</string>
     <string name="follow_redirects_local_cache_explainer">Кеширајте резултат преусмеравања локално</string>
     <string name="donate_explainer_crypto">Када донирате помоћу криптовалуте, пошаљите имејл на <annotation url="mailto:1fexd@420blaze.it">1fexd@420blaze.it</annotation>.</string>
@@ -73,7 +71,6 @@
     <string name="discord_explainer">Ћаскајте о LinkSheet-у на нашем Discord серверу</string>
     <string name="github">GitHub</string>
     <string name="configure">Конфигуриши</string>
-    <string name="show_linksheet_referrer">Прикажи LinkSheet упућивача</string>
     <string name="url_copied">URL адреса је копирана у привремену меморију</string>
     <string name="copy_url">Копирај линк</string>
     <string name="resolve_failed">%s је неуспешно: %s</string>
@@ -97,7 +94,6 @@
     <string name="built_at"><b>Израђено на:</b> <font face="monospace">%s</font></string>
     <string name="shizuku_explainer_short">Директно комуницирајте са системским API-јима</string>
     <string name="linksheet_download">LinkSheet преузимање</string>
-    <string name="follow_redirects_external_service_explainer">Пратите преусмеравања користећи API постављен на supabase.com (<annotation url-id="supabase-privacy">Политика приватности</annotation>)</string>
     <string name="include_fingerprint">Укључи отисак прста уређаја (препоручено)</string>
     <string name="default_apps">Префериране апликације</string>
     <string name="just_once">Само једном</string>
@@ -107,7 +103,6 @@
     <string name="version">LinkSheet верзија</string>
     <string name="preview_url">Преглед URL адресе</string>
     <string name="usage_stats_sorting_explainer">Укључите статистику коришћења Android система у алгоритам за сортирање. Дозвола се тражи при првом укључивању.</string>
-    <string name="amp2html_external_service_explainer">Покушајте да добијете не-AMP верзије странице користећи API који је примењен на supabase.con (<annotation url-id="supabase-privacy">Политика приватности</annotation>)</string>
     <string name="github_explainer">Репозиторијум изворног кода</string>
     <string name="launch_onboarding">Покрени започињање</string>
     <string name="debug">Отклањање грешака</string>
@@ -119,7 +114,6 @@
     <string name="paste">Налепи</string>
     <string name="download">Преузми</string>
     <string name="links_explainer">ClearUrls, LibRedirect, праћење преусмеравања</string>
-    <string name="amp2html_external_service">Покушај да добијеш не-AMP верзије странице преко спољне услуге</string>
     <string name="open_with">Отвори помоћу</string>
     <string name="no_handlers_found">Није пронађен ниједан прегледач или изворна апликација!</string>
     <string name="always_ask">Увек питај</string>
@@ -155,7 +149,6 @@
     <string name="confirm">Потврди</string>
     <string name="disabled">Онемогућено</string>
     <string name="redact_log">Редигуј евиденцију (препоручено, онемогућавање овога може да изазове цурење назива пакета и назива хостова)</string>
-    <string name="show_linksheet_referrer_explainer">Када се апликација покрене, може да провери која је апликација покренута или да је препоручи. Подразумевано, када LinkSheet покрене апликацију, она се сакрива, говорећи да је апликација која је покренула LinkSheet покренула циљ. Омогућите ово да бисте поново уметнули LinkSheet као упућивач за апликације које отвара.</string>
     <string name="search">Претрага</string>
     <string name="at_least_one_unknown_browser_installer">Инсталиран је најмање један (непознати) прегледач</string>
     <string name="always_show_package_name">Увек приказуј назив пакета</string>
@@ -172,7 +165,6 @@
     <string name="donate">Донирај</string>
     <string name="disable_in_selected">Присилно онемогући…</string>
     <string name="debug_explainer">Евиденције апликације, ресетовање верификованог руковаоца</string>
-    <string name="follow_redirects_external_service">Пратите преусмеравања путем спољне услуге</string>
     <string name="general_settings_explainer">Увек прикажите називе пакета</string>
     <string name="settings">Подешавања</string>
     <string name="in_app">У апликацији</string>
@@ -188,7 +180,6 @@
     <string name="add">Додај</string>
     <string name="follow_redirects_local_cache">Омогући локални кеш за преусмеравање</string>
     <string name="donate_card_subtitle">Ако вам се свиђа LinkSheet, размислите о томе да оставите звездицу на GitHub-у и/или донирате. \nДонатори који донирају више од <b>5€</b> испуњавају услове за <b>LinkSheet Pro</b>, који ће имати ексклузивне функције.</string>
-    <string name="privacy">Приватност</string>
     <string name="pretend_to_be_app">Пресретни захтеве за изворне апликације</string>
     <string name="shizuku">Shizuku интеграција</string>
     <string name="dont_show_filtered_item_explainer">Неће се приказати горњи одељак који предлаже последњу коришћену апликацију за хост на који је кликнуто</string>
@@ -212,19 +203,15 @@
     <string name="export_settings">Извоз подешавања</string>
     <string name="export_explainer">Извезите тренутна подешавања апликације у фајл</string>
     <string name="import_settings_override_preferences">Ово ће заменити сва постојећа подешавања. Наставити?</string>
-    <string name="resolve_via_failed_toast">Неуспешно разрешење</string>
     <string name="last_updated"><b>Верзија</b> <font face="monospace">%s</font></string>
-    <string name="resolve_via_failed_toast_explainer">Приказивање искачуће поруке када се URL адреса неуспешно разреши преко спољне услуге</string>
     <string name="dev_explainer">Програмерска подешавања</string>
     <string name="opening_with_app_toast">Апликација аутоматски покренута</string>
     <string name="download_started_toast_explainer">Приказивање искачуће поруке када се започне преузимање</string>
     <string name="url_copied_toast">URL адреса је копирана</string>
     <string name="dev_mode_enabled">Честитамо, омогућили сте режим за програмере. Само будите опрезни.</string>
     <string name="clear_urls_version">ClearURLs правила</string>
-    <string name="resolve_via_toast">Успешно разрешење</string>
     <string name="download_started_toast">Преузимање започето</string>
     <string name="notifications">Искачуће поруке и обавештења</string>
-    <string name="resolve_via_toast_explainer">Приказивање искачуће поруке када се URL адреса разреши преко спољне услуге</string>
     <string name="dev">Програмер</string>
     <string name="debug_build">Издање за отклањање грешака</string>
     <string name="opening_with_app_toast_explainer">Приказивање искачуће поруке када се покрене апликација која је постављена као подразумевана за домен</string>
@@ -319,9 +306,6 @@
     <string name="no_action">Нема радње</string>
     <string name="open_app">Отвори апликацију</string>
     <string name="something_went_wrong">Дошло је до грешке, покушајте поново.</string>
-    <string name="telemetry_configure_title">Аналитика</string>
-    <string name="telemetry_identifier_reset">Ресетуј идентификатор</string>
-    <string name="telemetry_configure_type">Тип аналитике</string>
     <string name="link_handle_failed">Дошло је до грешке</string>
     <string name="retry">Покушај поново</string>
     <string name="resolve_activity_failure">Решавање активности није успело!</string>

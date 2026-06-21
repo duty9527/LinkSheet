@@ -78,8 +78,6 @@
     <string name="fastfoward_rules_explainer">Utilizza l\'integrazione sperimentale delle regole di <annotation url-id="fastforward-github">FastForward</annotation> (salta i reindirizzamenti di alcuni host estraendo il reindirizzamento dal link)</string>
     <string name="use_clear_urls_explainer">Utilizza l\'integrazione sperimentale di <annotation url-id="clearurls-github">ClearURLs</annotation> (cancella i parametri di tracciamento dagli URL)</string>
     <string name="follow_redirects">Segui reindirizzamenti</string>
-    <string name="follow_redirects_external_service">Risolvi i reindirizzamenti tramite un servizio esterno</string>
-    <string name="follow_redirects_external_service_explainer">Segui i reindirizzamenti utilizzando un\'API distribuita su supabase.com (<annotation url-id="supabase-privacy">Informativa sulla privacy</annotation>)</string>
     <string name="follow_only_known_trackers">Segui solo i tracker noti</string>
     <string name="amp2html">Amp2Html</string>
     <string name="loading_link">Caricamento link…</string>
@@ -89,7 +87,6 @@
     <string name="normal">Normale</string>
     <string name="ignore_libredirect">Ignora LibRedirect</string>
     <string name="usage_stats_sorting_explainer">Includi le statistiche di utilizzo nell\'algoritmo di ordinamento. L\'autorizzazione è richiesta alla prima attivazione.</string>
-    <string name="follow_only_known_trackers_explainer">Tenta di seguire i reindirizzamenti solo quando l\'host è noto per essere un tracker/reindirizzamento. Sarà sempre abilitato se \'Risolvi i reindirizzamenti tramite un servizio esterno\' è abilitato.</string>
     <string name="copy_to_clipboard">Copia</string>
     <string name="log">Log</string>
     <string name="redact_log">Proteggi il log (raccomandato per la privacy: disabilitarlo potrebbe far trapelare i nomi dei pacchetti e degli host)</string>
@@ -143,8 +140,6 @@
     <string name="app_browsers_subtitle">App preferite, impostazioni del browser</string>
     <string name="include_fingerprint">Includi il fingerprint o identificatore univoco del dispositivo ﹙consigliato﹚</string>
     <string name="debug_explainer">Log dell\'app, reset dei gestori di link verificati</string>
-    <string name="amp2html_external_service">Prova a ottenere una versione non-AMP della pagina tramite un servizio esterno</string>
-    <string name="amp2html_external_service_explainer">Prova a ottenere una versione non-AMP della pagina tramite l\'API di supabase.com (<annotation url-id="supabase-privacy">Info privacy</annotation>)</string>
     <string name="shizuku">Integrazione Shizuku</string>
     <string name="amp2html_local_cache_explainer">Salva localmente le versioni non-AMP delle pagine Web</string>
 </resources>

@@ -13,7 +13,6 @@ class Amp2HtmlSettingsViewModel(
 ) : BaseViewModel(preferenceRepository) {
     val enableAmp2Html = preferenceRepository.asViewModelState(AppPreferences.amp2Html.enable)
     val enableAmp2HtmlLocalCache = preferenceRepository.asViewModelState(AppPreferences.amp2Html.localCache)
-    val amp2HtmlExternalService = preferenceRepository.asViewModelState(AppPreferences.amp2Html.externalService)
     val amp2HtmlAllowDarknets = preferenceRepository.asViewModelState(AppPreferences.amp2Html.allowDarknets)
     val amp2HtmlAllowLocalNetwork = preferenceRepository.asViewModelState(AppPreferences.amp2Html.allowLocalNetwork)
     val amp2HtmlSkipBrowser = preferenceRepository.asViewModelState(AppPreferences.amp2Html.skipBrowser)

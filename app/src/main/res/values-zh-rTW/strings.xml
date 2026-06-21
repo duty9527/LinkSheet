@@ -65,8 +65,6 @@
     <string name="follow_redirects">跟進重新導向</string>
     <string name="follow_redirects_explainer">在開啟底部功能表之前自動跟進所有的重新導向。這可能引發<annotation url-id="privacy-follow-redirects">隱私顧慮</annotation></string>
     <string name="loading_link">處理連結中…</string>
-    <string name="follow_redirects_external_service">透過外部服務跟進重新導向</string>
-    <string name="follow_redirects_external_service_explainer">使用部署在 supabase.com 上的 API 來跟進重新導向 (<annotation url-id="supabase-privacy">隱私權政策</annotation>)</string>
     <string name="follow_only_known_trackers">僅於已知的追蹤程式跟進</string>
     <string name="theme">主題</string>
     <string name="theme_explainer">Material You、深色主題、純黑深色主題</string>
@@ -105,7 +103,6 @@
     <string name="enable_ignore_libredirect_button">啟用「忽略 LibRedirect」按鈕</string>
     <string name="enable_ignore_libredirect_button_explainer">若網址經 LibRedirect 重新導向，顯示一個可供開啟原始網址的按鈕</string>
     <string name="ignore_libredirect">忽略 LibRedirect</string>
-    <string name="follow_only_known_trackers_explainer">僅當主機為已知的追蹤程式或轉址網頁時嘗試跟進重新導向，若開啟「透過外部服務跟進重新導向」則此選項將維持啟用狀態</string>
     <string name="usage_stats_sorting_explainer">在排序演算法中納入 Android 系統的應用程式使用資料，首次啟用時需授予權限。</string>
     <string name="none_explainer">僅列出專門應用程式，排除所有瀏覽器。若僅有一款專門應用程式，將自動採用；若無專門應用程式，則列出所有瀏覽器。</string>
     <string name="urlbar_settings">網址列</string>
@@ -172,7 +169,6 @@
     <string name="open_app_settings_page">前往應用程式資訊</string>
     <string name="settings_about__divider_external_versions">外部版本資訊</string>
     <string name="settings_links_amp2html__title_skip_browser">略過來自瀏覽器的連結</string>
-    <string name="amp2html_external_service_explainer">使用部署在 supabase.com 上的 API 來嘗試獲取非 AMP 版網頁 (<annotation url-id="supabase-privacy">隱私權政策</annotation>)</string>
     <string name="settings_home__text_clipboard_card">當剪貼簿的內容為網址時，將其顯示在首頁以便存取</string>
     <string name="settings_home__title_clipboard_card">剪貼簿資訊卡</string>
     <string name="use_unified_preferred_browser_explainer">如要分別設定一般連結和程式內瀏覽連結的模式，請停用此選項並從下方的按鈕切換兩者。</string>
@@ -196,7 +192,6 @@
     <string name="hide_bottom_sheet_choice_buttons_explainer">不要顯示「僅限一次」與「一律採用」這兩個按鈕</string>
     <string name="theme_enable_material_you">動態色彩</string>
     <string name="retry">重試</string>
-    <string name="privacy">隱私</string>
     <string name="settings_shortcuts__title_default_browser">預設瀏覽器</string>
     <string name="resolve_event__checking_browsers">正在檢查瀏覽器</string>
     <string name="theme_enable_amoled_explainer">在深色主題中採用純黑背景</string>
@@ -218,7 +213,6 @@
     <string name="resolve_event__querying_browser_list">正在查詢瀏覽器清單</string>
     <string name="resolve_event__loading_preferred_apps">正在載入偏好的應用程式</string>
     <string name="settings_main_setup_success__text_linksheet_setup_success_info">LinkSheet 已正確設定並準備就緒</string>
-    <string name="amp2html_external_service">透過外部服務嘗試獲取非 AMP 版網頁</string>
     <string name="settings_main_setup_success__title_linksheet_setup_failure">LinkSheet 尚未就緒</string>
     <string name="general_settings_explainer">一律顯示套件名稱</string>
     <string name="amp2html_local_cache">啟用本機 Amp2Html 快取</string>
@@ -277,8 +271,6 @@
     <string name="settings_links_follow_redirects__title_skip_browser">略過來自瀏覽器的連結</string>
     <string name="delete_log_dialog__subtitle_delete_info">確定要刪除此工作階段記錄檔嗎？此操作無法復原！</string>
     <string name="mastodon_redirect_subtitle_2">Mastodon Redirect 的原始碼曾是實踐本應用程式與 Shizuku 互動的參考依據</string>
-    <string name="resolve_via_failed_toast">解析失敗</string>
-    <string name="resolve_via_toast">解析成功</string>
     <string name="delete_log_dialog__title_delete_log">刪除工作階段？</string>
     <string name="notifications_explainer">已複製網址、已開始下載</string>
     <string name="bottom_sheet__text_launch_illegal">啟動企圖無效！</string>
@@ -337,16 +329,12 @@
     <string name="export_include_recommendation">建議僅當你不會將匯出的檔案與他人分享時再勾選下列選項！</string>
     <string name="export_privacy">如欲瞭解與匯出相關的隱私權資訊，請參見<annotation url-id="privacy-exports">隱私權政策</annotation>。</string>
     <string name="no_handlers_found_explainer">LinkSheet 無法開啟此連結。</string>
-    <string name="privacy_settings_explainer">參照隱私、遙測</string>
-    <string name="show_linksheet_referrer">表明參照為 LinkSheet</string>
     <string name="customization">自訂</string>
     <string name="notifications">訊息與通知</string>
     <string name="base_config">其他配置</string>
     <string name="url_copied_toast_explainer">當使用者複製了網址時顯示浮動式訊息</string>
     <string name="download_started_toast_explainer">當下載作業開始時顯示浮動式訊息</string>
     <string name="opening_with_app_toast_explainer">當自動啟動預設應用程式時顯示浮動式訊息</string>
-    <string name="resolve_via_toast_explainer">當網址成功透過外部服務解析時顯示浮動式訊息</string>
-    <string name="resolve_via_failed_toast_explainer">當網址無法透過外部服務解析時顯示浮動式訊息</string>
     <string name="settings_notifications__divider_toasts">浮動式訊息</string>
     <plurals name="settings_verified_link_handlers__text_app_host_info">
         <item quantity="other">共 %d 部主機：%s</item>
@@ -407,7 +395,6 @@
     <string name="settings_bottom_sheet__subtitle_double_tap_url">輕觸兩下網址即可開啟建議的應用程式</string>
     <string name="handler_target__label_switch_profile_view_intent">切換資料夾</string>
     <string name="settings_follow_redirects__subtitle_aggressive">擷取完整網頁以與未使用 HTTP 重新導向的網站更加相容</string>
-    <string name="show_linksheet_referrer_explainer">每個應用程式啟動時，可以得知其是被何者所發起 (或稱其「參照」之)。在預設情況下，當 LinkSheet 啟動了某個應用程式時，會隱藏自身並宣稱先前啟動 LinkSheet 的應用程式才是發起者。如啟用此選項，LinkSheet 將重新成為被啟動的應用程式的參照。</string>
     <string name="settings_bottom_sheet__title_hide_referring_app">隱藏參照應用程式</string>
     <string name="settings_bottom_sheet__subtitle_hide_referring_app">即使來源應用程式能夠處理連結，也不要將其列入</string>
     <string name="settings_browser_mode__subtitle_auto_launch_single_browser">若僅有一款支援的應用程式，且其為瀏覽器，則自動啟動之</string>

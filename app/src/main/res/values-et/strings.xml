@@ -39,7 +39,6 @@
     <string name="yes">Jah</string>
     <string name="no">Ei</string>
     <string name="misc_settings">Varia</string>
-    <string name="privacy">Privaatsus</string>
     <string name="discord">Discord</string>
     <string name="dismiss">Loobu</string>
     <string name="join">Liitu</string>
@@ -60,7 +59,6 @@
     <string name="onboarding_5_button">Lõpeta</string>
     <string name="experiments">Katsed</string>
     <string name="reset">Lähtesta</string>
-    <string name="telemetry_configure_title">Analüütika</string>
     <string name="link_handle_failed_text_field_label">Päring</string>
     <string name="customization">Kohandamine</string>
     <string name="settings__title_shortcuts">Kiirvalikud</string>
@@ -139,7 +137,6 @@
     <string name="app_browsers_subtitle">Eelistatud rakendused, brauseri seadistused</string>
     <string name="bottom_sheet_explainer">Seadistamine ja kohendamine</string>
     <string name="loading_link">Töötlen linki…</string>
-    <string name="follow_redirects_external_service">Järgi välise teenuse edasisuunamisi</string>
     <string name="launch_onboarding">Käivita tervitusvaade</string>
     <string name="feature_flags_explainer">Lülita katselised funktsionaalsused sisse/välja</string>
     <string name="compat_installed">LinkSheetCompat on juba paigaldatud</string>

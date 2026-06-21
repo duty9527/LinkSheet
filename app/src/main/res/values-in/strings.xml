@@ -72,10 +72,7 @@
     <string name="open_with_linksheet">Buka dengan LinkSheet</string>
     <string name="open_link_with" translatable="false">OpenLinkWith</string>
     <string name="whitelisted_browsers">Peramban dalam daftar putih</string>
-    <string name="follow_redirects_external_service_explainer">Ikuti pengalihan menggunakan API yang di-deploy di supabase.com (<annotation url-id="supabase-privacy">Kebijakan privasi</annotation>)</string>
     <string name="follow_redirects_explainer">Ikuti semua pengalihan secara otomatis sebelum membuka lembar bawah. Ini mungkin memiliki <annotation url-id="privacy-follow-redirects">implikasi terkait privasi</annotation></string>
-    <string name="follow_redirects_external_service">Ikuti pengalihan melalui layanan eksternal</string>
-    <string name="follow_only_known_trackers_explainer">Hanya coba mengikuti pengalihan saat host diketahui sebagai pelacak/pengalihan. Jika \"Ikuti pengalihan melalui layanan eksternal\" diaktifkan, ini akan selalu diaktifkan</string>
     <string name="no_preferred_apps_set_yet">Belum ada aplikasi yang ditetapkan sebagai aplikasi pilihan.</string>
     <string name="open_with">Buka dengan</string>
     <string name="follow_only_known_trackers">Ikuti hanya pelacak yang dikenal</string>
@@ -146,8 +143,6 @@
     <string name="enable_amp2html_explainer">Mengalihkan halaman AMP ke versi web normalnya. Ini mungkin memiliki <annotation url-id="privacy-amp2html">implikasi terkait privasi</annotation></string>
     <string name="amp2html_local_cache">Aktifkan cache Amp2Html lokal</string>
     <string name="amp2html_local_cache_explainer">Cache versi non-AMP dari halaman web yang diambil secara lokal</string>
-    <string name="amp2html_external_service">Coba dapatkan versi halaman non-AMP melalui layanan eksternal</string>
-    <string name="amp2html_external_service_explainer">Coba dapatkan versi halaman non-AMP menggunakan API yang di-deploy di supabase.com (<annotation url-id="supabase-privacy">Kebijakan privasi</annotation>)</string>
     <string name="amp2html">Amp2Html</string>
     <string name="use_unified_preferred_browser_explainer">Mengaktifkan ini menerapkan pengaturan di bawah ini pada penanganan tautan Normal dan Dalam aplikasi. Saat dinonaktifkan, gunakan tombol di bawah untuk beralih antara mode Normal dan Dalam aplikasi.</string>
     <string name="advanced">Lanjutan</string>
@@ -189,10 +184,6 @@
     <string name="built_at"><b>Dibuat pada:</b> <font face="monospace">%s</font></string>
     <string name="flavor"><b>Varian:</b> <font face="monospace">%s</font></string>
     <string name="github_workflow_run_id"><b>ID alur kerja:</b> <font face="monospace">%s</font></string>
-    <string name="privacy">Privasi</string>
-    <string name="show_linksheet_referrer">Tampilkan perujuk LinkSheet</string>
-    <string name="show_linksheet_referrer_explainer">Saat sebuah aplikasi diluncurkan, aplikasi tersebut dapat memeriksa aplikasi mana yang meluncurkannya, atau yang \"merujuk\" ke sana. Secara default, ketika LinkSheet meluncurkan aplikasi, ia menyembunyikan dirinya, dengan mengatakan bahwa aplikasi yang meluncurkan LinkSheet adalah target yang diluncurkan. Aktifkan ini untuk memasukkan kembali LinkSheet sebagai perujuk bagi aplikasi yang dibukanya.</string>
-    <string name="privacy_settings_explainer">Privasi perujuk, Telemetri</string>
     <string name="thanks_for_donating">Terima kasih telah berdonasi!</string>
     <string name="discord">Discord</string>
     <string name="discord_explainer">Ngobrol tentang LinkSheet di Discord</string>
@@ -233,10 +224,6 @@
     <string name="url_copied_toast_explainer">Tampilkan toast saat URL disalin oleh pengguna</string>
     <string name="opening_with_app_toast">Aplikasi diluncurkan otomatis</string>
     <string name="opening_with_app_toast_explainer">Tampilkan toast saat aplikasi yang telah ditetapkan sebagai default untuk sebuah domain diluncurkan</string>
-    <string name="resolve_via_toast">Berhasil diselesaikan</string>
-    <string name="resolve_via_toast_explainer">Tampilkan toast saat URL diselesaikan melalui layanan eksternal</string>
-    <string name="resolve_via_failed_toast">Gagal diselesaikan</string>
-    <string name="resolve_via_failed_toast_explainer">Tampilkan toast saat URL gagal diselesaikan melalui layanan eksternal</string>
     <string name="last_updated"><b>Versi:</b> <font face="monospace">%s</font></string>
     <string name="libredirect_version">LibRedirect</string>
     <string name="enable_linksheet_compat">Aktifkan menu LinkSheet Compat eksperimental</string>
@@ -322,9 +309,6 @@
     <string name="tap_customization_dialog_text">Pilih aksi yang harus dilakukan</string>
     <string name="expand_on_app_select">Bentangkan saat aplikasi dipilih</string>
     <string name="expand_on_app_select_explainer">Bentangkan lembar bawah secara otomatis saat aplikasi dipilih</string>
-    <string name="telemetry_configure_title">Analitik</string>
-    <string name="telemetry_identifier_reset">Reset pengidentifikasi</string>
-    <string name="telemetry_configure_type">Tipe analitik</string>
     <string name="link_handle_failed">Terjadi kesalahan</string>
     <string name="link_handle_failed_text">LinkSheet tidak dapat menangani tautan ini karena tampaknya tidak valid. Anda dapat mengeditnya di bawah, lalu coba lagi. Atau, Anda dapat mencari di web.</string>
     <string name="link_handle_failed_text_field_label">Kueri</string>

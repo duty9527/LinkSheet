@@ -14,6 +14,4 @@ class NotificationSettingsViewModel(
     val urlCopiedToast = preferenceRepository.asViewModelState(AppPreferences.notifications.urlCopiedToast)
     val downloadStartedToast = preferenceRepository.asViewModelState(AppPreferences.notifications.downloadStartedToast)
     val openingWithAppToast = preferenceRepository.asViewModelState(AppPreferences.notifications.openingWithAppToast)
-    val resolveViaToast = preferenceRepository.asViewModelState(AppPreferences.notifications.resolveViaToast)
-    val resolveViaFailedToast = preferenceRepository.asViewModelState(AppPreferences.notifications.resolveViaFailedToast)
 }

@@ -15,12 +15,9 @@ class LinkSheetLinkTags(
     private val deprecated = mapOf(
         "fastforward-github" to "github.repository.fastforward",
         "clearurls-github" to "github.org.clearurls",
-        "supabase-privacy" to "web.supabase.privacy",
-        "aptabase" to "web.aptabase",
         "libredirect-github" to "github.repository.libredirect",
         "privacy-logs" to "github.linksheet.wiki.privacy.logs",
         "privacy-exports" to "github.linksheet.wiki.privacy.exports",
-        "privacy-telemetry" to "github.linksheet.wiki.privacy.telemetry",
         "privacy-amp2html" to "github.linksheet.wiki.privacy.amp2html",
         "privacy-follow-redirects" to "github.linksheet.wiki.privacy.follow-redirects",
         "privacy-downloader" to "github.linksheet.wiki.privacy.downloader",

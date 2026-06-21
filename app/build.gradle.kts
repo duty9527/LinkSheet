@@ -276,8 +276,6 @@ junitPlatform {
 }
 
 dependencies {
-    implementation(project(":feature-analytics-service"))
-    debugImplementation(project(":feature-analytics-aptabase"))
     implementation(project(":feature-backup-impl"))
     implementation(project(":feature-app"))
     implementation(project(":feature-browser"))
@@ -303,7 +301,6 @@ dependencies {
     implementation(project(":lib-compose"))
 
     implementation(project(":lib-bottom-sheet"))
-    implementation(project(":lib-bottom-sheet-new"))
     implementation(project(":lib-scaffold"))
     implementation(project(":test-fake"))
 

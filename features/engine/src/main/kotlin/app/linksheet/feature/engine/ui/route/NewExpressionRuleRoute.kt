@@ -41,6 +41,7 @@ import fe.composekit.component.list.column.shape.ClickableShapeListItem
 import fe.composekit.component.list.item.ContentPosition
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
+import androidx.compose.ui.unit.dp
 import app.linksheet.compose.R as CommonR
 
 @Composable
@@ -75,15 +76,20 @@ private fun NewExpressionRuleInternal(
     onSave: (String) -> Unit,
 ) {
     val lazyListState = rememberLazyListState()
+    val ruleTextState = rememberTextFieldState()
+
     SaneScaffoldSettingsPage(
-        headline = scenario.name,
-//        headline = stringResource(id = R.string.settings_scenarios__title_scenarios),
+        headline = "新建 ${scenario.name} 规则",
         onBackPressed = onBackPressed,
         floatingActionButton = {
             FloatingActionButton(
                 modifier = Modifier.padding(paddingValues = WindowInsets.navigationBars.asPaddingValues()),
                 onClick = {
-
+                    val hex = ruleTextState.text.toString().trim()
+                    if (hex.isNotEmpty()) {
+                        onSave(hex)
+                        onBackPressed()
+                    }
                 }
             ) {
                 Icon(
@@ -96,33 +102,13 @@ private fun NewExpressionRuleInternal(
     ) {
         item {
             OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                state = rememberTextFieldState(),
-                lineLimits = TextFieldLineLimits.SingleLine,
-                label = { Text("Label") },
-            )
-        }
-
-        item {
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                state = rememberTextFieldState(),
-                lineLimits = TextFieldLineLimits.MultiLine(minHeightInLines = 5),
-                label = { Text("Label") },
+                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                state = ruleTextState,
+                lineLimits = TextFieldLineLimits.MultiLine(minHeightInLines = 8),
+                label = { Text("输入十六进制表达式规则（Hex String）") },
                 labelPosition = TextFieldLabelPosition.Above(),
             )
         }
-
-//        item(key = 1, contentType = ContentType.SingleGroupItem) {
-//            val state = rememberTextFieldState()
-//            TextField(state = state)
-//
-//            Button(onClick = {
-//               onSave(state.text.toString())
-//            }) {
-//                Text(text = "Save")
-//            }
-//        }
     }
 }
 

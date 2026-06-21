@@ -37,4 +37,8 @@ class ScenarioViewModel(
         val expression = scenarioRepository.insertExpression(bundle, ExpressionRuleType.Post)
         scenarioRepository.insertScenarioExpression(id, expression)
     }
+
+    fun getRules(): Flow<List<ExpressionRule>> {
+        return scenarioRepository.getRulesForScenario(id)
+    }
 }

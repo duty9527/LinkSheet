@@ -17,7 +17,6 @@
     <string name="save">Guardar</string>
     <string name="enable_amp2html">Activar Amp2Html</string>
     <string name="use_clear_urls_explainer">Usar la integración experimental de <annotation url-id="clearurls-github">ClearURLs</annotation> (borra los parámetros de seguimiento de las URL)</string>
-    <string name="follow_only_known_trackers_explainer">Solo intentar seguir redirecciones cuando se sepa que el dominio es un rastreador/redireccionamiento. Si está habilitado \"Seguir redirecciones a través de un servicio externo\", esto siempre estará habilitado</string>
     <string name="always_disable">Forzar desactivación</string>
     <string name="copy_to_clipboard">Copiar al portapapeles</string>
     <string name="preview_url_explainer">Muestra el enlace seleccionado (después de que ha sido procesado)</string>
@@ -47,7 +46,6 @@
     <string name="send_to">Compartir con</string>
     <string name="enable_ignore_libredirect_button">Activar el botón \"Ignorar LibRedirect\"</string>
     <string name="pretend_to_be_app_explainer_2">Algunas aplicaciones como Google Chrome buscan explícitamente una aplicación nativa para abrir, por ejemplo, un enlace de Youtube cuando se toca en los resultados de búsqueda. LinkSheetCompat pretende ser una aplicación nativa para dominios compatibles y luego reenvía la solicitud a LinkSheet.</string>
-    <string name="privacy_settings_explainer">Privacidad del referente, telemetría</string>
     <string name="dont_show_filtered_item">No mostrar la sección \"última aplicación seleccionada\"</string>
     <string name="follow_redirects_local_cache_explainer">Almacenar en la caché el resultado de las redirecciones locales</string>
     <string name="use_app_settings_explainer">Dejar que la aplicación decida si el Navegador en aplicación debería ser usado</string>
@@ -66,7 +64,6 @@
     <string name="success">Éxito</string>
     <string name="github">Github</string>
     <string name="configure">Configurar</string>
-    <string name="show_linksheet_referrer">Mostrar referencias de LinkSheet</string>
     <string name="url_copied">Enlace copiado al portapapeles</string>
     <string name="copy_url">Copiar enlace</string>
     <string name="resolve_failed">%s fallido: %s</string>
@@ -89,7 +86,6 @@
     <string name="built_at"><b>Compilado a las:</b> <font face="monospace">%s</font></string>
     <string name="shizuku_explainer_short">Interactuar con las APIs del sistema directamente</string>
     <string name="linksheet_download">Descarga de LinkSheet</string>
-    <string name="follow_redirects_external_service_explainer">Sigue las redirecciones mediante una API desplegada en supabase.com (<annotation url-id="supabase-privacy">Política de privacidad</annotation>)</string>
     <string name="include_fingerprint">Incluir huella digital del dispositivo (recomendado)</string>
     <string name="default_apps">Aplicaciones predeterminadas</string>
     <string name="just_once">Solo una vez</string>
@@ -98,7 +94,6 @@
     <string name="version">Versión de LinkSheet</string>
     <string name="preview_url">Previsualizar enlace</string>
     <string name="usage_stats_sorting_explainer">Incluya estadísticas de uso del sistema Android en el algoritmo de clasificación. Se solicitará permiso en el primer cambio.</string>
-    <string name="amp2html_external_service_explainer">Intento de obtener una versión de página no AMP mediante una API desplegada en supabase.com (<annotation url-id="supabase-privacy">Política de privacidad</annotation>)</string>
     <string name="github_explainer">Repositorio de código fuente</string>
     <string name="launch_onboarding">Iniciar la incorporación</string>
     <string name="debug">Depurar</string>
@@ -109,7 +104,6 @@
     <string name="paste">Pegar</string>
     <string name="download">Descargar</string>
     <string name="links_explainer">ClearUrls, LibRedirect, Seguir redirecciones</string>
-    <string name="amp2html_external_service">Intentar obtener una versión de la página que no sea AMP a través de un servicio externo</string>
     <string name="open_with">Abrir con</string>
     <string name="no_handlers_found">¡No se encontró ningún navegador ni aplicación nativa!</string>
     <string name="always_ask">Preguntar siempre</string>
@@ -142,7 +136,6 @@
     <string name="confirm">Confirmar</string>
     <string name="disabled">Desactivado</string>
     <string name="redact_log">Redactar registro (recomendado; deshabilitarlo puede filtrar nombres de paquetes y nombres de dominio)</string>
-    <string name="show_linksheet_referrer_explainer">Cuando se inicia una aplicación, puede comprobar qué aplicación se ha iniciado o \"referido\" a ella. De forma predeterminada, cuando LinkSheet lanza una aplicación, se oculta, diciendo que la aplicación que lanzó LinkSheet es el que la inició. Habilite esta opción para reinsertar LinkSheet como referencia para las aplicaciones que abre.</string>
     <string name="search">Buscar</string>
     <string name="at_least_one_unknown_browser_installer">Al menos un navegador (desconocido) instalado</string>
     <string name="always_show_package_name">Mostrar siempre el nombre del paquete</string>
@@ -159,7 +152,6 @@
     <string name="donate_crypto">Donar a través de criptomonedas</string>
     <string name="disable_in_selected">Forzando la desactivación…</string>
     <string name="debug_explainer">Registros de aplicaciones, reinicio del controlador verificado</string>
-    <string name="follow_redirects_external_service">Seguir redirecciones a través de un servicio externo</string>
     <string name="general_settings_explainer">Mostrar siempre los nombres de los paquetes</string>
     <string name="settings">Ajustes</string>
     <string name="in_app">En aplicación</string>
@@ -172,7 +164,6 @@
     <string name="no_log_entries">La sesión no contiene ningún registro.</string>
     <string name="add">Añadir</string>
     <string name="follow_redirects_local_cache">Activar la caché de redirección local</string>
-    <string name="privacy">Privacidad</string>
     <string name="pretend_to_be_app">Interceptar solicitudes de aplicaciones nativas</string>
     <string name="shizuku">Integración con Shizuku</string>
     <string name="dont_show_filtered_item_explainer">No mostrar sección superior que sugiere la última aplicación utilizada para el dominio en el que se hizo clic</string>
@@ -227,16 +218,12 @@
     <string name="download_started_toast_explainer">Mostrar un toast cuando se ha iniciado una descarga</string>
     <string name="opening_with_app_toast">Aplicación iniciada automáticamente</string>
     <string name="opening_with_app_toast_explainer">Mostrar un mensaje emergente cuando se inicia una aplicación configurada como predeterminada para un dominio</string>
-    <string name="resolve_via_toast">La resolución fue exitosa</string>
-    <string name="resolve_via_failed_toast">Resolver el fallo</string>
-    <string name="resolve_via_failed_toast_explainer">Mostrar una ventana emergente cuando una URL no se resuelve a través de un servicio externo</string>
     <string name="last_updated"><b>Versión:</b> <font face="monospace">%s</font></string>
     <string name="libredirect_version">LibRedirect</string>
     <string name="enable_linksheet_compat">Activar el menú experimental LinkSheet Compat</string>
     <string name="enable_linksheet_compat_explainer">El menú se encuentra en el submenú \"Aplicaciones\" y, una vez instalado, es capaz de interceptar las peticiones a determinadas aplicaciones nativas.</string>
     <string name="shizuku_manager_start_failed">¡No se ha podido iniciar Shizuku Manager, por favor, inícielo manualmente!</string>
     <string name="include_throwable">Incluir registros de colisiones (recomendado, pero no se puede redactar)</string>
-    <string name="resolve_via_toast_explainer">Mostrar un mensaje emergente cuando una URL se resuelve a través de un servicio externo</string>
     <string name="follow_redirects_short">Redirecciona</string>
     <string name="online_services">Servicios por Internet</string>
     <string name="unknown_host">%s está bloqueada o no existe</string>
@@ -318,9 +305,6 @@
     <string name="tap_customization_dialog_text">Elija la acción que debe realizarse</string>
     <string name="expand_on_app_select_explainer">Expandir automáticamente la hoja inferior cuando se selecciona una aplicación</string>
     <string name="expand_on_app_select">Expandir cuando se selecciona una aplicación</string>
-    <string name="telemetry_configure_title">Analíticas</string>
-    <string name="telemetry_identifier_reset">Reiniciar el identificador</string>
-    <string name="telemetry_configure_type">Tipo de análisis</string>
     <string name="something_went_wrong">Algo salió mal. Por favor, vuelva a intentarlo.</string>
     <string name="link_handle_failed">Ocurrió un error</string>
     <string name="retry">Volver a intentarlo</string>

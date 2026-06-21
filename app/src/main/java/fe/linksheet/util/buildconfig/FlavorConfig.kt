@@ -13,11 +13,9 @@ import kotlin.io.encoding.ExperimentalEncodingApi
 @Keep
 data class FlavorConfig(
     val isPro: Boolean,
-    val supabaseHost: String,
-    val supabaseApiKey: String,
 ) {
     companion object {
-        val Default = FlavorConfig(false, "", "")
+        val Default = FlavorConfig(false)
 
         @OptIn(ExperimentalEncodingApi::class)
         fun parseFlavorConfig(config: String?): FlavorConfig {
@@ -26,10 +24,8 @@ data class FlavorConfig(
             val result = tryCatch {
                 val obj = Json.parseJsonOrNull<JsonObject>(flavorConfig)
                 val isPro = obj?.asBooleanOrNull("isPro") == true
-                val supabaseHost = obj?.asStringOrNull("supabaseHost") ?: ""
-                val supabaseApiKey = obj?.asStringOrNull("supabaseApiKey") ?: ""
 
-                FlavorConfig(isPro, supabaseHost, supabaseApiKey)
+                FlavorConfig(isPro)
             }
 
             return result.getOrNull() ?: Default

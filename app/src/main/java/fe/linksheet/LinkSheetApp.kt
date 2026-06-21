@@ -12,8 +12,6 @@ import app.linksheet.compose.debug.DebugMenuSlotProvider
 import app.linksheet.compose.debug.DebugPreferenceProvider
 import app.linksheet.compose.debug.NoOpDebugMenuSlotProvider
 import app.linksheet.compose.debug.NoOpDebugPreferenceProvider
-import app.linksheet.feature.analytics.client.DebugLogAnalyticsClient
-import app.linksheet.feature.analytics.service.AnalyticsServiceModule
 import app.linksheet.feature.app.AppModule
 import app.linksheet.feature.backup.BackupFeatureConfigurationModule
 import app.linksheet.feature.backup.impl.BackupFeatureModule
@@ -52,14 +50,12 @@ import fe.linksheet.module.language.AppLocaleModule
 import fe.linksheet.module.log.DefaultLogModule
 import fe.linksheet.module.log.file.entry.LogEntry
 import fe.linksheet.module.log.file.entry.LogEntryDeserializer
-import fe.linksheet.module.paste.PasteServiceModule
 import fe.linksheet.module.preference.PreferenceRepositoryModule
 import fe.linksheet.module.preference.app.DefaultAppPreferenceRepository
 import fe.linksheet.module.preference.state.AppStateServiceModule
 import fe.linksheet.module.receiver.BroadcastEventBusModule
 import fe.linksheet.module.repository.module.RepositoryModule
 import fe.linksheet.module.resolver.module.ResolverModule
-import fe.linksheet.module.resolver.urlresolver.UrlResolverModule
 import fe.linksheet.module.statistic.StatisticsModule
 import fe.linksheet.module.systeminfo.SystemInfoServiceModule
 import fe.linksheet.module.versiontracker.VersionTrackerModule
@@ -149,14 +145,10 @@ open class LinkSheetApp : Application(), DependencyProvider {
             RepositoryModule,
             HttpModule,
             DownloaderFeatureModule,
-            UrlResolverModule,
             ResolverModule,
             ViewModelModule,
-            provideAnalyticsClient(),
-            AnalyticsServiceModule,
             StatisticsModule,
             VersionTrackerModule,
-            PasteServiceModule,
             ProfileFeatureModule,
             AppStateServiceModule,
             provideDebugModule(),
@@ -175,10 +167,6 @@ open class LinkSheetApp : Application(), DependencyProvider {
             single<MiuiCompatProvider> { RealMiuiCompatProvider(get()) }
             single<OneUiCompatProvider> { RealOneUiCompatProvider(get()) }
         }
-    }
-
-    override fun provideAnalyticsClient(): Module {
-        return DebugLogAnalyticsClient.module
     }
 
     override fun provideDebugModule(): Module {

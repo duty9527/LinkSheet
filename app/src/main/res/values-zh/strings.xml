@@ -65,8 +65,6 @@
     <string name="follow_redirects">跟踪重定向</string>
     <string name="follow_redirects_explainer">在打开底栏前自动跟踪所有重定向。这可能带来<annotation url-id="privacy-follow-redirects">隐私方面的影响</annotation></string>
     <string name="loading_link">处理链接中…</string>
-    <string name="follow_redirects_external_service">通过外部服务进行跟踪重定向</string>
-    <string name="follow_redirects_external_service_explainer">使用部署在 supabase.com 的 API 进行重定向（<annotation url-id="supabase-privacy">隐私政策</annotation>）</string>
     <string name="follow_only_known_trackers">仅跟踪已知跟踪器</string>
     <string name="theme">主题</string>
     <string name="theme_explainer">Material You，深色主题，纯黑主题</string>
@@ -106,7 +104,6 @@
     <string name="download_started">已开始下载</string>
     <string name="at_least_one_known_browser_installed_explainer">LinkSheet 已检测到至少一个已知为浏览器的应用。</string>
     <string name="enable_amp2html">启用Amp2Html</string>
-    <string name="follow_only_known_trackers_explainer">仅当已知主机是跟踪器/重定向时，才尝试跟踪重定向。如果启用了“通过外部服务跟踪重定向”，则此项将始终启用</string>
     <string name="copy_to_clipboard">复制到剪贴板</string>
     <string name="logs">日志</string>
     <string name="no_apps_which_can_handle_links_found">没有找到可以处理链接的应用。</string>
@@ -146,14 +143,12 @@
     <string name="include_fingerprint">包括设备指纹（推荐）</string>
     <string name="github_pipeline_build">由 CI 构建与签名</string>
     <string name="usage_stats_sorting_explainer">在排序算法中引入安卓系统应用使用情况数据。第一次启用时需要请求权限。</string>
-    <string name="amp2html_external_service_explainer">尝试使用在 supabase.com（<annotation url-id="supabase-privacy">隐私政策</annotation>）部署的 API 获取非 AMP 页面</string>
     <string name="debug">调试</string>
     <string name="other">其他</string>
     <string name="export_import_settings">导出或导入设置</string>
     <string name="import_headline">导入</string>
     <string name="notifications">提示框与通知</string>
     <string name="use_unified_preferred_browser">使用统一设置</string>
-    <string name="amp2html_external_service">尝试从外部服务获取非AMP版本页面</string>
     <string name="no_handlers_found">未找到浏览器或原生应用！</string>
     <string name="export_file_name">linksheet_settings_export_%s</string>
     <string name="thanks_for_donating">感谢您的捐赠！</string>
@@ -185,7 +180,6 @@
     <string name="no_log_entries">这个会话不具有任何日志。</string>
     <string name="running_unofficial_build">非官方构建</string>
     <string name="donate_card_subtitle">如果您喜欢 LinkSheet，请考虑在 Github 上标星和/或捐款。 \n捐赠超过 <b>5 欧元</b>的捐赠者有资格获得 <b>LinkSheet Pro</b>，它将具有特别功能。</string>
-    <string name="privacy">隐私</string>
     <string name="import_settings_override_preferences">这将会覆盖所有已存在的设置，确认继续？</string>
     <string name="shizuku">Shizuku集成</string>
     <string name="configure_explainer">点击此处配置 LinkSheetCompat</string>
@@ -212,7 +206,7 @@
     <string name="link_handle_failed">发生了错误</string>
     <string name="select_app">选择应用</string>
     <string name="tap_customization_single_tap">单击操作</string>
-    <string name="onboarding_setup">配置 LinskSheet</string>
+    <string name="onboarding_setup">配置 LinkSheet</string>
     <string name="onboarding_4_card_explainer">禁用所有应被 LinkSheet 处理的域名的链接处理功能。</string>
     <string name="settings_verified_link_handlers__text_handling_filter_enabled_short">已启用</string>
     <string name="onboarding_5_button">结束</string>
@@ -221,14 +215,12 @@
     <string name="onboarding_4_card_title">禁用链接处理器</string>
     <string name="download_started_toast">下载开始</string>
     <string name="onboarding_2_install_shizuku">安装 Shizuku</string>
-    <string name="resolve_via_failed_toast">解析失败</string>
     <string name="permission_required">需要权限</string>
     <string name="shizuku_manager_start_failed">无法启动 Shizuku 管理器，请手动启动！</string>
     <string name="tap_customization_long_tap">长按操作</string>
     <string name="link_handle_failed_text_field_label">询问</string>
     <string name="url_copied_toast">已复制链接</string>
     <string name="onboarding_0_title">欢迎使用 \nLinkSheet</string>
-    <string name="show_linksheet_referrer">显示 LinkSheet 引用来源</string>
     <string name="open_link_with_subtitle_2">LinkSheet 起初基于 OpenLinkWith</string>
     <string name="nightly_experiments_card">开发实验</string>
     <string name="expand_on_app_select">选中应用时展开</string>
@@ -250,7 +242,6 @@
     <string name="onboarding_2_title">要使用 Shizuku 吗？</string>
     <string name="donate_card">用卡捐赠（通过 BuyMeACoffee）</string>
     <string name="settings_shortcuts__subtitle_default_browser">打开默认浏览器设置页面</string>
-    <string name="resolve_via_toast_explainer">链接通过外部服务解析时显示提示语</string>
     <string name="include_log_hash_key">包含日志哈希密钥（用来删减日志的密钥）</string>
     <string name="download_started_toast_explainer">下载开始时显示提示语</string>
     <string name="last_updated"><b>版本：</b> <font face="monospace">%s</font></string>
@@ -318,8 +309,6 @@
     <string name="amp2html_short">Amp2Html</string>
     <string name="follow_redirects_short">重定向</string>
     <string name="launch_onboarding__now_explainer">试试新版引导流程</string>
-    <string name="resolve_via_toast">解析成功</string>
-    <string name="resolve_via_failed_toast_explainer">链接未能通过外部服务解析时显示提示语</string>
     <string name="onboarding_1_card_explainer">若不设置为默认浏览器，则 LinkSheet 无法正常运作。</string>
     <string name="hide_bottom_sheet_choice_buttons">隐藏选择按钮</string>
     <string name="onboarding_5_title">一切就绪！</string>
@@ -379,8 +368,6 @@
     <string name="settings_edit_rule__title_edit_rule">编辑规则</string>
     <string name="settings_new_rule__title_new_rule">新规则</string>
     <string name="theme_enable_amoled_explainer">启用深色模式时使用纯黑主题</string>
-    <string name="show_linksheet_referrer_explainer">当应用被启动时，可以检查启动（或“引用”）它的应用。默认情况下，LinkSheet 启动应用时会隐藏自身，声称启动 LinkSheet 的应用是启动目标。启用此选项来将 LinkSheet 重新插入为应用的引用来源。</string>
-    <string name="privacy_settings_explainer">引用来源隐私，遥测</string>
     <string name="nightly_experiments_card_explainer">点击看看我们正在开发的功能</string>
     <string name="experiments_explainer_2">活跃开发中</string>
     <string name="onboarding_1_title">将 LinkSheet 设置为默认浏览器</string>
@@ -420,9 +407,6 @@
     <string name="linksheet_donation_explainer_2">捐赠超过 <b>5€</b> 后，你可以获得 <b>LinkSheet Pro</b>，其中包含 <b>Pro 版的特有功能</b>如：外部跟踪重定向、外部获取非 AMP 页面，还有更多！</string>
     <string name="export_log_dialog__text_log_privacy">要了解共享日志文件中可能存有的敏感数据，请点击<annotation url-id="privacy-logs">这里</annotation>。</string>
     <string name="resolve_embeds">解析短链接</string>
-    <string name="telemetry_identifier_reset">重置标识符</string>
-    <string name="telemetry_configure_title">分析</string>
-    <string name="telemetry_configure_type">分析类型</string>
     <string name="generic__button_text_done">完成</string>
     <string name="generic__text_edit">编辑</string>
     <string name="github_workflow_run_id"><b>工作流 ID：</b> <font face="monospace">%s</font></string>
@@ -524,4 +508,11 @@
     <string name="generic__label_arrow_rotation">箭头旋转动画</string>
     <string name="settings_follow_redirects__title_mode_auto">自动</string>
     <string name="settings_follow_redirects__title_mode_manual">手动</string>
+    <string name="follow_only_known_trackers_explainer">仅在主机已知为跟踪器或重定向服务时尝试跟踪重定向。</string>
+    <string name="settings_follow_redirects__subtitle_mode_auto">自动跟踪所有重定向</string>
+    <string name="settings_follow_redirects__subtitle_mode_manual">在底栏显示“跟踪重定向”按钮</string>
+    <string name="settings_follow_redirects__title_aggressive">激进模式</string>
+    <string name="settings_follow_redirects__subtitle_aggressive">获取完整页面内容，以便兼容不使用 HTTP 重定向的网站</string>
+    <string name="settings_advanced__divider_backup">备份与恢复</string>
+    <string name="handler_target__label_switch_profile_view_intent">切换配置文件</string>
 </resources>

@@ -4,7 +4,6 @@ package fe.linksheet.module.preference.app
 
 
 import app.linksheet.api.SensitivePreference
-import app.linksheet.feature.analytics.preference.analyticsPreferences
 import app.linksheet.feature.browser.preference.browserPreferences
 import app.linksheet.feature.downloader.preference.downloaderPreferences
 import app.linksheet.feature.libredirect.preference.libRedirectPreferences
@@ -26,13 +25,13 @@ object AppPreferences : LinkSheetPreferenceDefinition(
     "amp2html_builtin_cache",
     "follow_redirects_builtin_cache",
     "use_text_share_copy_buttons",
-    "telemetry_identity",
     "use_dev_bottom_sheet",
     "dev_bottom_sheet_experiment",
     "show_discord_banner",
     "donate_card_dismissed",
     "theme"
 ) {
+    val textReplaceRulesJson = string("text_replace_rules_json", "[]")
     val alwaysShowPackageName = boolean("always_show_package_name")
     val useClearUrls = boolean("use_clear_urls")
     val useFastForwardRules = boolean("fast_forward_rules")
@@ -41,7 +40,6 @@ object AppPreferences : LinkSheetPreferenceDefinition(
     @SensitivePreference
     val useTimeMs = long("use_time", 0)
 
-    val showLinkSheetAsReferrer = boolean("show_as_referrer")
     val devModeEnabled = boolean("dev_mode_enabled")
     val firstRun = boolean("first_run", true)
 
@@ -71,8 +69,6 @@ object AppPreferences : LinkSheetPreferenceDefinition(
     val shizuku = shizukuPreferences(registry)
     val browser = browserPreferences(registry)
     val profileSwitcher = profilePreferences(registry)
-    val analytics = analyticsPreferences(registry)
-
     init {
         migrate("theme") { repository ->
             if (!repository.hasStoredValue(themeV2.themeV2)) {
@@ -101,7 +97,7 @@ object AppPreferences : LinkSheetPreferenceDefinition(
     }
 
     @SensitivePreference
-    val sensitivePreferences = setOf(useTimeMs, analytics.telemetryIdentity, analytics.telemetryLevel, analytics.telemetryId)
+    val sensitivePreferences = setOf(useTimeMs)
 
     fun toJsonArray(preferences: Map<String, String?>): JsonArray {
         val objs = preferences.map { (key, value) ->
@@ -114,4 +110,3 @@ object AppPreferences : LinkSheetPreferenceDefinition(
         return jsonArrayItems(objs)
     }
 }
-

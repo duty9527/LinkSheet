@@ -12,4 +12,11 @@
     <string name="error">错误</string>
     <string name="generic__button_text_cancel">取消</string>
     <string name="generic__button_text_confirm">确认</string>
+    <string name="generic__button_text_open_external">外部打开</string>
+    <string name="generic__button_text_create">创建</string>
+    <string name="generic__button_text_add">添加</string>
+    <string name="generic__action_move_up">上移</string>
+    <string name="generic__action_move_down">下移</string>
+    <string name="generic__button_text_save">保存</string>
+    <string name="generic__n_selected">已选择 %d 项</string>
 </resources>

@@ -14,16 +14,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.rememberNavController
-import app.linksheet.feature.analytics.ui.rememberAnalyticDialog
 import app.linksheet.util.buildconfig.StaticBuildInfo
-import fe.composekit.preference.collectAsStateWithLifecycle
 import fe.linksheet.activity.UiEventReceiverBaseComponentActivity
 import fe.linksheet.activity.util.DebugStatePublisher
 import fe.linksheet.activity.util.NavGraphDebugState
 import fe.linksheet.activity.util.UiEvent
 import fe.linksheet.composable.ui.BoxAppHost
 import fe.linksheet.extension.compose.AddIntentDeepLinkHandler
-import fe.linksheet.extension.compose.ObserveDestination
 import fe.linksheet.module.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -50,26 +47,6 @@ class MainActivity : UiEventReceiverBaseComponentActivity() {
                 }
 
                 AddIntentDeepLinkHandler(navController = navController)
-
-                if (StaticBuildInfo.IsDebug) {
-                    navController.ObserveDestination { _, destination, args ->
-                        viewModel.enqueueNavEvent(destination, args)
-                    }
-
-                    val telemetryLevel by viewModel.telemetryLevel.collectAsStateWithLifecycle()
-                    val telemetryShowInfoDialog by viewModel.telemetryShowInfoDialog.collectAsStateWithLifecycle()
-
-                    val analyticsDialog = rememberAnalyticDialog(
-                        telemetryLevel = telemetryLevel,
-                        onChanged = { viewModel.updateTelemetryLevel(it) }
-                    )
-
-                    LaunchedEffect(key1 = Unit) {
-                        if (telemetryShowInfoDialog) {
-                            analyticsDialog.open()
-                        }
-                    }
-                }
 
                 MainNavHost(
                     navController = navController,

@@ -63,7 +63,6 @@ const val amp2HtmlSettingsRoute = "amp2html_settings_route"
 
 
 const val generalSettingsRoute = "general_settings_route"
-const val privacySettingsRoute = "privacy_settings_route"
 const val notificationSettingsRoute = "notification_settings_route"
 const val bottomSheetSettingsRoute = "bottom_sheet_settings_route"
 
@@ -124,14 +123,17 @@ data object LanguageRoute : Route
 @Serializable
 data object SqlRoute : Route
 
-//@Keep
-//data class ExperimentSettingsRouteArg(val experiment: String?) : RouteData {
-//    companion object : Route1<ExperimentSettingsRouteArg, String?>(
-//        Argument(ExperimentSettingsRouteArg::experiment),
-//        ::ExperimentSettingsRouteArg
-//    )
-//}
+@Keep
+@Serializable
+data class AppConfigRoute(val host: String) : Route
 
+@Keep
+@Serializable
+data object RuleOverviewRoute : Route
+
+@Keep
+@Serializable
+data object TextReplaceSettingsRoute : Route
 
 object Routes {
     const val Help = "route__help"
@@ -141,4 +143,3 @@ object Routes {
     const val RuleNew = "route__rule_new"
     const val AboutVersion = "route__about_version"
 }
-

@@ -65,7 +65,6 @@
     <string name="use_clear_urls_explainer">Usar a integração experimental com o <annotation url-id="clearurls-github">ClearURLs</annotation> (limpa parâmetros de rastreamento de URLs)</string>
     <string name="selected_browser_explainer">Esse navegador será aberto automaticamente se nenhum aplicativo nativo puder lidar com o link clicado</string>
     <string name="display_grid_layout_explainer">Mostrar uma grade em vez de uma lista na folha inferior</string>
-    <string name="follow_redirects_external_service">Seguir redirecionamentos via serviço externo</string>
     <string name="app_browsers">Apps e Navegadores</string>
     <string name="bottom_sheet">Folha inferior</string>
     <string name="settings">Configurações</string>
@@ -80,12 +79,10 @@
     <string name="paste">Colar</string>
     <string name="theme_explainer">Material You, tema escuro, modo puro preto</string>
     <string name="github">Github</string>
-    <string name="follow_only_known_trackers_explainer">Somente tente seguir redirecionamentos quando o host for conhecido como rastreador/redirecionamento. Se a opção \"Seguir rastreadores via serviço externo\" estiver ativada, ela sempre será ativada</string>
     <string name="add">Adicionar</string>
     <string name="select_an_app">Selecione um app</string>
     <string name="close">Fechar</string>
     <string name="redirect_resolve_type_local_cache">local cache</string>
-    <string name="follow_redirects_external_service_explainer">Seguir os redirecionamentos usando uma API implantada em supabase.com (<annotation url-id="supabase-privacy">Política de privacidade</annotation>)</string>
     <string name="follow_redirects_explainer">Siga automaticamente todos os redirecionamentos antes de abrir a folha inferior. Isso pode ter <annotation url-id="privacy-follow-redirects">implicações relacionadas à privacidade</annotation></string>
     <string name="fastfoward_rules_explainer">Usar a integração experimental <annotation url-id="fastforward-github">FastForward</annotation> (ignore os redirecionamentos de alguns hosts extraindo o redirecionamento do link)</string>
     <string name="follow_redirects_local_cache">Ativar o cache de redirecionamento local</string>
@@ -126,8 +123,6 @@
     <string name="enable_amp2html">Habilitar Amp2Html</string>
     <string name="amp2html_local_cache">Ativar o cache local do Amp2Html</string>
     <string name="amp2html_local_cache_explainer">Armazenar em cache as versões não AMP recuperadas de páginas da Web localmente</string>
-    <string name="amp2html_external_service">Tentar obter uma versão de página não AMP por meio de um serviço externo</string>
-    <string name="amp2html_external_service_explainer">Tentar obter uma versão de página não AMP usando uma API implementada em supabase.com (<annotation url-id="supabase-privacy">Política de privacidade</annotation>)</string>
     <string name="amp2html">Amp2Html</string>
     <string name="in_app">Incorporado</string>
     <string name="normal">Normal</string>
@@ -156,7 +151,6 @@
     <string name="no_browser_installed_explainer">O LinkSheet não conseguiu detectar pelo menos um aplicativo que afirme ser um navegador. Para obter a melhor experiência, instale um navegador.</string>
     <string name="open_link_with_subtitle_2">O LinkSheet foi inicialmente baseado no OpenLinkWith</string>
     <string name="import_and_override">Importar e substituir</string>
-    <string name="privacy">Privacidade</string>
     <string name="donate_card_subtitle">Se você gosta do LinkSheet, considere deixar uma estrela no Github e/ou fazer uma doação.\nOs doadores que doarem mais de <b>5€</b> poderão receber o <b>LinkSheet Pro</b>, que terá recursos exclusivos.</string>
     <string name="success">Sucesso</string>
     <string name="warning">Aviso</string>
@@ -189,9 +183,6 @@
     <string name="join">Juntar-se</string>
     <string name="github_workflow_run_id"><b>ID do Workflow:</b> <font face="monospace">%s</font></string>
     <string name="flavor"><b>Título:</b> <font face="monospace">%s</font></string>
-    <string name="show_linksheet_referrer">Mostrar referenciador do LinkSheet</string>
-    <string name="show_linksheet_referrer_explainer">Quando um app é aberto, ele pode verificar qual app o abriu, ou o referenciou. Por padrão, o LinkSheet se esconde para que o app de destino pense que foi aberto pelo app original. Habilite isso para reinserir o LinkSheet como o referenciador para os app que ele abrir.</string>
-    <string name="privacy_settings_explainer">Privacidade de referenciador</string>
     <string name="donate_crypto">Doar via cripto</string>
     <string name="donate_card">Doar com cartão (via BuyMeACoffee)</string>
     <string name="donate_explainer_crypto">Quando doar com cripto, mande um email para <annotation url="mailto:1fexd@420blaze.it">1fexd@420blaze.it</annotation>.</string>
@@ -231,10 +222,6 @@
     <string name="download_started_toast_explainer">Mostrar uma notificação flutuante quando um download iniciar</string>
     <string name="opening_with_app_toast">App aberto automaticamente</string>
     <string name="opening_with_app_toast_explainer">Mostrar uma notificação flutuante quando um app que for o padrão para um domínio for aberto</string>
-    <string name="resolve_via_toast">Resolução com sucesso</string>
-    <string name="resolve_via_toast_explainer">Mostrar uma notificação flutuante quando um URL é resolvido por um serviço externo</string>
-    <string name="resolve_via_failed_toast">Resolução falhou</string>
-    <string name="resolve_via_failed_toast_explainer">Mostrar uma notificação flutuante quando um URL falha ao ser resolvido por um serviço externo</string>
     <string name="last_updated"><b>Versão:</b> <font face="monospace">%s</font></string>
     <string name="libredirect_version">LibRedirect</string>
     <string name="enable_linksheet_compat">Habilitar o menu experimental LinkSheet Compat</string>
@@ -320,9 +307,6 @@
     <string name="tap_customization_dialog_text">Escolha a ação que deve ser realizada</string>
     <string name="expand_on_app_select">Expandir quando um app é selecionado</string>
     <string name="expand_on_app_select_explainer">Expandir automaticamente a aba inferior quando um app é selecionado</string>
-    <string name="telemetry_configure_title">Analíticas</string>
-    <string name="telemetry_identifier_reset">Reiniciar identificador</string>
-    <string name="telemetry_configure_type">Tipo de análises</string>
     <string name="link_handle_failed">Ocorreu um erro</string>
     <string name="link_handle_failed_text">LinkSheet não pode abrir esse link pois parece ser incorreto. Você pode editá-lo abaixo e então tentar de novo. Você também pode pesquisá-lo na web.</string>
     <string name="link_handle_failed_text_field_label">Consulta</string>

@@ -187,14 +187,6 @@ internal class DatabaseExportImportTest : BaseUnitTest {
 //            "value": "true"
 //        },
 //        {
-//            "name": "resolve_via_toast",
-//            "value": "true"
-//        },
-//        {
-//            "name": "resolve_via_failed_toast",
-//            "value": "true"
-//        },
-//        {
 //            "name": "enable_amp2html",
 //            "value": "false"
 //        },
@@ -311,7 +303,6 @@ internal class DatabaseExportImportTest : BaseUnitTest {
 //            "value": "true"
 //        },
 //        {
-//            "name": "telemetry_dialog",
 //            "value": "true"
 //        },
 //        {

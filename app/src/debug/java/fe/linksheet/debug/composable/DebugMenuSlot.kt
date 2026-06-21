@@ -53,7 +53,7 @@ fun DebugMenuSlot(viewModel: DebugViewModel, navigate: (String) -> Unit) {
             if (activity != null) {
                 item(key = "start-service") {
                     DebugMenuButton(
-                        text = "Start service",
+                        text = "启动服务",
                         onClick = {
 //                            val intent = Intent(activity, SocketService::class.java)
 //                            if (AndroidVersion.isAtLeastApi26O()) {
@@ -67,21 +67,21 @@ fun DebugMenuSlot(viewModel: DebugViewModel, navigate: (String) -> Unit) {
                 item(key = "metadata-handler") {
                     FilledTonalActivityLauncher(
                         activity = activity,
-                        text = "Metadata handler",
+                        text = "元数据处理器",
                         intent = createIntent(activity, MetaDataHandlerActivity::class)
                     )
                 }
                 item(key = "manifest-parser") {
                     FilledTonalActivityLauncher(
                         activity = activity,
-                        text = "Manifest parser",
+                        text = "清单解析器",
                         intent = createIntent(activity, ManifestParserActivity::class)
                     )
                 }
                 item(key = "component-state") {
                     FilledTonalActivityLauncher(
                         activity = activity,
-                        text = "Component state",
+                        text = "组件状态",
                         intent = createIntent(activity, ComponentStateActivity::class)
                     )
                 }
@@ -89,7 +89,7 @@ fun DebugMenuSlot(viewModel: DebugViewModel, navigate: (String) -> Unit) {
                 item(key = "locale") {
                     FilledTonalActivityLauncher(
                         activity = activity,
-                        text = "Locale",
+                        text = "语言环境调试",
                         intent = createIntent(activity, LocaleDebugActivity::class)
                     )
                 }
@@ -99,7 +99,7 @@ fun DebugMenuSlot(viewModel: DebugViewModel, navigate: (String) -> Unit) {
                 val drawBorders by viewModel.drawBorders.collectAsStateWithLifecycle()
 
                 DebugMenuButton(
-                    text = "Draw borders ($drawBorders)",
+                    text = "绘制边框 ($drawBorders)",
                     onClick = { viewModel.drawBorders(!drawBorders) }
                 )
             }
@@ -111,7 +111,7 @@ fun DebugMenuSlot(viewModel: DebugViewModel, navigate: (String) -> Unit) {
                         throw Exception("Crash")
                     }
                 ) {
-                    Text(text = "Crash")
+                    Text(text = "崩溃测试")
                 }
             }
 
@@ -122,7 +122,7 @@ fun DebugMenuSlot(viewModel: DebugViewModel, navigate: (String) -> Unit) {
                     }
 
                     DebugMenuButton(
-                        text = "Toggle Miui ($isRequired)",
+                        text = "切换 MIUI 兼容 ($isRequired)",
                         onClick = {
                             isRequired = viewModel.toggleMiuiCompatRequired()
                         }
@@ -135,7 +135,7 @@ fun DebugMenuSlot(viewModel: DebugViewModel, navigate: (String) -> Unit) {
                     colors = ButtonDefaults.filledTonalButtonColors(containerColor = MaterialTheme.colorScheme.errorContainer),
                     onClick = { navigate(Routes.RuleOverview) }
                 ) {
-                    Text(text = "Rules")
+                    Text(text = "规则")
                 }
             }
 
@@ -143,7 +143,7 @@ fun DebugMenuSlot(viewModel: DebugViewModel, navigate: (String) -> Unit) {
                 item(key = "onboarding") {
                     FilledTonalActivityLauncher(
                         activity = activity,
-                        text = "Launch onboarding",
+                        text = "启动新手引导",
                         intent = createIntent(activity, OnboardingActivity::class)
                     )
                 }
@@ -151,7 +151,7 @@ fun DebugMenuSlot(viewModel: DebugViewModel, navigate: (String) -> Unit) {
                 item(key = "export_log_dialog") {
                     FilledTonalActivityLauncher(
                         activity = activity,
-                        text = "Export log dialog testing",
+                        text = "导出日志对话框测试",
                         intent = createIntent(activity, ExportLogDialogTestActivity::class)
                     )
                 }
@@ -159,7 +159,7 @@ fun DebugMenuSlot(viewModel: DebugViewModel, navigate: (String) -> Unit) {
                 item(key = "link_menu") {
                     FilledTonalActivityLauncher(
                         activity = activity,
-                        text = "Link testing",
+                        text = "链接测试",
                         intent = createIntent(activity, LinkTestingActivity::class)
                     )
                 }
@@ -167,7 +167,7 @@ fun DebugMenuSlot(viewModel: DebugViewModel, navigate: (String) -> Unit) {
                 item(key = "snap_tester") {
                     FilledTonalActivityLauncher(
                         activity = activity,
-                        text = "Snap tester",
+                        text = "Snap 测试器",
                         intent = createIntent(activity, SnapTesterActivity::class)
                     )
                 }
@@ -175,7 +175,7 @@ fun DebugMenuSlot(viewModel: DebugViewModel, navigate: (String) -> Unit) {
                 item(key = "url_preview") {
                     FilledTonalActivityLauncher(
                         activity = activity,
-                        text = "Url preview",
+                        text = "URL 预览",
                         intent = createIntent(activity, ComposableRendererActivity::class)
                     )
                 }

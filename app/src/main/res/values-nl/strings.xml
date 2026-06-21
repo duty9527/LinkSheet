@@ -35,8 +35,6 @@
     <string name="settings">Instellingen</string>
     <string name="open_link_with" translatable="false">OpenLinkWith</string>
     <string name="loading_link">Link verwerken…</string>
-    <string name="follow_redirects_external_service">Omleidingen volgen via een externe service</string>
-    <string name="follow_redirects_external_service_explainer">Volg omleidingen met behulp van een API op supabase.com (<annotation url-id="supabase-privacy">Privacybeleid</annotation>)</string>
     <string name="follow_only_known_trackers">Alleen bekende trackers volgen</string>
     <string name="theme">Thema</string>
     <string name="theme_explainer">Material You, donker thema, volledig zwart</string>
@@ -91,7 +89,6 @@
     <string name="open_copied_link">Van klembord</string>
     <string name="no_apps_which_can_handle_links_found">Er zijn geen apps gevonden die links kunnen verwerken.</string>
     <string name="enable_ignore_libredirect_button_explainer">Als de URL is omgeleid via LibRedirect, toon dan een knop in het paneel die de oorspronkelijke URL opent</string>
-    <string name="follow_only_known_trackers_explainer">Probeer alleen omleidingen te volgen als van de host bekend is dat het een tracker/redirect is. Als \"Volg omleidingen via externe service\" is ingeschakeld, wordt dit altijd ingeschakeld.</string>
     <string name="disable_in_selected">Geforceerd uitschakelen…</string>
     <string name="logs">Logs</string>
     <string name="log">Log</string>
@@ -142,8 +139,6 @@
     <string name="use_unified_preferred_browser_explainer">Wanneer ingeschakeld worden de onderstaande instellingen toegepast bij zowel het openen van normale links als bij in-app links. Gebruik anders de onderstaande knoppen om te schakelen tussen de modus voor normale links en in-app links.</string>
     <string name="advanced">Geavanceerd</string>
     <string name="amp2html_local_cache_explainer">Sla de opgehaalde niet-AMP-versies van webpagina\'s lokaal op</string>
-    <string name="amp2html_external_service">Probeer de niet-AMP-versie van pagina\'s op te halen via een externe service</string>
-    <string name="amp2html_external_service_explainer">Probeer de niet-AMP-versie van pagina\'s op te halen via een API op supabase.com (<annotation url-id="supabase-privacy">Privacybeleid</annotation>)</string>
     <string name="pretend_to_be_app">Verzoeken voor native apps onderscheppen</string>
     <string name="domain_selection_confirmation_title">Domeinen kiezen?</string>
     <string name="shizuku_explainer_short">Schakel directe interactie met systeem-API\'s in</string>
@@ -169,7 +164,6 @@
     <string name="import_and_override">Importeren en overschrijven</string>
     <string name="version_name"><b>Versie:</b> <font face="monospace">%s</font></string>
     <string name="github_workflow_run_id"><b>Workflow-ID:</b> <font face="monospace">%s</font></string>
-    <string name="privacy">Privacy</string>
     <string name="amp2html_local_cache">Lokale cache voor Amp2Html</string>
     <string name="amp2html">Amp2Html</string>
     <string name="shizuku">Integratie met Shizuku</string>
@@ -222,10 +216,6 @@
     <string name="download_started_toast_explainer">Toon een toastbericht wanneer een download is gestart</string>
     <string name="opening_with_app_toast">App automatisch gestart</string>
     <string name="opening_with_app_toast_explainer">Toon een toastbericht wanneer een standaardapp voor een domein is gestart</string>
-    <string name="resolve_via_toast">Succesvol verwerkt</string>
-    <string name="resolve_via_toast_explainer">Toon een toastbericht wanneer een URL verwerkt is via een externe dienst</string>
-    <string name="resolve_via_failed_toast">Fout bij verwerken</string>
-    <string name="resolve_via_failed_toast_explainer">Toon een toastbericht wanneer een URL niet kon worden verwerkt door een externe dienst</string>
     <string name="last_updated"><b>Versie:</b> <font face="monospace">%s</font></string>
     <string name="libredirect_version">LibRedirect</string>
     <string name="amp2html_short">Amp2Html</string>
@@ -257,10 +247,7 @@
     <string name="dev">Ontwikkelaar</string>
     <string name="app_setup">Instellingen</string>
     <string name="export_explainer">Exporteer de huidige instellingen naar een bestand</string>
-    <string name="show_linksheet_referrer_explainer">Een app kan inzien door welke app het is gestart middels een verwijzing. Normaliter verbergt LinkSheet zichzelf wanneer het een app start door te verwijzen naar de app waardoor LinkSheet gestart werd. Schakel deze optie in om LinkSheet zelf als verwijzing door te geven aan de apps die het opent.</string>
-    <string name="show_linksheet_referrer">Verwijzing naar LinkSheet tonen</string>
     <string name="export_to_file">Naar bestand exporteren</string>
-    <string name="privacy_settings_explainer">Verwijzing, telemetrie</string>
     <string name="import_headline">Importeren</string>
     <string name="export_settings">Instellingen exporteren</string>
     <string name="url_copied_toast_explainer">Toon een toastbericht wanneer een URL wordt gekopieerd door de gebruiker</string>
@@ -341,9 +328,6 @@
     <string name="onboarding_5_subtitle">LinkSheet is ingeschakeld</string>
     <string name="onboarding_5_title">Helemaal klaar!</string>
     <string name="onboarding_5_card_explainer">De basisconfiguratie die nodig is om LinkSheet te laten werken is voltooid. Ga naar de instellingen om te ontdekken wat LinkSheet nog meer te bieden heeft!</string>
-    <string name="telemetry_configure_title">Telemetrie</string>
-    <string name="telemetry_configure_type">Niveau telemetrie</string>
-    <string name="telemetry_identifier_reset">Uniek ID resetten</string>
     <string name="link_handle_failed">Er is een fout opgetreden</string>
     <string name="link_handle_failed_text">LinkSheet kan deze mogelijk onjuiste link niet verwerken. Bewerk de link hieronder en probeer het opnieuw of zoek naar deze gegevens op het web.</string>
     <string name="link_handle_failed_text_field_label">Opzoeken</string>

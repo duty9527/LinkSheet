@@ -19,4 +19,22 @@
     <string name="import_settings__text_success">导入成功！</string>
     <string name="import_settings__text_failure">导入设置失败！</string>
     <string name="export_import_settings_explainer">导出当前设置或导入以前导出的设置</string>
+    <string name="settings_backup__button_text_backup_to_file">备份到文件</string>
+    <string name="settings_backup__title_backup">备份</string>
+    <string name="settings_backup__subtitle_backup">将应用设置备份到文件</string>
+    <string name="settings_backup__title_backup_dialog">备份设置</string>
+    <string name="settings_backup__title_restore">恢复</string>
+    <string name="settings_backup__subtitle_restore">从文件恢复应用设置备份</string>
+    <string name="settings_backup__title_preferences">偏好设置</string>
+    <string name="settings_backup__title_experiments">实验功能</string>
+    <string name="settings_backup__title_app_state">应用状态</string>
+    <string name="settings_backup__title_selection_history">选择历史</string>
+    <string name="settings_backup__title_cached_items">缓存链接</string>
+    <string name="settings_backup__restore_dialog_text_information">选择恢复模式</string>
+    <string name="settings_backup__restore_dialog_title_replace_settings">替换</string>
+    <string name="settings_backup__restore_dialog_subtitle_replace_settings">保留现有数据，冲突时覆盖</string>
+    <string name="settings_backup__restore_dialog_title_merge_settings">合并</string>
+    <string name="settings_backup__restore_dialog_subtitle_merge_settings">保留现有数据，冲突时忽略</string>
+    <string name="settings_backup__restore_dialog_title_erase_restore_settings">清除并恢复</string>
+    <string name="settings_backup__restore_dialog_subtitle_erase_restore_settings">清除当前数据并恢复备份</string>
 </resources>

@@ -38,8 +38,8 @@ sealed interface IntentResolveResult {
     ) : IntentResolveResult {
         val app = filteredItem ?: resolved.firstOrNull()
 
-        val hasAutoLaunchApp = (isRegularPreferredApp || hasSingleMatchingOption)
-                && (referringPackageName == null || app?.packageName != referringPackageName)
+        val hasAutoLaunchApp = isRegularPreferredApp
+                || (hasSingleMatchingOption && (referringPackageName == null || app?.packageName != referringPackageName))
     }
 
     data class IntentParseFailed(val exception: UriException) : IntentResolveResult

@@ -29,6 +29,8 @@ import app.linksheet.feature.engine.R
 import app.linksheet.feature.engine.database.entity.ExpressionRule
 import app.linksheet.feature.engine.database.entity.ExpressionRuleType
 import app.linksheet.feature.engine.database.entity.Scenario
+import app.linksheet.feature.engine.navigation.NewExpressionRuleRoute
+import fe.composekit.route.Route
 import app.linksheet.feature.engine.eval.BundleSerializer
 import app.linksheet.feature.engine.eval.ExpressionStringifier
 import app.linksheet.feature.engine.viewmodel.ScenarioViewModel
@@ -47,16 +49,18 @@ import app.linksheet.compose.R as CommonR
 fun ScenarioRoute(
     id: Long,
     onBackPressed: () -> Unit,
+    navigate: (Route) -> Unit,
     viewModel: ScenarioViewModel = koinViewModel(
         parameters = { parametersOf(id) }
     ),
 ) {
     val scenario by viewModel.getScenario().collectOnIO(null)
-//    val scenarioInfo by viewModel.getScenarioExpressions().collectOnIO(null)
+    val rules by viewModel.getRules().collectOnIO(emptyList())
     scenario?.let {
         ScenarioRouteInternal(
             scenario = it,
-            rules = emptyList(),
+            rules = rules,
+            navigate = navigate,
             onBackPressed = onBackPressed,
             toString = viewModel::toString,
             onSave = { rule ->
@@ -70,6 +74,7 @@ fun ScenarioRoute(
 private fun ScenarioRouteInternal(
     scenario: Scenario,
     rules: List<ExpressionRule>,
+    navigate: (Route) -> Unit,
     toString: (ExpressionRule) -> String,
     onBackPressed: () -> Unit,
     onSave: (String) -> Unit,
@@ -83,7 +88,7 @@ private fun ScenarioRouteInternal(
             FloatingActionButton(
                 modifier = Modifier.padding(paddingValues = WindowInsets.navigationBars.asPaddingValues()),
                 onClick = {
-
+                    navigate(NewExpressionRuleRoute(scenario.id))
                 }
             ) {
                 Icon(
@@ -176,6 +181,7 @@ private fun ScenarioRoutePreview() {
             toString = {
                 ExpressionStringifier.stringify(BundleSerializer.decodeFromByteArray(it.bytes))
             },
+            navigate = {},
             onBackPressed = {},
             onSave = {},
         )

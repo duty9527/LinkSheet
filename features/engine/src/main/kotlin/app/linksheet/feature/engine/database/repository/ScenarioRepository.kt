@@ -76,4 +76,8 @@ class ScenarioRepository internal constructor(
     fun toBundle(expression: ExpressionRule): ExpressionBundle {
         return serializer.decodeFromByteArray(expression.bytes)
     }
+
+    fun getRulesForScenario(scenarioId: Long): Flow<List<ExpressionRule>> {
+        return scenarioExpressionDao.getRulesForScenario(scenarioId)
+    }
 }

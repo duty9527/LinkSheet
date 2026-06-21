@@ -104,8 +104,6 @@
     <string name="shizuku_explainer_short">Közvetlenül interakcióba léphet a rendszer API-kkal</string>
     <string name="mastodon_redirect">MastodonRedirect</string>
     <string name="log_privacy">Ha többet szeretne megtudni a naplók adatvédelméről, látogasson el erre a <annotation url-id="privacy-logs">linkre</annotation>.</string>
-    <string name="follow_redirects_external_service">Kövesse az átirányításokat külső szolgáltatáson keresztül</string>
-    <string name="follow_redirects_external_service_explainer">Kövesse az átirányításokat a supabase.com webhelyen telepített API segítségével (<annotation url-id="supabase-privacy">Adatvédelmi irányelvek</annotation>)</string>
     <string name="follow_only_known_trackers">Csak az ismert nyomkövetőket kövesse</string>
     <string name="theme">Téma</string>
     <string name="theme_explainer">Materiál, sötét téma, tiszta fekete mód</string>
@@ -137,13 +135,11 @@
     <string name="github_explainer">Forráskód tároló</string>
     <string name="use_clear_urls_explainer">Kísérleti <annotation url-id="clearurls-github">ClearURLs</annotation> integráció használata (törli a követési paramétereket az URL-ekből)</string>
     <string name="follow_redirects_explainer">Automatikusan követi az összes átirányítást az alsó panel megnyitása előtt. Ennek lehetnek <annotation url-id="privacy-follow-redirects">adatvédelemre vonatkozó következményei</annotation></string>
-    <string name="follow_only_known_trackers_explainer">Csak akkor próbálja követni az átirányításokat, ha a fogadóról ismert, hogy nyomkövető/átirányító. Ha a \"Kövesse az átirányításokat külső szolgáltatáson keresztül\" opció be van kapcsolva, akkor ez mindig engedélyezve lesz</string>
     <string name="fastfoward_rules_explainer">Kísérleti <annotation url-id="fastforward-github">FastForward</annotation> szabály integrálása (egyes hostok átirányításainak megkerülése a linkből történő átirányítás kivonásával)</string>
     <string name="ignore_libredirect">LibRedirect figyelmen kívül hagyása</string>
     <string name="in_app_browser">Alkalmazáson belüli böngésző</string>
     <string name="disable_in_selected_explainer">Az alkalmazáson belüli böngésző letiltása a kiválasztott alkalmazásokban</string>
     <string name="enable_ignore_libredirect_button_explainer">Megjelenít egy gombot az alsó panelen, ha az URL-t a LibRedirect segítségével irányították át, ami helyette az eredeti URL-t nyitja meg</string>
-    <string name="amp2html_external_service">Kísérlet a nem AMP-oldalverzió beszerzésére külső szolgáltatáson keresztül</string>
     <string name="enable_amp2html_explainer">Átirányítja az AMP oldalakat a normál webes verzióra. Ennek lehetnek <annotation url-id="privacy-amp2html">adatvédelemre vonatkozó következményei</annotation></string>
     <string name="mastodon_redirect_subtitle_2">A Mastodon Redirect forráskódja referenciaként volt használva a Shizuku interakcióhoz</string>
     <string name="version_name"><b>Verzió:</b> <font face="monospace">%s</font></string>
@@ -153,7 +149,6 @@
     <string name="discord">Discord</string>
     <string name="donate_crypto">Adományozás kriptóban</string>
     <string name="donate_card">Adományozás kártyával (a BuyMeACoffee-n keresztül)</string>
-    <string name="amp2html_external_service_explainer">Kísérlet nem-AMP oldalváltozat beszerzésére a supabase.com webhelyen telepített API segítségével (<annotation url-id="supabase-privacy">Adatvédelmi irányelvek</annotation>)</string>
     <string name="pretend_to_be_app">Natív alkalmazáskérések elfogása</string>
     <string name="dismiss">Elvetés</string>
     <string name="join">Csatlakozás</string>
@@ -184,9 +179,6 @@
     <string name="import_and_override">Importálás és felülírás</string>
     <string name="built_at"><b>Buildelve ekkor:</b> <font face="monospace">%s</font></string>
     <string name="github_workflow_run_id"><b>Munkafolyamat azonosító:</b> <font face="monospace">%s</font></string>
-    <string name="privacy">Adatvédelem</string>
-    <string name="show_linksheet_referrer">LinkSheet hivatkozó megjelenítése</string>
-    <string name="show_linksheet_referrer_explainer">Egy alkalmazás indításakor ellenőrizheti, hogy melyik alkalmazás indult, vagy \"hivatkozott\" rá. Alapértelmezés szerint, amikor a LinkSheet elindít egy alkalmazást, elrejti magát, mondván, hogy a LinkSheet-et elindító alkalmazás az elindított célpont. Engedélyezze ezt, hogy a LinkSheet újra hivatkozónak tekintse az általa megnyitott alkalmazásokat.</string>
     <string name="thanks_for_donating">Köszönjük az adományozást!</string>
     <string name="use_unified_preferred_browser_explainer">Ennek engedélyezése az alábbi beállításokat alkalmazza mind a normál, mind az alkalmazáson belüli hivatkozáskezelésre. Az alábbi gombok segítségével válthat a normál és az alkalmazáson belüli mód között, ha az le van tiltva.</string>
     <string name="pretend_to_be_app_explainer_2">Egyes alkalmazások, például a Google Chrome kifejezetten egy natív alkalmazást keresnek, hogy például egy Youtube hivatkozást kezeljenek, amikor a keresési eredményekben rákattintanak. A LinkSheetCompat úgy tesz, mintha egy ilyen natív alkalmazás lenne a támogatott hostok számára, majd továbbítja a kérést a LinkSheet-nek.</string>
@@ -205,7 +197,6 @@
     <string name="onboarding_1_title">LinkSheet beállítása alapértelmezett böngészőként</string>
     <string name="clear_urls_version">ClearURL szabályok</string>
     <string name="onboarding_1_card_explainer">A LinkSheet nem működik anélkül, hogy az alapértelmezett böngésző lenne.</string>
-    <string name="privacy_settings_explainer">Hivatkozó adatvédelem, telemetria</string>
     <string name="github_pipeline_build">Build-elte és aláírta a Cl</string>
     <string name="export_explainer">Exportálja az aktuális alkalmazásbeállításokat egy fájlba</string>
     <string name="export_to_file">Exportálás fájlba</string>
@@ -213,11 +204,8 @@
     <string name="import_settings_override_preferences">Ez felülír minden meglévő beállítást. Folytatja?</string>
     <string name="dev_explainer">Fejlesztői beállítások</string>
     <string name="download_started_toast">Letöltés elindult</string>
-    <string name="resolve_via_toast_explainer">Felugró üzenet megjelenítése, ha egy URL-cím külső szolgáltatáson keresztül kerül feloldásra</string>
     <string name="opening_with_app_toast">Alkalmazás automatikus indítása</string>
     <string name="opening_with_app_toast_explainer">Felugrik egy üzenet, amikor egy domainhez alapértelmezettként beállított alkalmazás indul el</string>
-    <string name="resolve_via_failed_toast">Feloldás sikertelen</string>
-    <string name="resolve_via_failed_toast_explainer">Felugró üzenet megjelenítése, ha egy URL-címet nem sikerül külső szolgáltatáson keresztül feloldani</string>
     <string name="last_updated"><b>Verzió:</b> <font face="monospace">%s</font></string>
     <string name="libredirect_version">LibRedirect</string>
     <string name="enable_linksheet_compat_explainer">A menü az \"Alkalmazások\" almenüben található, és ha telepítve van, képes elfogni bizonyos natív alkalmazásokhoz intézett kéréseket.</string>
@@ -295,7 +283,6 @@
     <string name="export_include_recommendation">Javasoljuk, hogy csak akkor kapcsolja be az alábbi beállításokat, ha nem tervezi megosztani az exportálást másokkal!</string>
     <string name="export_privacy">Ha többet szeretne megtudni az exportálási adatvédelemről, látogasson el erre a <annotation url-id="privacy-exports">linkre</annotation>.</string>
     <string name="onboarding_0_subtitle">Válassza ki, hogy mindig kapjon értesítést egy hivatkozás megnyitásakor, állítsa be az alapértelmezett böngészőket és egyebek...</string>
-    <string name="resolve_via_toast">Sikeresen feloldva</string>
     <string name="onboarding_3_card_explainer">A Google bevezette az ellenőrzött alkalmazáshivatkozásokat az Android 12-ben, amely lehetővé teszi az alkalmazások számára, hogy kriptográfiailag igazolják a domainek tulajdonjogát. Ezt a viselkedést manuálisan le kell tiltani ahhoz, hogy a LinkSheet elfoghassa a kiválasztott hivatkozásokat.</string>
     <string name="theme_enable_material_you">Dinamikus szín</string>
     <string name="theme_enable_amoled">Tiszta fekete</string>
@@ -309,7 +296,6 @@
     <string name="tap_customization_dialog_title_double_tap">dupla kopp</string>
     <string name="link_handle_failed_text_field_label">Kérdés</string>
     <string name="tap_customization_long_tap">Hosszú érintés művelet</string>
-    <string name="telemetry_configure_type">Analitika típusa</string>
     <string name="theme_enable_amoled_explainer">Használjon tiszta fekete témát, ha a sötét mód be van kapcsolva</string>
     <string name="theme_enable_material_you_explainer">Használjon Android 12+ rendszeren \'Material You\' eszköztémát</string>
     <string name="tap_customization">Koppintson a testreszabásra</string>
@@ -356,7 +342,6 @@
         <item quantity="other">%d letiltott</item>
     </plurals>
     <string name="expand_on_app_select_explainer">Az alsó panel automatikus kibontása egy alkalmazás kiválasztásakor</string>
-    <string name="telemetry_configure_title">Analitika</string>
     <string name="link_handle_failed">Hiba történt</string>
     <string name="verified_link_handlers">Ellenőrzött linkkezelők</string>
     <string name="verified_link_handlers_subtitle">Az alkalmazás domainellenőrzési állapotának szabályozása</string>
@@ -369,7 +354,6 @@
     <string name="settings_notifications__divider_toasts">Felugró üzenetek</string>
     <string name="export_log_dialog__subtitle_redact_log">Ajánlott, elrejti az alkalmazások neveit és URL-jeit</string>
     <string name="theme_mode">Téma mód</string>
-    <string name="telemetry_identifier_reset">Azonosító visszaállítása</string>
     <string name="expand_on_app_select">Bontsa ki, ha egy alkalmazást kiválaszt</string>
     <string name="settings_credits__app_credit_reason_seal">Dizájn ötletek</string>
     <plurals name="settings_verified_link_handlers__text_app_host_info_verified">

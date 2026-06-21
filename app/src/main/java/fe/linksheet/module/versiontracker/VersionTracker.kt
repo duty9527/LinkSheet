@@ -3,10 +3,6 @@ package fe.linksheet.module.versiontracker
 import androidx.lifecycle.LifecycleOwner
 import app.linksheet.api.SystemInfoService
 import app.linksheet.api.preference.AppPreferenceRepository
-import app.linksheet.feature.analytics.service.AnalyticsEvent
-import app.linksheet.feature.analytics.service.AppStart
-import app.linksheet.feature.analytics.service.BaseAnalyticsService
-import app.linksheet.util.buildconfig.StaticBuildInfo
 import com.google.gson.Gson
 import fe.android.lifecycle.LifecycleAwareService
 import fe.android.lifecycle.koin.extension.service
@@ -23,9 +19,8 @@ val VersionTrackerModule = module {
 //        , PreferenceRepositoryModule
     )
 
-    service<VersionTracker, BaseAnalyticsService, AppPreferenceRepository> { _, analyticsService, preferences ->
+    service<VersionTracker, AppPreferenceRepository> { _, preferences ->
         VersionTracker(
-            analyticsService = analyticsService,
             preferenceRepository = preferences,
             systemInfoService = scope.get<SystemInfoService>(),
             gson = scope.get(qualifier(GsonQualifier.Compact))
@@ -34,7 +29,6 @@ val VersionTrackerModule = module {
 }
 
 internal class VersionTracker(
-    private val analyticsService: BaseAnalyticsService,
     val preferenceRepository: AppPreferenceRepository,
     private val systemInfoService: SystemInfoService,
     val gson: Gson,
@@ -43,22 +37,7 @@ internal class VersionTracker(
         LastVersionService(gson, systemInfoService.buildInfo)
     }
 
-    private fun createAppStartEvent(lastVersion: Int): AnalyticsEvent {
-        return when {
-            lastVersion == -1 -> AppStart.FirstRun
-            BuildConfig.VERSION_CODE > lastVersion -> AppStart.Updated(lastVersion)
-            else -> AppStart.Default
-        }
-    }
-
     override suspend fun onAppInitialized(owner: LifecycleOwner) {
-        val lastVersion = preferenceRepository.get(AppPreferences.lastVersion)
-
-        if (StaticBuildInfo.IsDebug) {
-            // TODO: Remove once user is given the choice to opt in/out
-            analyticsService.enqueue(createAppStartEvent(lastVersion))
-        }
-
         val lastVersions = preferenceRepository.get(AppPreferences.lastVersions)
         val lastVersionJson = lastVersionsService.handleVersions(lastVersions, true)
 

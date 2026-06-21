@@ -1,11 +1,8 @@
 package fe.embed.resolve.loader
 
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import fe.embed.resolve.Resource
 import fe.embed.resolve.config.ConfigSerializer
 import fe.embed.resolve.config.ConfigV1
-import fe.gson.typeadapter.RegexTypeAdapter
 import java.io.InputStream
 import java.net.URL
 
@@ -47,24 +44,3 @@ public class StreamEmbedResolveConfigLoader(private val stream: InputStream) : E
         }
     }
 }
-
-public object RemoteLoader {
-    public val gson: Gson = GsonBuilder().registerTypeAdapter(Regex::class.java, RegexTypeAdapter).create()
-//    public val publicKey = PublicKey.fromString("RWQazSQ29JJBtHn/Vze0iWHWGlkMUlKFQLOt2EdbTo4ToTx40uV8r8N/")
-
-    public inline fun <reified T> parseIfValid(fileStream: InputStream, signatureStream: InputStream): T? {
-        val fileContent = fileStream.bufferedReader().readText()
-
-        val signatureContent = signatureStream.bufferedReader().readLines()
-//         TODO: Catch
-//        val signature = Signature.fromString(signatureContent.singleOrNull() ?: signatureContent[1])
-
-        return runCatching {
-//            publicKey.verify(signature, fileContent.toByteArray())
-            gson.fromJson(fileContent, T::class.java)
-        }.getOrNull()
-    }
-}
-
-
-

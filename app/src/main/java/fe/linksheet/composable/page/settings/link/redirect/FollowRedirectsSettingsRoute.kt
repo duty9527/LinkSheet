@@ -53,7 +53,6 @@ fun FollowRedirectsSettingsRoute(
         localCachePref = viewModel.followRedirectsLocalCache,
         onlyKnownTrackersPref = viewModel.followOnlyKnownTrackers,
         aggressivePref = viewModel.followRedirectsAggressive,
-        externalServicePref = viewModel.followRedirectsExternalService,
         allowDarknetsPref = viewModel.followRedirectsAllowsDarknets,
         allowLocalPref = viewModel.followRedirectsAllowLocalNetwork,
         skipBrowserPref = viewModel.followRedirectsSkipBrowser,
@@ -72,7 +71,6 @@ private fun FollowRedirectsSettingsRouteInternal(
     localCachePref: BooleanVmPref,
     onlyKnownTrackersPref: BooleanVmPref,
     aggressivePref: BooleanVmPref,
-    externalServicePref: BooleanVmPref,
     allowDarknetsPref: BooleanVmPref,
     allowLocalPref: BooleanVmPref,
     skipBrowserPref: BooleanVmPref,
@@ -143,10 +141,8 @@ private fun FollowRedirectsSettingsRouteInternal(
             }
 
             item(key = R.string.follow_only_known_trackers) { padding, shape ->
-                val followRedirectsExternalService by externalServicePref.collectAsStateWithLifecycle()
-                // TODO: This settings should allow the user to add their own rules in the future, or at least display a _understandable_ list of known tracker domains
                 PreferenceSwitchListItem(
-                    enabled = (followRedirects && !followRedirectsExternalService).toEnabledContentSet(),
+                    enabled = contentSet,
                     shape = shape,
                     padding = padding,
                     statePreference = onlyKnownTrackersPref,
@@ -189,19 +185,6 @@ private fun FollowRedirectsSettingsRouteInternal(
                 )
             }
 
-            if (LinkSheetAppConfig.isPro()) {
-                item(key = R.string.follow_redirects_external_service) { padding, shape ->
-                    PreferenceSwitchListItem(
-                        enabled = (followRedirects && LinkSheetAppConfig.isPro()).toEnabledContentSet(),
-                        shape = shape,
-                        padding = padding,
-                        statePreference = externalServicePref,
-                        headlineContent = textContent(R.string.follow_redirects_external_service),
-                        supportingContent = annotatedStringResource(R.string.follow_redirects_external_service_explainer),
-                    )
-                }
-            }
-
             item(key = R.string.settings_links_follow_redirects__title_skip_browser) { padding, shape ->
                 PreferenceSwitchListItem(
                     enabled = contentSet,
@@ -242,7 +225,6 @@ private fun FollowRedirectsSettingsRouteInternalPreview() {
             localCachePref = fakeBooleanVM(true),
             onlyKnownTrackersPref = fakeBooleanVM(true),
             aggressivePref = fakeBooleanVM(true),
-            externalServicePref = fakeBooleanVM(true),
             allowDarknetsPref = fakeBooleanVM(true),
             allowLocalPref = fakeBooleanVM(true),
             skipBrowserPref = fakeBooleanVM(true),

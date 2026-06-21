@@ -8,6 +8,7 @@ import fe.linksheet.module.database.LinkSheetDatabase
 import fe.linksheet.module.repository.AppSelectionHistoryRepository
 import fe.linksheet.module.repository.DisableInAppBrowserInSelectedRepository
 import fe.linksheet.module.repository.PreferredAppRepository
+import fe.linksheet.module.repository.HostBehaviorRepository
 import fe.linksheet.module.repository.resolver.Amp2HtmlRepository
 import fe.linksheet.module.repository.resolver.ResolvedRedirectRepository
 import fe.linksheet.module.repository.whitelisted.WhitelistedInAppBrowsersRepository
@@ -25,4 +26,5 @@ val RepositoryModule = module {
     factory { AppSelectionHistoryRepository(dao = get<LinkSheetDatabase>().appSelectionHistoryDao()) }
     factory { ResolvedRedirectRepository(dao = get<LinkSheetDatabase>().resolvedRedirectDao()) }
     factory { Amp2HtmlRepository(dao = get<LinkSheetDatabase>().amp2HtmlMappingDao()) }
+    factory { HostBehaviorRepository(dao = get<LinkSheetDatabase>().hostBehaviorDao()) }
 }

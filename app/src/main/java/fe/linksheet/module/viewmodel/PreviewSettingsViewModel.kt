@@ -11,7 +11,6 @@ class PreviewSettingsViewModel(
     val urlPreviewSkipBrowser = preferenceRepository.asViewModelState(AppPreferences.bottomSheet.openGraphPreview.skipBrowser)
     val followRedirects = preferenceRepository.asViewModelState(AppPreferences.followRedirects.enable)
     val followRedirectsLocalCache = preferenceRepository.asViewModelState(AppPreferences.followRedirects.localCache)
-    val followRedirectsExternalService = preferenceRepository.asViewModelState(AppPreferences.followRedirects.externalService)
     val followOnlyKnownTrackers = preferenceRepository.asViewModelState(AppPreferences.followRedirects.onlyKnownTrackers)
     val followRedirectsAllowsDarknets = preferenceRepository.asViewModelState(AppPreferences.followRedirects.allowDarknets)
     val followRedirectsAllowLocalNetwork = preferenceRepository.asViewModelState(AppPreferences.followRedirects.allowLocalNetwork)

@@ -32,9 +32,15 @@ interface ScenarioExpressionDao : BaseDao<ScenarioExpression> {
 //            JOIN scenario_expression se ON s.id = se.scenarioId
 //            JOIN expression_rule e ON se.expressionId = e.id
 //        WHERE s.id = :id
-//        ORDER BY position ASC
-//    """)
 //    fun getScenarioExpressions(id: Long): Flow<ScenarioInfo?>
+
+    @Query("""
+        SELECT e.* 
+        FROM expression_rule e
+            JOIN scenario_expression se ON e.id = se.expressionId
+        WHERE se.scenarioId = :scenarioId
+    """)
+    fun getRulesForScenario(scenarioId: Long): Flow<List<ExpressionRule>>
 }
 
 data class ScenarioInfo(

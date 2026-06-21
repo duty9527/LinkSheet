@@ -11,6 +11,7 @@ import app.linksheet.compose.util.animatedComposable
 import app.linksheet.feature.engine.R
 import app.linksheet.feature.engine.ui.route.ScenarioOverviewRoute
 import app.linksheet.feature.engine.ui.route.ScenarioRoute
+import app.linksheet.feature.engine.ui.route.NewExpressionRule
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.StringResourceContent.Companion.textContent
 import fe.composekit.route.NavSubGraph
@@ -32,7 +33,18 @@ object ScenarioNavSubGraph : NavSubGraph<ScenarioOverviewRoute> {
         }
 
         animatedComposable<ScenarioRoute> { _, route ->
-            ScenarioRoute(onBackPressed = navController::popBackStack, id = route.id)
+            ScenarioRoute(
+                onBackPressed = navController::popBackStack,
+                id = route.id,
+                navigate = navController::navigate
+            )
+        }
+
+        animatedComposable<NewExpressionRuleRoute> { _, route ->
+            NewExpressionRule(
+                id = route.id,
+                onBackPressed = navController::popBackStack
+            )
         }
     }
 }
@@ -53,3 +65,7 @@ data object ScenarioOverviewRoute : Route {
 @Keep
 @Serializable
 data class ScenarioRoute(val id: Long) : Route
+
+@Keep
+@Serializable
+data class NewExpressionRuleRoute(val id: Long) : Route

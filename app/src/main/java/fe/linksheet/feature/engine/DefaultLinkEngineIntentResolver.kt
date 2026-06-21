@@ -30,7 +30,10 @@ import fe.linksheet.module.resolver.IntentResolver
 import fe.linksheet.module.resolver.module.IntentResolverSettings
 import fe.linksheet.module.resolver.personal.PersonalLinkRuleEngine
 import fe.linksheet.module.resolver.util.AppSorter
+import fe.linksheet.module.repository.HostBehaviorRepository
 import io.ktor.client.HttpClient
+import com.google.gson.Gson
+import app.linksheet.api.preference.AppPreferenceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOf
 import kotlin.uuid.ExperimentalUuidApi
@@ -55,6 +58,9 @@ fun DefaultLinkEngineIntentResolver(
     privateBrowsingService: PrivateBrowsingService,
     settings: IntentResolverSettings,
     personalLinkRuleEngine: PersonalLinkRuleEngine,
+    hostBehaviorRepository: HostBehaviorRepository,
+    appPreferenceRepository: AppPreferenceRepository,
+    gson: Gson,
 ): IntentResolver {
     val dispatcher = Dispatchers.IO
     val pipeline = LinkEngine(
@@ -151,6 +157,9 @@ fun DefaultLinkEngineIntentResolver(
         selector = selector,
         privateBrowsingService = privateBrowsingService,
         settings = settings,
-        personalLinkRuleEngine = personalLinkRuleEngine
+        personalLinkRuleEngine = personalLinkRuleEngine,
+        hostBehaviorRepository = hostBehaviorRepository,
+        appPreferenceRepository = appPreferenceRepository,
+        gson = gson
     )
 }

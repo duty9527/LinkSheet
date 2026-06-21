@@ -13,4 +13,11 @@
     <string name="settings_profile_switcher__text_other_profile">其他配置文件</string>
     <string name="settings_profile_switcher__title_enable_cross_profile">启用跨配置文件关联</string>
     <string name="settings_profile_switcher__title_profile_switcher">配置文件切换</string>
+    <string name="settings_profile_switcher__divider_options">选项</string>
+    <string name="settings_profile_switcher__text_no_profile">仅当设备上已设置工作配置文件或其他配置文件时，此功能才可用。</string>
+    <string name="settings_profile_switcher__title_no_profile">没有可用的配置文件</string>
+    <string name="settings_profile_switcher__title_send_target">启用发送目标</string>
+    <string name="settings_profile_switcher__text_send_target">提供一个将链接发送到其他配置文件的选项</string>
+    <string name="switch_profile">启用配置文件切换</string>
+    <string name="switch_profile_explainer">在底栏显示按钮，将点击的链接在工作配置文件或其他配置文件中打开。需要在两个配置文件中都安装 LinkSheet，并通过“设置 -> 特殊应用权限 -> 已连接的工作和个人应用”手动关联。</string>
 </resources>

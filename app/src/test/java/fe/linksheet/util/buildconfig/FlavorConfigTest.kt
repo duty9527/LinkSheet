@@ -18,8 +18,8 @@ internal class FlavorConfigTest : BaseUnitTest {
             .row("""{"isPro": false}""", FlavorConfig.Default)
             .row("{", FlavorConfig.Default)
             .row(
-                """{"isPro": true, "supabaseHost": "Host", "supabaseApiKey": "ApiKey"}""",
-                FlavorConfig(true, "Host", "ApiKey")
+                """{"isPro": true}""",
+                FlavorConfig(true)
             )
             .forAll { config, expected ->
                 assertThat(FlavorConfig.parseFlavorConfig(config?.encodeBase64OrNull())).isEqualTo(expected)

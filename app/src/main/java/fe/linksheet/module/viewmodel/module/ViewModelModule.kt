@@ -33,12 +33,12 @@ import fe.linksheet.module.viewmodel.NotificationSettingsViewModel
 import fe.linksheet.module.viewmodel.PreferredBrowserViewModel
 import fe.linksheet.module.viewmodel.PretendToBeAppSettingsViewModel
 import fe.linksheet.module.viewmodel.PreviewSettingsViewModel
-import fe.linksheet.module.viewmodel.PrivacySettingsViewModel
 import fe.linksheet.module.viewmodel.RootViewModel
 import fe.linksheet.module.viewmodel.SelectDomainsConfirmationViewModel
 import fe.linksheet.module.viewmodel.SettingsViewModel
 import fe.linksheet.module.viewmodel.SingleBrowserViewModel
 import fe.linksheet.module.viewmodel.SqlViewModel
+import fe.linksheet.module.viewmodel.TextReplaceViewModel
 import fe.linksheet.module.viewmodel.ThemeSettingsViewModel
 import fe.linksheet.module.viewmodel.VerifiedLinkHandlerViewModel
 import fe.linksheet.module.viewmodel.VerifiedLinkHandlersViewModel
@@ -66,7 +66,6 @@ val ViewModelModule = module {
         LogViewCommon(
             preferenceRepository = get(),
             experimentRepository = get(),
-            pasteService = get(),
             gson = get(qualifier(GsonQualifier.Pretty)),
             toml = Toml.Default,
             systemInfoService = get(),
@@ -102,6 +101,12 @@ val ViewModelModule = module {
     viewModelOf(::InAppBrowserSettingsViewModel)
     viewModelOf(::PreferredBrowserViewModel)
     viewModelOf(::BottomSheetSettingsViewModel)
+    viewModel {
+        TextReplaceViewModel(
+            preferenceRepository = get(),
+            gson = get(qualifier(GsonQualifier.Compact))
+        )
+    }
     viewModelOf(::LinksSettingsViewModel)
     viewModelOf(::BottomSheetViewModel)
     viewModelOf(::ThemeSettingsViewModel).bind<RootViewModel>()
@@ -123,8 +128,6 @@ val ViewModelModule = module {
     viewModelOf(::PretendToBeAppSettingsViewModel)
     viewModelOf(::GeneralSettingsViewModel)
     viewModelOf(::LoadDumpedPreferencesViewModel)
-    viewModelOf(::PrivacySettingsViewModel)
-
     viewModel {
         AboutSettingsViewModel(
             context = get(),

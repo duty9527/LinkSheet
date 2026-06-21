@@ -1,12 +1,14 @@
 package fe.linksheet.feature.engine
 
+import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ResolveInfo
 import android.net.Uri
+import app.linksheet.feature.app.core.AppInfoCreator
 import app.linksheet.feature.app.core.PackageIntentHandler
 import app.linksheet.feature.app.core.PackageLauncherService
-import app.linksheet.feature.app.core.AppInfoCreator
+import app.linksheet.feature.app.core.labelSorted
 import app.linksheet.feature.browser.core.PrivateBrowsingService
 import app.linksheet.feature.engine.core.EngineScenarioInput
 import app.linksheet.feature.engine.core.ForwardOtherProfileResult
@@ -14,6 +16,7 @@ import app.linksheet.feature.engine.core.IntentEngineResult
 import app.linksheet.feature.engine.core.ScenarioSelector
 import app.linksheet.feature.engine.core.UrlEngineResult
 import app.linksheet.feature.engine.core.context.DefaultEngineRunContext
+import app.linksheet.feature.engine.core.context.EngineFlag
 import app.linksheet.feature.engine.core.context.IgnoreLibRedirectExtra
 import app.linksheet.feature.engine.core.context.SkipFollowRedirectsExtra
 import app.linksheet.feature.engine.core.context.toExtra
@@ -29,12 +32,15 @@ import fe.composekit.core.getAndroidAppPackage
 import fe.composekit.lifecycle.network.core.NetworkStateService
 import fe.linksheet.extension.std.toAndroidUri
 import fe.linksheet.extension.std.toStdUrl
+import app.linksheet.api.preference.AppPreferenceRepository
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import fe.linksheet.module.preference.app.TextReplaceRule
+import fe.linksheet.module.preference.app.AppPreferences
 import fe.linksheet.module.database.entity.PreferredApp
 import fe.linksheet.module.repository.AppSelectionHistoryRepository
 import fe.linksheet.module.repository.PreferredAppRepository
 import fe.linksheet.module.resolver.ImprovedBrowserHandler
-import fe.linksheet.module.resolver.ImprovedIntentResolver
-import fe.linksheet.module.resolver.ImprovedIntentResolver.Companion.IntentKeyResolveRedirects
 import fe.linksheet.module.resolver.InAppBrowserHandler
 import fe.linksheet.module.resolver.IntentResolveResult
 import fe.linksheet.module.resolver.IntentResolver
@@ -50,6 +56,7 @@ import fe.linksheet.module.resolver.util.AppSorter
 import fe.linksheet.module.resolver.util.CustomTabHandler
 import fe.linksheet.module.resolver.util.CustomTabInfo2
 import fe.linksheet.module.resolver.util.IntentSanitizer
+import fe.linksheet.util.intent.cloneIntent
 import fe.linksheet.util.intent.parser.IntentParser
 import fe.linksheet.util.intent.parser.UriException
 import fe.linksheet.util.intent.parser.UriParseException
@@ -61,6 +68,9 @@ import io.ktor.client.HttpClient
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
+import fe.linksheet.module.repository.HostBehaviorRepository
+import fe.linksheet.module.database.entity.HostBehaviorItem
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
@@ -81,7 +91,15 @@ class LinkEngineIntentResolver(
     private val privateBrowsingService: PrivateBrowsingService,
     private val settings: IntentResolverSettings,
     private val personalLinkRuleEngine: PersonalLinkRuleEngine,
+    private val hostBehaviorRepository: HostBehaviorRepository,
+    private val appPreferenceRepository: AppPreferenceRepository,
+    private val gson: Gson,
 ) : IntentResolver {
+    companion object {
+        const val IntentKeyDownloader = "downloader"
+        const val IntentKeyResolveRedirects = "resolve_redirects"
+    }
+
     private val logger = Logger("LinkEngineIntentResolver")
     private val browserSettings = settings.browserSettings
     private val previewSettings = settings.previewSettings
@@ -138,6 +156,81 @@ class LinkEngineIntentResolver(
         intent: SafeIntent,
         options: ResolveOptions
     ): IntentResolveResult = coroutineScope scope@{
+        initState(ResolveEvent.Initialized, ResolverInteraction.Initialized)
+
+        val searchIntentResult = tryHandleSearchIntent(intent)
+        if (searchIntentResult != null) {
+            return@scope searchIntentResult
+        }
+
+        // 极前置文本改写
+        val rulesJson = appPreferenceRepository.get(AppPreferences.textReplaceRulesJson)
+        val rulesType = object : TypeToken<List<TextReplaceRule>>() {}.type
+        val rules: List<TextReplaceRule> = try {
+            gson.fromJson(rulesJson, rulesType) ?: emptyList()
+        } catch (e: Exception) {
+            emptyList()
+        }
+
+        if (rules.any { it.isEnabled && it.pattern.isNotEmpty() }) {
+            // 1. 处理 intent.data
+            intent.data?.let { dataUri ->
+                val orig = dataUri.toString()
+                var processed = orig
+                for (rule in rules) {
+                    if (rule.isEnabled && rule.pattern.isNotEmpty()) {
+                        processed = processed.replace(rule.pattern, rule.replacement)
+                    }
+                }
+                if (processed != orig) {
+                    try {
+                        intent.unsafe.data = Uri.parse(processed)
+                    } catch (e: Exception) {
+                        logger.error("Failed to parse replaced URI: $processed", e)
+                    }
+                }
+            }
+
+            // 2. 处理 EXTRA_TEXT
+            intent.getCharSequenceExtra(Intent.EXTRA_TEXT)?.toString()?.let { orig ->
+                var processed = orig
+                for (rule in rules) {
+                    if (rule.isEnabled && rule.pattern.isNotEmpty()) {
+                        processed = processed.replace(rule.pattern, rule.replacement)
+                    }
+                }
+                if (processed != orig) {
+                    intent.unsafe.putExtra(Intent.EXTRA_TEXT, processed)
+                }
+            }
+
+            // 3. 处理 EXTRA_PROCESS_TEXT
+            intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT)?.toString()?.let { orig ->
+                var processed = orig
+                for (rule in rules) {
+                    if (rule.isEnabled && rule.pattern.isNotEmpty()) {
+                        processed = processed.replace(rule.pattern, rule.replacement)
+                    }
+                }
+                if (processed != orig) {
+                    intent.unsafe.putExtra(Intent.EXTRA_PROCESS_TEXT, processed)
+                }
+            }
+
+            // 4. 处理 custom "url" extra
+            intent.getCharSequenceExtra("url")?.toString()?.let { orig ->
+                var processed = orig
+                for (rule in rules) {
+                    if (rule.isEnabled && rule.pattern.isNotEmpty()) {
+                        processed = processed.replace(rule.pattern, rule.replacement)
+                    }
+                }
+                if (processed != orig) {
+                    intent.unsafe.putExtra("url", processed)
+                }
+            }
+        }
+
         val canAccessInternet = networkStateService.isNetworkConnected
         val urlParseResult = parseIntent(intent)
         if (urlParseResult.isFailure()) {
@@ -145,6 +238,11 @@ class LinkEngineIntentResolver(
         }
 
         val startUrl = urlParseResult.value
+
+        if (options.forwardProfile) {
+            return@scope IntentResolveResult.OtherProfile(startUrl)
+        }
+
         val referringPackage = options.referrer?.getAndroidAppPackage(Scheme.Package)
         val knownBrowser = privateBrowsingService.isKnownBrowser(referringPackage?.packageName)
         val isReferrerBrowser = knownBrowser != null
@@ -152,7 +250,7 @@ class LinkEngineIntentResolver(
         emitEvent(ResolveEvent.QueryingBrowsers)
         val browsers = packageIntentHandler.findHttpBrowsable(null)
 
-        val shouldFollowRedirects = ImprovedIntentResolver.shouldFollowRedirects(
+        val shouldFollowRedirects = IntentResolverCommon.shouldFollowRedirects(
             enabled = followRedirectsSettings.followRedirects(),
             mode = followRedirectsSettings.followRedirectsMode(),
             skipBrowser = followRedirectsSettings.followRedirectsSkipBrowser(),
@@ -160,6 +258,8 @@ class LinkEngineIntentResolver(
             hasManualFlag = intent.getBooleanExtra(IntentKeyResolveRedirects, false),
         )
         intent.extras?.remove(IntentKeyResolveRedirects)
+        val hasManualDownloadFlag = intent.getBooleanExtra(IntentKeyDownloader, false)
+        intent.extras?.remove(IntentKeyDownloader)
 
         val ignoreLibRedirect = checkIntentFlag(
             intent,
@@ -264,6 +364,72 @@ class LinkEngineIntentResolver(
             }
         }
 
+        val host = resultUri.host?.lowercase(java.util.Locale.getDefault())
+        val behaviors = if (host != null) {
+            findBehaviorsForHost(host)
+        } else {
+            emptyList()
+        }
+
+        var matchedAppInfo: app.linksheet.feature.app.core.ActivityAppInfo? = null
+        var isAutoLaunch = false
+        val reorderedAppsList = mutableListOf<app.linksheet.feature.app.core.ActivityAppInfo>()
+        val hasBehaviors = behaviors.isNotEmpty()
+
+        if (hasBehaviors) {
+            val nativeAppInfos = appList.apps.map { appInfoCreator.toActivityAppInfo(it, null) }
+            val browserAppInfos = appList.browsers.map { appInfoCreator.toActivityAppInfo(it, null) }
+            val allAvailableAppInfos = nativeAppInfos + browserAppInfos
+
+            for (behavior in behaviors) {
+                when (behavior.type) {
+                    HostBehaviorItem.TYPE_NATIVE_APPS -> {
+                        if (nativeAppInfos.isNotEmpty()) {
+                            if (nativeAppInfos.size == 1) {
+                                matchedAppInfo = nativeAppInfos.first()
+                                isAutoLaunch = true
+                            } else {
+                                reorderedAppsList.addAll(nativeAppInfos)
+                            }
+                            break
+                        }
+                    }
+                    HostBehaviorItem.TYPE_SPECIFIC_APP -> {
+                        var matched = allAvailableAppInfos.firstOrNull {
+                            it.packageName == behavior.packageName &&
+                            (behavior.componentName == null || it.flatComponentName == behavior.componentName)
+                        }
+                        if (matched == null && behavior.packageName != null) {
+                            val resolveInfo = packageLauncherService.getLauncherOrNull(behavior.packageName)
+                            if (resolveInfo != null) {
+                                matched = appInfoCreator.toActivityAppInfo(resolveInfo, null)
+                            }
+                        }
+                        if (matched != null) {
+                            matchedAppInfo = matched
+                            isAutoLaunch = true
+                            break
+                        }
+                    }
+                    HostBehaviorItem.TYPE_PREFERRED_BROWSER -> {
+                        if (browserAppInfos.isNotEmpty()) {
+                            matchedAppInfo = browserAppInfos.first()
+                            isAutoLaunch = true
+                            break
+                        }
+                    }
+                    HostBehaviorItem.TYPE_BROWSERS -> {
+                        if (browserAppInfos.isNotEmpty()) {
+                            reorderedAppsList.addAll(browserAppInfos)
+                            break
+                        }
+                    }
+                }
+            }
+            val remaining = allAvailableAppInfos.filter { it !in reorderedAppsList && it != matchedAppInfo }
+            reorderedAppsList.addAll(remaining)
+        }
+
         val hasUserAlwaysPreferredApp = app?.alwaysPreferred == true && finalFilteredByHistory != null
         val personalSelection = PersonalPreferredAppSelector.select(
             sorted = sortedByUsage,
@@ -273,6 +439,31 @@ class LinkEngineIntentResolver(
         )
         val isRegularPreferredApp = hasUserAlwaysPreferredApp ||
                 (personalSelection.selected && personalRuleResult.autoLaunch)
+
+        val finalResolved = if (hasBehaviors) reorderedAppsList else personalSelection.sorted
+        val finalFilteredItem = if (hasBehaviors) matchedAppInfo else personalSelection.filtered
+        val finalIsRegularPreferredApp = if (hasBehaviors) isAutoLaunch else isRegularPreferredApp
+
+        val shouldRunDownloader = IntentResolverCommon.shouldRunDownloader(
+            enabled = downloaderSettings.enableDownloader(),
+            mode = downloaderSettings.downloaderMode(),
+            isRegularPreferredApp = finalIsRegularPreferredApp,
+            hasManualFlag = hasManualDownloadFlag,
+        )
+        if (!shouldRunDownloader) {
+            context.flags.add(EngineFlag.DisableDownload)
+        }
+
+        val shouldRunPreviewUrl = IntentResolverCommon.shouldRunPreviewUrl(
+            enabled = previewSettings.previewUrl(),
+            previewUrlSkipBrowser = previewSettings.previewUrlSkipBrowser(),
+            isReferrerBrowser = isReferrerBrowser,
+            isRegularPreferredApp = finalIsRegularPreferredApp
+        )
+        if (!shouldRunPreviewUrl) {
+            context.flags.add(EngineFlag.DisablePreview)
+        }
+
         scenario.fetch(resultUrl, context).collect { fetchHandle ->
             when (fetchHandle) {
                 null -> clearInteraction()
@@ -299,14 +490,28 @@ class LinkEngineIntentResolver(
             referrer = options.referrer,
             unfurlResult = sealedContext[ContextResultId.Preview]?.toUnfurlResult(),
             referringPackageName = referringPackage?.packageName,
-            resolved = personalSelection.sorted,
-            filteredItem = personalSelection.filtered,
-            isRegularPreferredApp = isRegularPreferredApp,
+            resolved = finalResolved,
+            filteredItem = finalFilteredItem,
+            isRegularPreferredApp = finalIsRegularPreferredApp,
             hasSingleMatchingOption = appList.isSingleOption || appList.noBrowsersOnlySingleApp,
             resolveModuleStatus = ResolveModuleStatus(),
             libRedirectResult = sealedContext[ContextResultId.LibRedirect]?.wrapped,
             downloadable = downloadResult?.toFetchResult()
         )
+    }
+
+    private fun tryHandleSearchIntent(intent: SafeIntent): IntentResolveResult.WebSearch? {
+        if (intent.action != Intent.ACTION_WEB_SEARCH) return null
+        val query = IntentParser.parseSearchIntent(intent) ?: return null
+        val newIntent = intent.unsafe
+            .cloneIntent(Intent.ACTION_WEB_SEARCH, null, true)
+            .putExtra(SearchManager.QUERY, query)
+
+        val resolvedList = packageIntentHandler.findHandlers(newIntent)
+            .map { appInfoCreator.toActivityAppInfo(it, null) }
+            .labelSorted()
+
+        return IntentResolveResult.WebSearch(query, newIntent, resolvedList)
     }
 
     private fun maybeFilter(
@@ -353,6 +558,22 @@ class LinkEngineIntentResolver(
         if (app != null && resolveInfo == null) repository.delete(app)
 
         app
+    }
+
+    private suspend fun findBehaviorsForHost(host: String): List<HostBehaviorItem> {
+        val exact = hostBehaviorRepository.getBehaviorsByHost(host)
+        if (exact.isNotEmpty()) return exact
+
+        var parts = host.split('.')
+        while (parts.size > 1) {
+            parts = parts.drop(1)
+            val parentHost = parts.joinToString(".")
+            val parentBehaviors = hostBehaviorRepository.getBehaviorsByHost(parentHost)
+            if (parentBehaviors.isNotEmpty()) {
+                return parentBehaviors
+            }
+        }
+        return emptyList()
     }
 
     override suspend fun warmup() {

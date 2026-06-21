@@ -10,7 +10,6 @@ import com.akuleshov7.ktoml.Toml
 import com.google.gson.Gson
 import fe.gson.dsl.jsonObject
 import fe.linksheet.module.log.file.entry.LogEntry
-import fe.linksheet.module.paste.PasteService
 import fe.linksheet.module.preference.app.AppPreferences
 import fe.linksheet.module.preference.app.DefaultAppPreferenceRepository
 import fe.linksheet.module.preference.experiment.ExperimentRepository
@@ -23,7 +22,6 @@ import kotlinx.serialization.encodeToString
 class LogViewCommon(
     val preferenceRepository: DefaultAppPreferenceRepository,
     private val experimentRepository: ExperimentRepository,
-    private val pasteService: PasteService<*>,
     val gson: Gson,
     val toml: Toml,
     private val systemInfoService: SystemInfoService,
@@ -42,11 +40,6 @@ class LogViewCommon(
         val redact: Boolean,
         val throwable: Boolean,
     ) : Parcelable
-
-    fun createPaste(text: String): String? {
-        val paste = pasteService.createPaste(text)
-        return paste.getOrNull()?.url
-    }
 
     fun buildExportText(
         context: Context,

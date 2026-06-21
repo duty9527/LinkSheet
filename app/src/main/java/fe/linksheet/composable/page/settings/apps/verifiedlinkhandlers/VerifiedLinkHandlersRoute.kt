@@ -42,8 +42,6 @@ import fe.composekit.core.AndroidVersion
 import fe.composekit.preference.collectAsStateWithLifecycle
 import fe.composekit.route.Route
 import fe.linksheet.R
-import fe.linksheet.composable.dialog.DomainVerificationDialogData
-import fe.linksheet.composable.dialog.rememberDomainVerificationAppInfoDialog
 import fe.linksheet.extension.android.tryStartActivity
 import fe.linksheet.extension.compose.ObserveStateChange
 import fe.linksheet.module.viewmodel.VerifiedLinkHandlersViewModel
@@ -102,12 +100,6 @@ fun VerifiedLinkHandlersRoute(
         listState(items, filter)
     }
 
-    val dialogState = rememberDomainVerificationAppInfoDialog(
-        onClose = { (info, hostStates) ->
-            viewModel.handler.updateHostState(info, hostStates)
-        }
-    )
-
     var showBottomSheet by rememberSaveable { mutableStateOf(false) }
 
     SaneSettingsScaffold(
@@ -158,7 +150,6 @@ fun VerifiedLinkHandlersRoute(
         }
 
         Column(modifier = Modifier.padding(padding)) {
-            val newVlh by viewModel.newVlh.collectAsStateWithLifecycle()
             Box(modifier = Modifier) {
                 SaneLazyColumnLayout(
                     state = state,
@@ -181,11 +172,7 @@ fun VerifiedLinkHandlersRoute(
                             shape = shape,
                             preferredHosts = preferredHosts.size,
                             onClick = {
-                                if (newVlh) {
-                                    navigateNew(VlhAppRoute(item.packageName))
-                                } else {
-                                    dialogState.open(DomainVerificationDialogData(item, preferredHosts))
-                                }
+                                navigateNew(VlhAppRoute(item.packageName))
                             },
                             onOtherClick = AndroidVersion.atLeastApi(Build.VERSION_CODES.S) {
                                 {
@@ -219,4 +206,3 @@ fun VerifiedLinkHandlersRoute(
         }
     }
 }
-

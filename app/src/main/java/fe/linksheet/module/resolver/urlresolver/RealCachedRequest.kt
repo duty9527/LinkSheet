@@ -1,12 +1,12 @@
 package fe.linksheet.module.resolver.urlresolver
 
 import app.linksheet.api.CachedRequest
-import fe.httpkt.Request
 import fe.composekit.mozilla.components.support.base.log.logger.Logger
+import fe.httpkt.Request
 import java.io.IOException
 import java.net.HttpURLConnection
 
-interface CachedResponse {}
+interface CachedResponse
 
 data class CachedResponseImpl(
     val isSuccess: Boolean,
@@ -70,7 +70,6 @@ class RealCachedRequest(private val request: Request) : CachedRequest {
             )
         }
     }
-
 
     @Throws(IOException::class)
     fun getNew(url: String, timeout: Int, followRedirects: Boolean): CacheStatus {

@@ -2,8 +2,8 @@ package fe.linksheet.composable.page.settings.apps.verifiedlinkhandlers
 
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Domain
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
@@ -36,22 +36,18 @@ import fe.android.compose.icon.IconPainter
 import fe.android.compose.icon.iconPainter
 import fe.android.compose.text.DefaultContent.Companion.text
 import fe.android.compose.text.ProvideContentColorOptionsStyleText
-import fe.android.compose.text.StringResourceContent.Companion.textContent
 import fe.android.compose.text.TextContent
 import fe.composekit.component.ContentType
-import fe.composekit.component.dialog.DialogDefaults
+import fe.composekit.component.list.column.shape.ClickableShapeListItem
 import fe.composekit.component.list.column.SaneLazyColumnDefaults
-import fe.composekit.component.list.item.ContentPosition
-import fe.composekit.component.list.item.type.CheckboxListItem
 import fe.composekit.component.shape.CustomShapeDefaults
 import fe.composekit.layout.column.group
-import fe.kotlin.extension.iterable.mapToSet
 import fe.linksheet.R
-import fe.linksheet.composable.dialog.DomainVerificationDialogData
-import fe.linksheet.composable.dialog.createState
 import fe.linksheet.module.database.entity.PreferredApp
 import fe.linksheet.module.viewmodel.VerifiedLinkHandlerViewModel
 import fe.linksheet.extension.android.tryStartActivity
+import fe.composekit.route.Route
+import fe.linksheet.navigation.AppConfigRoute
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
@@ -59,6 +55,7 @@ import org.koin.core.parameter.parametersOf
 fun VlhAppRoute(
     packageName: String,
     onBackPressed: () -> Unit,
+    navigate: (Route) -> Unit,
     viewModel: VerifiedLinkHandlerViewModel = koinViewModel(parameters = { parametersOf(packageName) }),
 ) {
     val appInfo = viewModel.get(packageName)
@@ -72,7 +69,8 @@ fun VlhAppRoute(
             preferredApps = preferredApps,
             openSettings = {
                 activity?.tryStartActivity(viewModel.openSettings())
-            }
+            },
+            configureHost = { host -> navigate(AppConfigRoute(host)) }
         )
     }
 }
@@ -83,12 +81,11 @@ private fun VlhAppRouteInternal(
     appInfo: DomainVerificationAppInfo,
     preferredApps: List<PreferredApp>,
     openSettings: (String) -> Unit,
+    configureHost: (String) -> Unit,
 ) {
-    val data = remember(appInfo, preferredApps) {
-         DomainVerificationDialogData(appInfo, preferredApps.mapToSet { it.host })
+    val hosts = remember(appInfo, preferredApps) {
+        (appInfo.hostSet + preferredApps.map { it.host }).toList().sorted()
     }
-    val mutableStates = remember(data) { data.createState() }
-    val states = remember(data) { mutableStates.toMap() }
 
     SaneScaffoldSettingsPage(
         headline = stringResource(id = R.string.settings_verified_link_handler__title_details),
@@ -119,24 +116,10 @@ private fun VlhAppRouteInternal(
                     .clip(CustomShapeDefaults.SingleShape)
             ) {
                 VlhButton(
-                    textContent = textContent(R.string.generic__button_text_settings),
+                    textContent = text("系统默认设置"),
                     iconPainter = Icons.Rounded.Settings.iconPainter,
-                    weight = 1 / 3f,
-                    shape = RoundedCornerShape(25, 0, 0, 50),
-                    onClick = {}
-                )
-                VlhButton(
-                    textContent = textContent(R.string.generic__button_text_settings),
-                    iconPainter = Icons.Rounded.Settings.iconPainter,
-                    weight = 1 / 3f,
-                    shape = RoundedCornerShape(0),
-                    onClick = {}
-                )
-                VlhButton(
-                    textContent = textContent(R.string.generic__button_text_settings),
-                    iconPainter = Icons.Rounded.Settings.iconPainter,
-                    weight = 1 / 3f,
-                    shape = RoundedCornerShape(0, 50, 25, 0),
+                    weight = 1f,
+                    shape = CustomShapeDefaults.SingleShape,
                     onClick = { openSettings(appInfo.packageName) }
                 )
             }
@@ -144,27 +127,34 @@ private fun VlhAppRouteInternal(
 
         divider(id = R.string.settings_verified_link_handler__text_hosts)
 
-        group(list = states.keys.toList(), key = { it }) { host, padding, shape ->
-//            val padding = DialogDefaults.ListItemInnerPadding.copy(
-//                vertical = 4.dp
-//            )
-
-            CheckboxListItem(
-                padding = padding,
-                shape = shape,
-                checked = mutableStates[host]!!,
-                onCheckedChange = {
-                    mutableStates[host] = it
-                },
-                position = ContentPosition.Leading,
-                headlineContent = text(host),
-                otherContent = null,
-                innerPadding = DialogDefaults.ListItemInnerPadding.copy(
-                    vertical = 4.dp
-                ),
-                textOptions = DialogDefaults.ListItemTextOptions,
-                colors = DialogDefaults.ListItemColors
-            )
+        if (hosts.isEmpty()) {
+            item(key = "no_hosts", contentType = ContentType.SingleGroupItem) {
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 12.dp),
+                    text = "这个应用没有可配置的域名。浏览器或通用链接处理器通常只需要系统默认设置。",
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
+        } else {
+            group(list = hosts, key = { it }) { host, padding, shape ->
+                ClickableShapeListItem(
+                    padding = padding,
+                    shape = shape,
+                    headlineContent = text(host),
+                    supportingContent = text("配置这个域名的打开策略"),
+                    leadingContent = {
+                        Icon(
+                            imageVector = Icons.Outlined.Domain,
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    },
+                    onClick = { configureHost(host) }
+                )
+            }
         }
     }
 }
@@ -228,6 +218,7 @@ private fun VlhAppRouteInternalPreviewBase(app: DomainVerificationAppInfo) {
             openSettings = {
 
             },
+            configureHost = {},
         )
     }
 }

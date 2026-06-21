@@ -15,7 +15,6 @@
     <string name="save">Lưu</string>
     <string name="enable_amp2html">Bật Amp2Html</string>
     <string name="use_clear_urls_explainer">Sử dụng tích hợp <annotation url-id="clearurls-github">ClearURLs</annotation> thử nghiệm (xóa tham số theo dõi khỏi URL)</string>
-    <string name="follow_only_known_trackers_explainer">Chỉ cố gắng theo dõi các chuyển hướng khi máy chủ được xác định là trình theo dõi/chuyển hướng. Nếu \"Theo dõi chuyển hướng qua dịch vụ bên ngoài\" được bật thì tính năng này sẽ luôn được bật.</string>
     <string name="always_disable">Buộc tắt</string>
     <string name="preview_url_explainer">Hiển thị URL được nhấp (sau khi được xử lý)</string>
     <string name="theme_explainer">Material You, chủ đề tối, chế độ đen tuyền</string>
@@ -84,7 +83,6 @@
     <string name="paste">Dán</string>
     <string name="download">Tải xuống</string>
     <string name="links_explainer">ClearUrls, LibRedirect, Chuyển hướng theo dõi</string>
-    <string name="amp2html_external_service">Cố gắng lấy phiên bản trang không phải AMP thông qua dịch vụ bên ngoài</string>
     <string name="open_with">Mở bằng</string>
     <string name="always_ask">Luôn luôn hỏi</string>
     <string name="in_app_browser_subtitle">Đặt chế độ trình duyệt trong ứng dụng</string>
@@ -120,7 +118,6 @@
     <string name="enable_ignore_libredirect_button_explainer">Hiển thị một nút ở trang dưới cùng nếu URL đã được chuyển hướng qua LibRedirect, thay vào đó, nút này sẽ mở URL gốc</string>
     <string name="mastodon_redirect_subtitle_2">Mã nguồn của Mastodon Redirect được sử dụng làm tài liệu tham khảo cho tương tác Shizuku</string>
     <string name="none_explainer">Chỉ liệt kê các ứng dụng gốc, loại hết các trình duyệt. Nếu chỉ có một ứng dụng gốc duy nhất, nó sẽ tự động được mở. Nếu không có ứng dụng gốc thì tất cả các trình duyệt sẽ được liệt kê.</string>
-    <string name="follow_redirects_external_service">Theo dõi chuyển hướng qua dịch vụ bên ngoài</string>
     <string name="settings">Thiết đặt</string>
     <string name="browser_mode_subtitle">Đặt chế độ trình duyệt ưu tiên</string>
     <string name="follow_only_known_trackers">Theo dõi chỉ những người theo dõi đã biết</string>
@@ -129,7 +126,6 @@
     <string name="no_log_entries">Phiên này không chứa bất kỳ nhật ký nào.</string>
     <string name="add">Thêm</string>
     <string name="follow_redirects_local_cache">Bật bộ đệm chuyển hướng cục bộ</string>
-    <string name="privacy">Riêng tư</string>
     <string name="pretend_to_be_app">Chặn các yêu cầu ứng dụng gốc</string>
     <string name="dont_show_filtered_item_explainer">Sẽ không bao giờ hiển thị phần trên cùng gợi ý ứng dụng được sử dụng lần cuối cho máy chủ được nhấp vào</string>
     <string name="version_name"><b>Phiên bản:</b> <font face="monospace">%s</font></string>
@@ -147,16 +143,11 @@
     <string name="at_least_one_unknown_browser_installer">Đã cài đặt ít nhất một trình duyệt (không xác định)</string>
     <string name="at_least_one_unknown_browser_installer_explainer">LinkSheet đã phát hiện ít nhất một ứng dụng tự xưng là một trình duyệt. Danh sách của LinkSheet có thể chưa đầy đủ. Nếu bạn cho rằng đây là lỗi, hãy gửi vấn đề trên Github.</string>
     <string name="download_started_toast_explainer">Hiện thông báo ngắn khi tải xuống đã được bắt đầu</string>
-    <string name="resolve_via_toast">Giải quyết thành công</string>
-    <string name="resolve_via_toast_explainer">Hiện thông báo ngắn khi một URL được giải quyết thông qua một dịch vụ bên ngoài</string>
-    <string name="resolve_via_failed_toast">Giải quyết thất bại</string>
-    <string name="resolve_via_failed_toast_explainer">Hiện thông báo ngắn khi URL không thể giải quyết thông qua dịch vụ bên ngoài</string>
     <string name="opening_with_app_toast_explainer">Hiển thị thông báo ngắn khi một ứng dụng đã được đặt làm mặc định cho một tên miền được khởi chạy</string>
     <string name="last_updated"><b>Phiên bản:</b> <font face="monospace">%s</font></string>
     <string name="enable_linksheet_compat">Bật thực đơn LinkSheet Compat thử nghiệm</string>
     <string name="built_by_error">Bản dựng này không được ký bởi 1fexd cũng như quy trình làm việc Github.</string>
     <string name="follow_redirects_explainer">Tự động theo dõi tất cả các chuyển hướng trước khi mở trang dưới cùng. Điều này có thể có <annotation url-id="privacy-follow-redirects">ngụ ý liên quan đến quyền riêng tư</annotation></string>
-    <string name="follow_redirects_external_service_explainer">Theo dõi các chuyển hướng bằng API được triển khai tại supabase.com (<annotation url-id="supabase-privacy">Chính sách quyền riêng tư</annotation>)</string>
     <string name="disable_in_selected">Buộc tắt…</string>
     <string name="in_app">Trong ứng dụng</string>
     <string name="shizuku_explainer_short">Tương tác trực tiếp với API hệ thống</string>
@@ -185,7 +176,6 @@
     <string name="online_services">Dịch vụ trực tuyến</string>
     <string name="follow_redirects_short">Chuyển hướng</string>
     <string name="unknown_host">%s bị chặn hoặc không tồn tại</string>
-    <string name="privacy_settings_explainer">Quyền riêng tư của người giới thiệu, Chẩn đoán từ xa</string>
     <string name="shizuku_manager_start_failed">Không khởi động được Trình quản lý Shizuku, vui lòng khởi động thủ công!</string>
     <string name="start_setup">Tiếp tục</string>
     <string name="export_import_settings_explainer">Xuất thiết đặt hiện tại của bạn hoặc nhập thiết đặt đã xuất trước đó</string>
@@ -213,13 +203,10 @@
     <string name="apps_which_can_open_links">Trình xử lý liên kết đã được xác minh</string>
     <string name="app_browsers_subtitle">Ứng dụng ưa thích và trình xử lý liên kết đã được xác minh</string>
     <string name="enable_amp2html_explainer">Chuyển hướng các trang AMP về phiên bản web thông thường của chúng. Điều này có thể có <annotation url-id="privacy-amp2html">các ngụ ý liên quan đến quyền riêng tư</annotation></string>
-    <string name="amp2html_external_service_explainer">Cố gắng lấy phiên bản trang không phải AMP bằng API được triển khai tại supabase.com (<annotation url-id="supabase-privacy">Chính sách quyền riêng tư</annotation>)</string>
     <string name="github">Github</string>
     <string name="fastfoward_rules_explainer">Sử dụng tích hợp quy tắc <annotation url-id="fastforward-github">FastForward </annotation> thử nghiệm (bỏ qua chuyển hướng của một số máy chủ bằng cách trích xuất chuyển hướng từ liên kết)</string>
     <string name="amp2html">Amp2Html</string>
     <string name="mastodon_redirect">MastodonRedirect</string>
-    <string name="show_linksheet_referrer">Hiển thị người giới thiệu LinkSheet</string>
-    <string name="show_linksheet_referrer_explainer">Khi một ứng dụng được khởi chạy, nó có thể kiểm tra xem ứng dụng nào đã khởi chạy hoặc \"được tham chiếu\" tới ứng dụng đó. Theo mặc định, khi LinkSheet khởi chạy một ứng dụng, nó sẽ tự ẩn và nói rằng ứng dụng đã khởi chạy LinkSheet là mục tiêu được khởi chạy. Bật tính năng này để xác nhận lại LinkSheet làm liên kết giới thiệu cho các ứng dụng mà nó mở ra.</string>
     <string name="theme_enable_material_you">Màu động</string>
     <string name="base_config">Cấu hình bổ sung</string>
     <string name="onboarding_5_card_title">Thiết lập</string>
@@ -266,8 +253,6 @@
     <string name="donate_card_headline">Quyên tặng để hỗ trợ LinkSheet</string>
     <string name="donate_card_subtitle">Nếu bạn thích LinkSheet, hãy cân nhắc để lại một ngôi sao trên Github và/hoặc quyên tặng. \nNhững người quyên tặng nhiều hơn <b>5€</b> đủ điều kiện cho <b> LinkSheet Pro</b>, sẽ có những tính năng độc quyền.</string>
     <string name="resolve_embeds">Giải quyết nhúng</string>
-    <string name="telemetry_configure_type">Loại phân tích</string>
-    <string name="telemetry_configure_title">Phân tích</string>
     <string name="resolve_activity_failure">Không thể giải quyết hoạt động!</string>
     <string name="onboarding_2_card_explainer">Shizuku cho phép LinkSheet vô hiệu hóa hành vi xử lý liên kết mặc định của tất cả các ứng dụng cùng một lúc, thay vì phải vô hiệu hóa chúng theo cách thủ công cho từng ứng dụng riêng lẻ (đây là bước tiếp theo).</string>
     <string name="onboarding_2_subtitle">Nếu bạn cài đặt nhiều ứng dụng, Shizuku có thể cải thiện đáng kể trải nghiệm của bạn</string>
@@ -338,7 +323,6 @@
     <string name="settings_shortcuts__subtitle_default_browser">Mở trang thiết đặt trình duyệt mặc định</string>
     <string name="settings_shortcuts__title_link_handlers">Trình xử lý liên kết</string>
     <string name="settings_shortcuts__title_connected_apps">Ứng dụng đã kết nối</string>
-    <string name="telemetry_identifier_reset">Đặt lại số định danh</string>
     <string name="settings_notifications__divider_toasts">Thông báo ngắn</string>
     <string name="settings_verified_link_handlers__text_handling_filter_all_short">Tất cả</string>
     <string name="settings_verified_link_handlers__text_handling_filter_enabled_short">Đã bật</string>

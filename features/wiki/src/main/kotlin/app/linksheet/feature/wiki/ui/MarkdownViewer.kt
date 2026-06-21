@@ -180,24 +180,7 @@ private class MarkdownPreviewParameterProvider : PreviewParameterProvider<Pair<S
         Enabling "Use mime type from URL" will still send a request if no mime type could be read from the
         opened URL
         
-        ## External services
-        
-        Both "Follow redirects" and "Amp2Html" are also available as external services, meaning that,
-        when the corresponding option is enabled ("Follow redirects via external service" and
-        "Attempt to obtain non-AMP page version via external service" respectively),
-        a [Supabase edge-function](https://github.com/1fexd/linksheet-supabase-functions/) is used to follow
-        redirects or convert an AMP page to the normal HTML page. The functions only cache the timestamp,
-        input and output link. The cache will periodically be exported from the database directly into LinkSheet,
-        so common links can easily be resolved locally.
-        
-        When "Follow redirects" and "Follow redirects via external service" are enabled, only
-        links [known to be trackers (checkout the *.txt files)](https://github.com/1fexd/fastforward-ext/releases/latest)
-        will be sent to the edge function.
-        
-        If "Enable Amp2Html" and "Attempt to obtain non-AMP page version via external service", ALL links
-        are sent to the edge function.
-        
-        Darknet links (.i2p, .onion) are NEVER sent to this external service.
+        Darknet links (.i2p, .onion) are never resolved by the downloader unless the corresponding option "Allow darknets" is enabled.
         
         ## Logs
         

@@ -8,17 +8,14 @@ import app.linksheet.feature.app.core.ActivityAppInfo
 import app.linksheet.feature.browser.core.Browser
 import app.linksheet.feature.profile.core.CrossProfile
 import app.linksheet.lib.flavors.LinkSheetReferrer
-import fe.composekit.core.AndroidPackageUri
-import fe.composekit.core.Scheme
 
 interface IntentLauncher {
     fun launch(info: ActivityAppInfo, intent: Intent, referrer: Uri?, browser: Browser?): LaunchIntent
 }
 
 class DefaultIntentLauncher(
+    private val context: android.content.Context,
     val getComponentEnabledSetting: (ComponentName) -> Int,
-    val showAsReferrer: () -> Boolean,
-    val selfPackage: String,
 ) : IntentLauncher {
 
     override fun launch(info: ActivityAppInfo, intent: Intent, referrer: Uri?, browser: Browser?): LaunchIntent {
@@ -28,18 +25,27 @@ class DefaultIntentLauncher(
 
         browser?.requestPrivateBrowsing(intent)
 
-        intent.component = info.componentName
+        val resolveIntent = Intent(intent.action, intent.data).apply {
+            `package` = info.packageName
+        }
+        val resolvedActivities = try {
+            context.packageManager.queryIntentActivities(resolveIntent, 0)
+        } catch (e: Exception) {
+            emptyList()
+        }
+
+        if (resolvedActivities.isNotEmpty()) {
+            intent.setPackage(info.packageName)
+        } else {
+            intent.component = info.componentName
+        }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
-        val showAsReferrer = showAsReferrer()
         intent.putExtra(
             LinkSheetReferrer.EXTRA_REFERRER,
-            if (showAsReferrer) AndroidPackageUri.create(Scheme.Package, selfPackage) else referrer
+            referrer
         )
-
-        if (!showAsReferrer) {
-            intent.putExtra(Intent.EXTRA_REFERRER, referrer)
-        }
+        intent.putExtra(Intent.EXTRA_REFERRER, referrer)
 
         return LaunchViewIntent(intent)
     }

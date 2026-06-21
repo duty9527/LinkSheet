@@ -30,6 +30,8 @@ import fe.linksheet.module.database.migrations.Migration19to20
 import fe.linksheet.module.database.migrations.Migration1to2
 import fe.linksheet.module.database.migrations.Migration20to21
 import fe.linksheet.module.database.migrations.Migration21to23
+import fe.linksheet.module.database.dao.HostBehaviorDao
+import fe.linksheet.module.database.entity.HostBehaviorItem
 import org.koin.core.qualifier.qualifier
 import org.koin.dsl.module
 
@@ -54,8 +56,9 @@ val DatabaseModule = module {
         ResolvedRedirect::class,
         DisableInAppBrowserInSelected::class,
         Amp2HtmlMapping::class,
+        HostBehaviorItem::class,
     ],
-    version = 23,
+    version = 24,
     autoMigrations = [
         AutoMigration(from = 2, to = 3),
         AutoMigration(from = 3, to = 4),
@@ -70,6 +73,7 @@ val DatabaseModule = module {
         AutoMigration(from = 12, to = 13),
         AutoMigration(from = 17, to = 18),
         AutoMigration(from = 18, to = 19),
+        AutoMigration(from = 23, to = 24),
     ],
     exportSchema = true
 )
@@ -81,6 +85,7 @@ abstract class LinkSheetDatabase : RoomDatabase() {
     abstract fun disableInAppBrowserInSelectedDao(): DisableInAppBrowserInSelectedDao
     abstract fun resolvedRedirectDao(): ResolvedRedirectDao
     abstract fun amp2HtmlMappingDao(): Amp2HtmlMappingDao
+    abstract fun hostBehaviorDao(): HostBehaviorDao
 
     companion object {
         private fun buildMigrations(logger: Logger): Array<Migration> {

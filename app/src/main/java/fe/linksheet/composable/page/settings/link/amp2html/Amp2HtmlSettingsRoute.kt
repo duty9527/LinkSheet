@@ -79,19 +79,6 @@ fun Amp2HtmlSettingsRoute(
                 )
             }
 
-            if (LinkSheetAppConfig.isPro()) {
-                item(key = R.string.amp2html_external_service) { padding, shape ->
-                    PreferenceSwitchListItem(
-                        enabled = (enableAmp2Html && LinkSheetAppConfig.isPro()).toEnabledContentSet(),
-                        shape = shape,
-                        padding = padding,
-                        statePreference = viewModel.amp2HtmlExternalService,
-                        headlineContent = textContent(R.string.amp2html_external_service),
-                        supportingContent = annotatedStringResource(R.string.amp2html_external_service_explainer),
-                    )
-                }
-            }
-
             item(key = R.string.settings_links_amp2html__title_skip_browser) { padding, shape ->
                 PreferenceSwitchListItem(
                     enabled = contentSet,

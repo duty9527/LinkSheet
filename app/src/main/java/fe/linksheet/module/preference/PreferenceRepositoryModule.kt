@@ -2,7 +2,6 @@ package fe.linksheet.module.preference
 
 import app.linksheet.api.preference.AppPreferenceRepository
 import app.linksheet.api.preference.AppStatePreferenceRepository
-import app.linksheet.feature.analytics.preference.AnalyticsPreferences
 import app.linksheet.feature.browser.preference.BrowserPreferences
 import app.linksheet.feature.downloader.preference.DownloaderPreferences
 import app.linksheet.feature.libredirect.preference.Experiment
@@ -40,7 +39,6 @@ fun PreferenceRepositoryModule(appPreferenceRepository: DefaultAppPreferenceRepo
         }
         single<BrowserPreferences> { AppPreferences.browser }
         single<ProfilePreferences> { AppPreferences.profileSwitcher }
-        single<AnalyticsPreferences> { AppPreferences.analytics }
         single<DownloaderPreferences> { AppPreferences.downloader }
     }
 }

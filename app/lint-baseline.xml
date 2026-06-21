@@ -2632,17 +2632,6 @@
     <issue
         id="UseKtx"
         message="Use the KTX extension function `String.toUri` instead?"
-        errorLine1="        return runCatching { Uri.parse(url) }.getOrNull()"
-        errorLine2="                             ~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/fe/linksheet/module/resolver/ImprovedIntentResolver.kt"
-            line="565"
-            column="30"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        message="Use the KTX extension function `String.toUri` instead?"
         errorLine1="                        Uri.parse(url),"
         errorLine2="                        ~~~~~~~~~~~~~~">
         <location

@@ -66,9 +66,7 @@
     <string name="light">مظيء</string>
     <string name="follow_redirects">اتبع عمليات إعادة التوجيه</string>
     <string name="loading_link">جاري معالجة الرابط…</string>
-    <string name="follow_redirects_external_service">متابعة عمليات إعادة التوجيه عبر الخدمة الخارجية</string>
     <string name="follow_redirects_explainer">اتبع جميع عمليات إعادة التوجيه تلقائيا قبل فتح الورقة السفلية. قد يكون لهذا <annotation url-id="privacy-follow-redirects"> آثار متعلقة بالخصوصية</annotation></string>
-    <string name="follow_redirects_external_service_explainer">متابعة عمليات إعادة التوجيه باستخدام واجهة برمجة تطبيقات تم نشرها في supabase.com (<annotation url-id="supabase-privacy">سياسة الخصوصية</annotation>)</string>
     <string name="follow_only_known_trackers">اتبع فقط أدوات التتبع المعروفة</string>
     <string name="theme">الموضوع</string>
     <string name="theme_explainer">Material You، السمة الداكنة، وضع الأسود الخالص</string>
@@ -126,13 +124,10 @@
     <string name="log_privacy">للتعرف على خصوصية السجل، يمكنك زيارة هذا <annotation url-id="privacy-logs">الرابط</annotation>.</string>
     <string name="no_logs_found">لم يتم العثور على سجلات سابقة!</string>
     <string name="amp2html">Amp الى Html</string>
-    <string name="amp2html_external_service">محاولة الحصول على إصدار صفحة غير AMP عبر خدمة خارجية</string>
     <string name="enable_amp2html">تمكين Amp2Html</string>
     <string name="enable_amp2html_explainer">لإعادة توجيه صفحات AMP إلى إصدار الويب العادي. قد يكون لهذا <annotation url-id="privacy-amp2html"> آثار متعلقة بالخصوصية</annotation></string>
     <string name="amp2html_local_cache">تمكين ذاكرة التخزين المؤقت Amp2Html المحلية</string>
     <string name="amp2html_local_cache_explainer">تخزين النسخ المستردة بخلاف AMP لصفحات الويب محليًا</string>
-    <string name="amp2html_external_service_explainer">محاولة الحصول على إصدار صفحة غير AMP باستخدام واجهة برمجة تطبيقات منشورة على supabase.com (<annotation url-id="supabase-privacy">سياسة الخصوصية</annotation>)</string>
-    <string name="follow_only_known_trackers_explainer">حاول فقط اتباع عمليات إعادة التوجيه عندما يكون من المعروف أن المضيف متتبع / معيد توجيه. إذا تم تمكين \"متابعة عمليات إعادة التوجيه عبر خدمة خارجية\" ، فسيتم تمكين هذا دائمًا</string>
     <string name="resolved_via">%s تم حلها عبر %s</string>
     <string name="resolve_failed">%s فشل: %s</string>
     <string name="usage_stats_sorting_explainer">قم بتضمين إحصائيات استخدام نظام Android في خوارزمية الفرز. يتم طلب الإذن عند التبديل الأول.</string>
@@ -178,10 +173,6 @@
     <string name="version_name"><b>الإصدار:</b> <font face="monospace">%s</font></string>
     <string name="built_at"><b>تم الإنشاء في:</b> <font face="monospace">%s</font></string>
     <string name="github_workflow_run_id"><b>معرف سير العمل:</b> <font face="monospace">%s</font></string>
-    <string name="privacy_settings_explainer">خصوصية المُحيل، القياس عن بُعد</string>
-    <string name="privacy">الخصوصية</string>
-    <string name="show_linksheet_referrer">إظهار مرجع ورقة الروابط</string>
-    <string name="show_linksheet_referrer_explainer">عند تشغيل تطبيق ما، يمكنه التحقق لمعرفة التطبيق الذي تم تشغيله أو \"إحالته\". افتراضيًا، عندما يقوم تطبيق ورقة الروابط بتشغيل تطبيق ما، فإنه يخفي نفسه، قائلاً إن التطبيق الذي قام بتشغيل ورقة الروابط هو الذي قام بتشغيل الهدف. قم بتمكين هذا لإعادة إدراج ورقة الروابط كمرجع للتطبيقات التي يفتحها.</string>
     <string name="thanks_for_donating">شكراً على التبرع!</string>
     <string name="dismiss">تجاهل</string>
     <string name="donate_explainer_crypto">عند التبرع بالعملات المشفرة، أرسل <annotation url="mailto:1fexd@420blaze.it">بريدًا إلكترونيًا إلى 1fexd@420blaze.it</annotation>.</string>
@@ -196,9 +187,6 @@
     <string name="url_copied_toast">تم نسخ عنوان URL</string>
     <string name="download_started_toast">بدأ التنزيل</string>
     <string name="download_started_toast_explainer">أظهر نخبًا عند بدء التنزيل</string>
-    <string name="resolve_via_toast">نجاح الحل</string>
-    <string name="resolve_via_toast_explainer">أظهر نخبًا عندما يتم حل عنوان URL عبر خدمة خارجية</string>
-    <string name="resolve_via_failed_toast">فشل الحل</string>
     <string name="fastforward_version">قواعد التقديم السريع</string>
     <string name="opening_with_app_toast">تم التشغيل التلقائي للتطبيق</string>
     <string name="clear_urls_version">تنظيف قواعد الروابط</string>
@@ -216,7 +204,6 @@
     <string name="debug_build">بناء تطوير</string>
     <string name="dev_mode_enabled">تهانينا، لقد قمت بتمكين وضع التطوير. فقط كن حذرا.</string>
     <string name="opening_with_app_toast_explainer">قم بإظهار نخب عند تشغيل التطبيق الذي تم تعيينه كإعداد افتراضي للمجال</string>
-    <string name="resolve_via_failed_toast_explainer">أظهر نخبًا عندما يفشل حل عنوان URL عبر خدمة خارجية</string>
     <string name="dev_explainer">إعدادات المطور</string>
     <string name="url_copied_toast_explainer">إظهار نخب عندما يقوم المستخدم بنسخ عنوان URL</string>
     <string name="enable_linksheet_compat_explainer">يمكن العثور على القائمة في القائمة الفرعية \"التطبيقات\"، وعند تثبيتها، تكون قادرا على اعتراض الطلبات لبعض التطبيقات المحلية.</string>
@@ -337,11 +324,9 @@
     <string name="allow_darknets">السماح بالشبكات المظلمة</string>
     <string name="onboarding_3_card_title">معالجات الروابط</string>
     <string name="include_throwable">تضمين سجلات الأعطال (موصى به، ولكن لا يمكن تنقيحه)</string>
-    <string name="telemetry_identifier_reset">إعادة تعيين المعرف</string>
     <string name="tap_customization">تخصيص النقر</string>
     <string name="tap_customization_dialog_title">تكوين %s</string>
     <string name="tap_customization_dialog_title_double_tap">نقرة مزدوجة</string>
-    <string name="telemetry_configure_title">التحليلات</string>
     <string name="settings_shortcuts__subtitle_default_browser">فتح صفحة إعدادات المتصفح الافتراضي</string>
     <string name="settings_app_config__title_native_apps">التطبيقات</string>
     <string name="settings_main_setup_success__text_linksheet_setup_failure_info">لم يتم تعيين LinkSheet كمتصفح افتراضي للنظام</string>
@@ -468,7 +453,6 @@
         <item quantity="many">%d تم التحقق منهم</item>
         <item quantity="other"/>
     </plurals>
-    <string name="telemetry_configure_type">نوع التحليلات</string>
     <string name="export_log_dialog__subtitle_include_throwable">موصى به، ولكن لا يمكن تنقيحه</string>
     <string name="follow_redirects_short">عمليات إعادة التوجيه</string>
     <string name="onboarding_0_title">مرحبًا بك في\nLinkSheet</string>

@@ -4,7 +4,6 @@ import android.os.StrictMode
 import androidx.lifecycle.lifecycleScope
 import app.linksheet.compose.debug.DebugMenuSlotProvider
 import app.linksheet.compose.debug.DebugPreferenceProvider
-import app.linksheet.feature.analytics.client.DebugLogAnalyticsClient
 import app.linksheet.feature.app.DebugAppModule
 import app.linksheet.feature.devicecompat.miui.MiuiCompatProvider
 import app.linksheet.feature.devicecompat.oneui.OneUiCompatProvider
@@ -48,8 +47,6 @@ class DebugLinkSheetApp : LinkSheetApp() {
             single<OneUiCompatProvider> { RealOneUiCompatProvider(get()) }
         }
     }
-
-    override fun provideAnalyticsClient(): Module = DebugLogAnalyticsClient.module
 
     override fun provideDebugModule(): Module {
         return module {

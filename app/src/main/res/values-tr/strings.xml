@@ -67,7 +67,6 @@
     <string name="use_clear_urls_explainer">Deneysel <annotation url-id="clearurls-github">ClearURLs</annotation> entegrasyonunu kullan (URLlerden izleme parametrelerini temizler)</string>
     <string name="links_explainer">ClearUrls, LibRedirect, Yönlendirmeleri takip etme</string>
     <string name="follow_redirects_explainer">Alt sayfayı açmadan önce bütün yönlendirmeleri takip et. Bunun <annotation url-id="privacy-follow-redirects">gizlilikle ilgili etkileri</annotation> olabilir</string>
-    <string name="follow_redirects_external_service">Harici hizmet üzerinden yönlendirmeleri takip et</string>
     <string name="follow_only_known_trackers">Yalnızca bilinen izleyicileri takip et</string>
     <string name="theme">Tema</string>
     <string name="light">Açık</string>
@@ -113,7 +112,6 @@
     <string name="in_app_browser_subtitle">Uygulama içi tarayıcı modunu ayarla</string>
     <string name="use_app_settings_explainer">Uygulama içi tarayıcının kullanılıp kullanılmayacağına uygulamalar karar verir</string>
     <string name="close">Kapat</string>
-    <string name="follow_redirects_external_service_explainer">supabase.com adresinde bulunan bir API\'yi kullanarak yönlendirmeleri takip eder(<annotation url-id="supabase-privacy">Gizlilik politikası</annotation>)</string>
     <string name="redirect_resolve_type_local_cache">yerel önbellek</string>
     <string name="use_app_settings">Varsayılan</string>
     <string name="enable_amp2html_explainer">AMP sayfalarını normal web sürümlerine yönlendirir. Bunun <annotation url-id="privacy-amp2html">gizlilikle ilgili etkileri</annotation> olabilir</string>
@@ -129,12 +127,9 @@
     <string name="logs_explainer">Uygulama günlüklerini görüntüle</string>
     <string name="debug">Hata ayıklama</string>
     <string name="logs">Günlükler</string>
-    <string name="follow_only_known_trackers_explainer">Yönlendirmeleri yalnızca sunucunun bir izleyici/yönlendirici olduğu bilindiğinde takip etmeye çalışın. \"Harici hizmet aracılığıyla yönlendirmeleri takip et\" etkinleştirilmişse, bu her zaman etkin olacaktır</string>
     <string name="redact_log">Günlüğü yeniden düzenle (önerilir, bunu devre dışı bırakmak paket adlarını ve sunucu adlarını sızdırabilir)</string>
     <string name="export_log">Günlüğü dışa aktar</string>
     <string name="log_privacy">Günlük kaydı gizliliği hakkında bilgi edinmek için bu <annotation url-id="privacy-logs">bağlantıyı</annotation> ziyaret edebilirsiniz.</string>
-    <string name="amp2html_external_service">AMP olmayan sayfa sürümünü harici hizmet aracılığıyla edinme girişimi</string>
-    <string name="amp2html_external_service_explainer">supabase.com adresinde bulunan bir API kullanarak AMP olmayan sayfa sürümü elde etme girişimi (<annotation url-id="supabase-privacy">Gizlilik politikası</annotation>)</string>
     <string name="apps_which_can_open_links_shizuku_explainer">Shizuku modu etkinleştirildi, otomatik link açmasını açıp kapatmak için bir uygulamaya dokunun. Uygulamanın \"Varsayılan olarak aç\" ayarlar menüsünü açmak için basılı tutun.</string>
     <string name="disable_all">Tümünü devre dışı bırak</string>
     <string name="launch_onboarding">İlk başlatmayı başlat</string>
@@ -160,10 +155,6 @@
     <string name="url_copied_toast_explainer">URL kopyalandığında bir bildirim göster</string>
     <string name="download_started_toast_explainer">Bir indirme başlatıldığında bildirim göster</string>
     <string name="opening_with_app_toast">Uygulama otomatik olarak başlatıldı</string>
-    <string name="resolve_via_toast">Çözümleme başarılı</string>
-    <string name="resolve_via_toast_explainer">Bir URL dış servis aracılığıyla çözümlendiğinde bildirim göster</string>
-    <string name="resolve_via_failed_toast">Çözümleme başarısız</string>
-    <string name="resolve_via_failed_toast_explainer">Dış kaynak aracılığıyla URL çözümlemesi başarısız olduğunda bildirim göster</string>
     <string name="fastforward_version">FastForward kuralları</string>
     <string name="opening_with_app_toast_explainer">Bir alan adı için varsayılan olarak ayarlanan bir uygulama başlatıldığında bildirim göster</string>
     <string name="clear_urls_version">ClearURLs kuralları</string>
@@ -246,7 +237,6 @@
     <string name="onboarding_5_card_title">Kurulum</string>
     <string name="onboarding_5_card_explainer">LinkSheet\'in çalışması için gereken temel ayarlar yapıldı - başka neler sunabileceğini görmek için ayarlara gidin!</string>
     <string name="donate_card_headline">LinkSheet\'i desteklemek için bağış yapın</string>
-    <string name="show_linksheet_referrer">LinkSheet yönlendirenini göster</string>
     <string name="permission_required">İzin gerekli</string>
     <string name="permission_required_explainer">İçe aktarılan bazı tercihler şu an LinkSheet\'in sahip olmadığı yetkileri gerektiriyor. Onları talep etmek için dokunun.</string>
     <string name="allow_darknets">Darknetlere izin ver</string>
@@ -263,8 +253,6 @@
     <string name="donate_card_subtitle">LinkSheet\'i sevdiyseniz, GitHub\'da yıldızlamayı veya bağış yapmayı düşünün. <b>5€</b>\'dan fazla bağış yapanlar, özel özellikler bulunduracak <b>LinkSheet Pro</b> için hak sahibidir.</string>
     <string name="open_link_with_subtitle_2">LinkSheet, ilk başta OpenLinkWith temelli idi</string>
     <string name="version_name"><b>Sürüm:</b> <font face="monospace">%s</font></string>
-    <string name="privacy">Gizlilik</string>
-    <string name="privacy_settings_explainer">Yönlendiren gizliliği, Telemetri</string>
     <string name="thanks_for_donating">Bağış yaptığınız için teşekkürler!</string>
     <string name="donate_learn_more">Daha fazla bilgi</string>
     <string name="donate">Bağış</string>
@@ -281,7 +269,6 @@
     <string name="configure_explainer">LinkSheetCompat\'ı yapılandırmak için buraya dokunun</string>
     <string name="no_browser_installed_explainer">LinkSheet, tarayıcı olduğunu iddia eden herhangi bir uygulama bulamadı. En iyi deneyim için, bir tarayıcı yükleyin.</string>
     <string name="linksheet_donation_explainer_2"><b>5€</b>\'dan fazla bir bağış; harici yönlendirmeleri takip etme, AMP olmayan sayfaları edinme (ve gelecekte daha fazlası!) gibi <b>Pro özel özellikleri</b>ni barındıran <b>LinkSheetPro</b>\'ya erişmenizi sağlar.</string>
-    <string name="show_linksheet_referrer_explainer">Bir uygulama başlatıldığında, hangi uygulamanın başlattığını veya yönlendirdiğini kontrol edebilir. LinkSheet bir uygulama başlattığında, varsayılan olarak kendini gizler ve LinkSheet\'i başlatan uygulamayı gösterir. LinkSheet\'i, açtığı uygulamalar için yönlendiren olarak göstermek için bunu etkinleştirin.</string>
     <string name="built_by_error">Bu derleme, 1fexd veya GitHub iş akışı tarafından imzalanmadı.</string>
     <string name="notifications_explainer">URL kopyalandı, İndirme başladı</string>
     <string name="enable_linksheet_compat_explainer">Menü, \"Uygulamalar\" alt menüsünde bulunabilir ve yüklendiğinde, belirli uygulamalara gelen istekleri engelleyebilir.</string>
@@ -318,9 +305,6 @@
     <string name="tap_customization_dialog_title_long_tap">Uzun dokunma</string>
     <string name="tap_customization_dialog_text">Gerçekleştirilmesi gereken eylemi seçin</string>
     <string name="expand_on_app_select_explainer">Bir uygulama seçildiğinde alt sayfayı otomatik olarak genişlet</string>
-    <string name="telemetry_configure_title">Analizler</string>
-    <string name="telemetry_identifier_reset">Tanımlayıcıyı sıfırla</string>
-    <string name="telemetry_configure_type">Analiz tipi</string>
     <string name="something_went_wrong">Bir şeyler ters gitti, lütfen daha sonra tekrar deneyin.</string>
     <string name="link_handle_failed">Bir hata oluştu</string>
     <string name="link_handle_failed_text_field_label">Sorgu</string>

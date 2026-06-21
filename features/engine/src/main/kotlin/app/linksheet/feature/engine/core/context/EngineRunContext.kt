@@ -42,7 +42,7 @@ class DefaultEngineRunContext(override val extras: Set<EngineExtra>) : EngineRun
     //  Is this fine? Do we need to add another level of abstraction?
     override fun <Result : ContextResult> confirm(fetcher: ContextResultId<Result>): Boolean {
         return when (fetcher) {
-            ContextResultId.Download -> true
+            ContextResultId.Download -> EngineFlag.DisableDownload !in flags
             ContextResultId.Preview -> EngineFlag.DisablePreview !in flags
             ContextResultId.LibRedirect -> false
         }

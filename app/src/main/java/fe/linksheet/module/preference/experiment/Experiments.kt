@@ -32,16 +32,8 @@ object Experiments : PreferenceDefinition(
         key = "experiment_enable_libredirect_js_engine"
     )
 
-    val enableAnalytics = boolean(
-        key = "experiment_enable_analytics",
-        default = false
-    )
     val noBottomSheetStateSave = boolean(
         key = "experiment_no_bottom_sheet_state_save"
-    )
-    val linkEngine = boolean(
-        key = "experiment_link_engine",
-        default = true
     )
     val disableLogging = boolean(
         key = "experiment_disable_log_persistence"
@@ -67,42 +59,36 @@ object Experiments : PreferenceDefinition(
     val experiments = listOf(
         group(
             name = "improved_bottom_sheet",
-            displayName = "Improved bottom sheet",
-            experiment("Ignore accidental taps while sheet is animating", interceptAccidentalTaps),
-            experiment("Disable bottom sheet state save", noBottomSheetStateSave),
+            displayName = "改进型底栏",
+            experiment("忽略底栏动画播放时的误触", interceptAccidentalTaps),
+            experiment("禁用底栏状态保存", noBottomSheetStateSave),
         ),
         group(
             name = "logging",
-            displayName = "Logging",
-            experiment("Disable log persistence", disableLogging)
-        ),
-        group(
-            name = "link_engine",
-            displayName = "Link engine",
-            experiment("Use LinkEngine", linkEngine)
+            displayName = "日志记录",
+            experiment("禁用日志持久化", disableLogging)
         ),
         // TODO: New VLH page is still broken
 //        group(
 //            name = "new_vlh",
-//            displayName = "New verified link handlers page",
-//            experiment("Enable new VLH page", newVlh)
+//            displayName = "新版已验证的链接处理程序页面",
+//            experiment("启用新版 VLH 页面", newVlh)
 //        ),
         group(
             name = "libredirect",
             displayName = "LibRedirect",
-            experiment("QuickJS engine", libRedirectJsEngine),
-            experiment("Custom instances", libRedirectCustomInstances)
+            experiment("QuickJS 引擎", libRedirectJsEngine),
+            experiment("自定义实例", libRedirectCustomInstances)
         ),
         group(
             name = "shizuku",
-            displayName = "shizuku",
-            experiment("Enable Shizuku", newShizuku)
+            displayName = "Shizuku",
+            experiment("启用 Shizuku", newShizuku)
         )
     )
 
     // TODO: Enforce type
     init {
-        enableAnalytics.migrate { repository, _ -> repository.put(enableAnalytics, false) }
         finalize()
     }
 

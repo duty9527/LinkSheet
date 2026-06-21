@@ -56,7 +56,7 @@ import fe.linksheet.activity.bottomsheet.hideAndFinish
 import fe.linksheet.composable.ui.AppTheme
 import fe.linksheet.extension.android.showToast
 import fe.linksheet.module.resolver.FollowRedirectsMode
-import fe.linksheet.module.resolver.ImprovedIntentResolver
+import fe.linksheet.feature.engine.LinkEngineIntentResolver
 import fe.linksheet.module.resolver.IntentResolveResult
 import fe.linksheet.module.resolver.ResolveEvent
 import fe.linksheet.module.resolver.ResolveOptions
@@ -80,8 +80,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinComponent
 import app.linksheet.compose.R as CommonR
 
-//import relocated.androidx.compose.material3.SheetValue
-//import relocated.androidx.compose.material3.rememberModalBottomSheetState
 
 // Must not be moved or renamed since LinkSheetCompat hardcodes the package/name
 class BottomSheetActivity : BaseComponentActivity(), KoinComponent {
@@ -136,14 +134,33 @@ class BottomSheetActivity : BaseComponentActivity(), KoinComponent {
             )
     }
 
+    private var uiCreated = false
+
+    private fun ensureUiCreated() {
+        if (uiCreated) return
+        uiCreated = true
+        setContent(edgeToEdge = true) {
+            AppTheme { Wrapper() }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         lifecycleScope.launch {
             viewModel.resolveResultFlow
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .mapNotNull(viewModel::maybeHandleResult)
-                .collectLatest(::handleLaunch)
+                .collectLatest { result ->
+                    val launchable = viewModel.maybeHandleResult(result)
+                    if (launchable != null) {
+                        handleLaunch(launchable)
+                    } else {
+                        if (result is IntentResolveResult.Pending) {
+                            kotlinx.coroutines.delay(50)
+                        }
+                        ensureUiCreated()
+                    }
+                }
         }
 
         lifecycleScope.launch {
@@ -151,9 +168,6 @@ class BottomSheetActivity : BaseComponentActivity(), KoinComponent {
         }
 
         setInitialIntent(intent)
-        setContent(edgeToEdge = true) {
-            AppTheme { Wrapper() }
-        }
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -348,7 +362,7 @@ class BottomSheetActivity : BaseComponentActivity(), KoinComponent {
                 val intent = StandardIntents.createSelfIntent(
                     uri = interaction.uri.toUri(),
                     extras = Bundle().apply {
-                        putBoolean(ImprovedIntentResolver.IntentKeyResolveRedirects, true)
+                        putBoolean(LinkEngineIntentResolver.IntentKeyResolveRedirects, true)
                     }
                 )
                 onNewIntent(intent)
@@ -358,7 +372,7 @@ class BottomSheetActivity : BaseComponentActivity(), KoinComponent {
                 val intent = StandardIntents.createSelfIntent(
                     uri = interaction.uri.toUri(),
                     extras = Bundle().apply {
-                        putBoolean(ImprovedIntentResolver.IntentKeyDownloader, true)
+                        putBoolean(LinkEngineIntentResolver.IntentKeyDownloader, true)
                     }
                 )
                 onNewIntent(intent)
@@ -419,7 +433,10 @@ class BottomSheetActivity : BaseComponentActivity(), KoinComponent {
             }
             is LaunchIntent -> {
                 val result = launchHandler.start(intent.intent)
-                if (result !is LaunchFailure) return
+                if (result !is LaunchFailure) {
+                    finish()
+                    return
+                }
 
                 logger.error("Launch failed: $result", result.ex)
                 val textId = when (result) {

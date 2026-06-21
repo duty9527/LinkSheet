@@ -15,7 +15,4 @@ object LinkSheetAppConfig : AppConfig {
     override fun showDonationBanner(): Boolean {
         return !isPro()
     }
-
-    override fun supabaseHost(): String = flavorConfig.supabaseHost
-    override fun supabaseApiKey(): String = flavorConfig.supabaseApiKey
 }

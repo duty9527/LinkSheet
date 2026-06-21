@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
-import app.linksheet.feature.analytics.service.TelemetryLevel
-import app.linksheet.feature.analytics.ui.rememberAnalyticDialog
 import fe.linksheet.activity.BaseComponentActivity
 import fe.linksheet.composable.component.dialog.rememberExportLogDialog
 import fe.linksheet.composable.ui.AppTheme
@@ -40,14 +38,6 @@ class ExportLogDialogTestActivity : BaseComponentActivity(), KoinComponent {
 
                     Button(onClick = { dialogState.open() }) {
                         Text(text = "Open")
-                    }
-
-                    val analyticsState = rememberAnalyticDialog(telemetryLevel = TelemetryLevel.Minimal) {
-
-                    }
-
-                    Button(onClick = { analyticsState.open() }) {
-                        Text(text = "Open2")
                     }
 
                 }

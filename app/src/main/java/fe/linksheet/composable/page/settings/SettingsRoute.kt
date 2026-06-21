@@ -11,7 +11,6 @@ import androidx.compose.material.icons.outlined.Language
 import androidx.compose.material.icons.outlined.Link
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Palette
-import androidx.compose.material.icons.outlined.PrivacyTip
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.SwipeUp
 import androidx.compose.material.icons.outlined.Terminal
@@ -40,6 +39,9 @@ import fe.linksheet.R
 import fe.linksheet.composable.page.settings.language.rememberLanguageDialog
 import fe.linksheet.module.language.LocaleItem
 import fe.linksheet.module.viewmodel.SettingsViewModel
+import fe.linksheet.navigation.Routes
+import fe.linksheet.navigation.RuleOverviewRoute
+import fe.linksheet.navigation.TextReplaceSettingsRoute
 import fe.linksheet.navigation.AdvancedRoute
 import fe.linksheet.navigation.AppsWhichCanOpenLinksSettingsRoute
 import fe.linksheet.navigation.DebugRoute
@@ -51,7 +53,6 @@ import fe.linksheet.navigation.devModeRoute
 import fe.linksheet.navigation.generalSettingsRoute
 import fe.linksheet.navigation.linksSettingsRoute
 import fe.linksheet.navigation.notificationSettingsRoute
-import fe.linksheet.navigation.privacySettingsRoute
 import fe.linksheet.navigation.themeSettingsRoute
 import org.koin.androidx.compose.koinViewModel
 
@@ -63,11 +64,26 @@ internal object SettingsRouteData {
         textContent(R.string.verified_link_handlers_subtitle)
     )
 
+    private val appBehaviorNavItem = RouteNavItemNew(
+        RuleOverviewRoute,
+        Icons.Outlined.DomainVerification.iconPainter,
+        text("域名分流配置"),
+        text("管理各个域名的应用与浏览器打开顺序")
+    )
+
+    private val textReplaceNavItem = RouteNavItemNew(
+        TextReplaceSettingsRoute,
+        Icons.Outlined.Terminal.iconPainter,
+        text("前置文本替换"),
+        text("在拦截解析链接前进行自定义文本替换或净化")
+    )
+
     fun section1(newShizuku: Boolean, scenario: Boolean): List<RouteNavItemNew> {
         return listOfNotNull(
             vlhNavItem,
             if (newShizuku) ShizukuRoute.NavItem else null,
-            if (scenario) ScenarioOverviewRoute.NavItem else null
+            appBehaviorNavItem,
+            textReplaceNavItem
         )
     }
 
@@ -118,13 +134,6 @@ internal object SettingsRouteData {
         Icons.Outlined.Language.iconPainter,
         textContent(R.string.settings_language__dialog_title),
         textContent(R.string.settings_language__text_system_language_with_language),
-    )
-
-    val privacyRoute = RouteNavItem(
-        privacySettingsRoute,
-        Icons.Outlined.PrivacyTip.iconPainter,
-        textContent(R.string.privacy),
-        textContent(R.string.privacy_settings_explainer),
     )
 
     val advanced = arrayOf(
@@ -186,7 +195,7 @@ fun SettingsRoute(
 ) {
     val devMode by viewModel.devModeEnabled.collectAsStateWithLifecycle()
     val newShizuku by viewModel.newShizuku.collectAsStateWithLifecycle()
-    val scenario by viewModel.scenario.collectAsStateWithLifecycle(minActiveState = Lifecycle.State.RESUMED)
+    val scenario = true
     val vlh = remember(newShizuku, scenario) {
         SettingsRouteData.section1(newShizuku, scenario)
     }
@@ -210,7 +219,7 @@ fun SettingsRoute(
 
         divider(id = R.string.misc_settings)
 
-        group(size = SettingsRouteData.miscellaneous.size + 2) {
+        group(size = SettingsRouteData.miscellaneous.size + 1) {
             items(array = SettingsRouteData.miscellaneous) { data, padding, shape ->
                 RouteNavigateListItem(data = data, padding = padding, shape = shape, navigate = navigate)
             }
@@ -229,14 +238,6 @@ fun SettingsRoute(
                 )
             }
 
-            item(key = privacySettingsRoute) { padding, shape ->
-                RouteNavigateListItem(
-                    data = SettingsRouteData.privacyRoute,
-                    padding = padding,
-                    shape = shape,
-                    navigate = navigate
-                )
-            }
         }
 
         divider(id = R.string.advanced)

@@ -29,8 +29,10 @@ import fe.linksheet.composable.page.settings.about.CreditsSettingsRoute
 import fe.linksheet.composable.page.settings.about.VersionSettingsRoute
 import fe.linksheet.composable.page.settings.advanced.AdvancedSettingsRoute
 import fe.linksheet.composable.page.settings.advanced.ExperimentsSettingsRoute
-import fe.linksheet.composable.page.settings.app.RuleOverviewRoute
-import fe.linksheet.composable.page.settings.app.RuleRoute
+import fe.linksheet.composable.page.settings.app.AppConfigOverviewRoute
+import fe.linksheet.composable.page.settings.app.AppConfigPage
+import fe.linksheet.composable.page.settings.text.TextReplaceSettingsRoute
+import fe.linksheet.navigation.AppConfigRoute
 import fe.linksheet.composable.page.settings.apps.verifiedlinkhandlers.VerifiedLinkHandlersRoute
 import fe.linksheet.composable.page.settings.apps.verifiedlinkhandlers.VlhAppRoute
 import fe.linksheet.composable.page.settings.bottomsheet.BottomSheetSettingsRoute
@@ -52,7 +54,6 @@ import fe.linksheet.composable.page.settings.link.preview.PreviewSettingsRoute
 import fe.linksheet.composable.page.settings.link.redirect.FollowRedirectsSettingsRoute
 import fe.linksheet.composable.page.settings.misc.MiscSettingsRoute
 import fe.linksheet.composable.page.settings.notification.NotificationSettingsRoute
-import fe.linksheet.composable.page.settings.privacy.PrivacySettingsRoute
 import fe.linksheet.composable.page.settings.shortcuts.ShortcutsRoute
 import fe.linksheet.composable.page.settings.theme.ThemeSettingsRoute
 import fe.linksheet.navigation.AdvancedRoute
@@ -63,6 +64,8 @@ import fe.linksheet.navigation.LogTextViewerRoute
 import fe.linksheet.navigation.PreferredBrowserSettingsRoute
 import fe.linksheet.navigation.PreviewUrlRoute
 import fe.linksheet.navigation.Routes
+import fe.linksheet.navigation.RuleOverviewRoute
+import fe.linksheet.navigation.TextReplaceSettingsRoute
 import fe.linksheet.navigation.SingleBrowserSettingsRoute
 import fe.linksheet.navigation.SqlRoute
 import fe.linksheet.navigation.VlhAppRoute
@@ -81,7 +84,6 @@ import fe.linksheet.navigation.linksSettingsRoute
 import fe.linksheet.navigation.loadDumpedPreferences
 import fe.linksheet.navigation.logViewerSettingsRoute
 import fe.linksheet.navigation.notificationSettingsRoute
-import fe.linksheet.navigation.privacySettingsRoute
 import fe.linksheet.navigation.settingsRoute
 import fe.linksheet.navigation.themeSettingsRoute
 
@@ -130,7 +132,7 @@ fun MainNavHost(
         }
 
         animatedComposable<VlhAppRoute> { _, route ->
-            VlhAppRoute(onBackPressed = onBackPressed, packageName = route.packageName)
+            VlhAppRoute(onBackPressed = onBackPressed, packageName = route.packageName, navigate = navigateNew)
         }
 
         animatedComposable<SqlRoute> { _, route ->
@@ -145,12 +147,16 @@ fun MainNavHost(
             VersionSettingsRoute(onBackPressed = onBackPressed, navigate = navigate)
         }
 
-        animatedComposable(route = Routes.RuleOverview) {
-            RuleOverviewRoute(onBackPressed = onBackPressed)
+        animatedComposable<RuleOverviewRoute> { _, _ ->
+            AppConfigOverviewRoute(onBackPressed = onBackPressed, navigate = navigateNew)
         }
 
-        animatedComposable(route = Routes.RuleNew) {
-            RuleRoute(onBackPressed = onBackPressed)
+        animatedComposable<AppConfigRoute> { _, route ->
+            AppConfigPage(host = route.host, onBackPressed = onBackPressed)
+        }
+
+        animatedComposable<TextReplaceSettingsRoute> { _, _ ->
+            TextReplaceSettingsRoute(onBackPressed = onBackPressed)
         }
 
         animatedComposable(route = settingsRoute) {
@@ -167,10 +173,6 @@ fun MainNavHost(
 
         animatedComposable(route = notificationSettingsRoute) {
             NotificationSettingsRoute(onBackPressed = onBackPressed)
-        }
-
-        animatedComposable(route = privacySettingsRoute) {
-            PrivacySettingsRoute(onBackPressed = onBackPressed)
         }
 
         animatedComposable(route = bottomSheetSettingsRoute) {

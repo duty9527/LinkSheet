@@ -29,16 +29,6 @@ private object NewNotificationSettingsRouteData {
                 vm.openingWithAppToast,
                 textContent(R.string.opening_with_app_toast),
                 textContent(R.string.opening_with_app_toast_explainer),
-            ),
-            SwitchPreferenceItemNew(
-                vm.resolveViaToast,
-                textContent(R.string.resolve_via_toast),
-                textContent(R.string.resolve_via_toast_explainer),
-            ),
-            SwitchPreferenceItemNew(
-                vm.resolveViaFailedToast,
-                textContent(R.string.resolve_via_failed_toast),
-                textContent(R.string.resolve_via_failed_toast_explainer),
             )
         )
     }
@@ -65,4 +55,3 @@ fun NotificationSettingsRoute(
         }
     }
 }
-

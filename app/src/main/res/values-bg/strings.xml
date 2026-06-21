@@ -3,7 +3,6 @@
     <string name="open_with_app">Отваряне от %s</string>
     <string name="bottom_sheet_explainer">Настройки и изглед</string>
     <string name="follow_redirects_local_cache">Временна памет за пренасочвания</string>
-    <string name="follow_redirects_external_service_explainer">Последване на пренасочванията с помощта на ППИ, намиращ се на supabase.com (<annotation url-id="supabase-privacy">Политика за поверителност</annotation>)</string>
     <string name="download">Изтегляне</string>
     <string name="usage_stats_sorting">Сортиране на приложенията според използването им</string>
     <string name="links">Препратки</string>
@@ -31,7 +30,6 @@
     <string name="donate_crypto">Дарение на криптовалута</string>
     <string name="links_explainer">ClearUrls, LibRedirect, разрешаване на препращане</string>
     <string name="loading_link">Обработване на препратка…</string>
-    <string name="follow_redirects_external_service">Последване на пренасочванията от външна услуга</string>
     <string name="follow_redirects_local_cache_explainer">Запазва резултатите от пренасочванията</string>
     <string name="redirect_resolve_type_local">местно откриване</string>
     <string name="just_once">Веднъж</string>
@@ -49,7 +47,6 @@
     <string name="redirect_resolve_type_local_cache">местна памет</string>
     <string name="redirect_resolve_type_remote">отдалечен сървър</string>
     <string name="always_ask_explainer">Винаги показва всички мрежови четци</string>
-    <string name="follow_only_known_trackers_explainer">Пренасочванията се последват само когато е известно, че сървърът е проследяващ/пренасочващ. Ако „Последване на пренасочванията от външна услуга“ е включено тук също е включено</string>
     <string name="usage_stats_sorting_explainer">При сортирането се взима предвид и системната статистика за използване на приложенията. При първо включване ще бъде поискано право на достъп.</string>
     <string name="set_as_browser">Задаване като мрежов четец</string>
     <string name="set_as_browser_explainer">За да направите LinkSheet мрежов четец по подразбиране докоснете</string>
@@ -114,8 +111,6 @@
     <string name="feature_flags_explainer">Включва или изключва експериментални възможности</string>
     <string name="enable_amp2html_explainer">Пренасочва страниците на AMP към техните нормални уеб версии. Възможно е да има <annotation url-id="privacy-amp2html">последствия, свързани с поверителността</annotation></string>
     <string name="amp2html_local_cache_explainer">Запазване на получените нормалните версии на страници в местна временна памет</string>
-    <string name="amp2html_external_service">Опит за получаване на нормална версия на страницата чрез външна услуга</string>
-    <string name="amp2html_external_service_explainer">Опит за получаване на нормална версия на страницата чрез ППИ, разположен на supabase.com (<annotation url-id="supabase-privacy">Политика за поверителност</annotation>)</string>
     <string name="shizuku">Интеграция с Shizuku</string>
     <string name="apps_which_can_open_links_shizuku_explainer">Включен е режим на „Shizuku“, докосване на приложение превключва автоматичното отваряне на препратки. При задържане се отваря менюто „Отваряне по подразбиране“ на приложението.</string>
     <string name="feature_flags">Флагове</string>
@@ -178,13 +173,9 @@
     <string name="built_at"><b>Време на изграждане:</b> <font face="monospace">%s</font></string>
     <string name="github_workflow_run_id"><b>Работен процес на изграждане:</b> <font face="monospace">%s</font></string>
     <string name="version_name"><b>Издание:</b> <font face="monospace">%s</font></string>
-    <string name="privacy_settings_explainer">Поверителност на източник, статистика</string>
-    <string name="show_linksheet_referrer">Попълване на LinkSheet като източник</string>
-    <string name="privacy">Поверителност</string>
     <string name="pretend_to_be_app_explainer_2">Някои приложения, като Google Chrome, изрично търсят приложение, което да отваря, например препратка към Youtube, когато тя бъде докосната в резултатите от търсенето. LinkSheetCompat се преструва на такова приложение за поддържаните домейни и след това препраща заявката към LinkSheet.</string>
     <string name="launch_onboarding">Обучение</string>
     <string name="pretend_to_be_app_explainer">Ще се престори на регистрираното приложение на поддържаните домейни чрез LinkSheetCompat</string>
-    <string name="show_linksheet_referrer_explainer">Когато дадено приложения се отваря, то може да провери кое приложение го е отворило или е източник. По подразбиране, когато LinkSheet отваря приложение, не се обявява като източник, а указва приложението, което е отворило LinkSheet. Ако е отметнато LinkSheet ще се обявава като източник на приложенията, които отваря.</string>
     <string name="thanks_for_donating">Благодаря за дарението!</string>
     <string name="dismiss">Затваряне</string>
     <string name="donate_explainer_crypto">Ако сте дарили криптовалута, изпратете писмо до <annotation url="mailto:1fexd@420blaze.it">1fexd@420blaze.it</annotation>.</string>
@@ -230,11 +221,7 @@
     <string name="fastforward_version">Правила на FastForward</string>
     <string name="url_copied_toast_explainer">Показва плуващо известие при копиран от потребителя адрес</string>
     <string name="libredirect_version">LibRedirect</string>
-    <string name="resolve_via_failed_toast">Неуспешно откриване</string>
     <string name="last_updated"><b>Издание:</b> <font face="monospace">%s</font></string>
-    <string name="resolve_via_failed_toast_explainer">Показва плуващо известие, когато външна услуга не открие адрес</string>
-    <string name="resolve_via_toast">Адресът е открит</string>
-    <string name="resolve_via_toast_explainer">Показва плуващо известие при открит адрес от външна услуга</string>
     <string name="enable_linksheet_compat">Включване на експерименталното меню на LinkSheet Compat</string>
     <string name="enable_linksheet_compat_explainer">Менюто можете данамерите в подменю „Приложения“ и ако е инсталирано може да прехваща заявки към определени присъщи приложения.</string>
     <string name="opening_with_app_toast_explainer">Показва плуващо известие при отваряне на стандартно за даден домейн приложение</string>
@@ -286,7 +273,6 @@
     <string name="settings_verified_link_handlers__text_handling_filter_enabled_short">Включени</string>
     <string name="customization">Нагласяне</string>
     <string name="onboarding_2_request_shizuku_permission">Искане на права</string>
-    <string name="telemetry_configure_title">Статистики</string>
     <string name="nightly_experiments_card">Нощни експерименти</string>
     <string name="onboarding_3_card_explainer">В Андроид 12 Гугъл въведе т.нар. проверени препратки, които дават възможност на приложенията по криптографски начин да докажат собственост върху даден домейн. За да може LinkSheet да прехваща препратки, това поведение трябва да бъде изключено ръчно.</string>
     <string name="hide_bottom_sheet_choice_buttons">Скриване на бутоните за избор</string>
@@ -323,7 +309,6 @@
     <string name="settings_verified_link_handlers__text_link_handling_allowed_false">Отварянето на препратки е забранено</string>
     <string name="export_log_dialog__title_include_throwable">Включително дневник на сривове</string>
     <string name="settings_main_setup_success__button_set_default_browser">Задаване като подразбиран мрежов четец</string>
-    <string name="telemetry_identifier_reset">Нулиране на идентификатора</string>
     <string name="settings_app_config__description_browsers">Инсталирани мрежови четци</string>
     <string name="settings_shortcuts__title_link_handlers">Приложения, отварящи препратки</string>
     <string name="settings_links_amp2html__text_skip_browser">Без изпълняване на Amp2Html ако приложението отворило LinkSheet е познат мрежов четец</string>
@@ -335,7 +320,6 @@
     <string name="settings_edit_rule__title_edit_rule">Променяне</string>
     <string name="settings_main_setup_success__button_link_handlers">Отваряне на препратки</string>
     <string name="resolve_embeds">Откриване на вградени елементи</string>
-    <string name="telemetry_configure_type">Вид на статистиките</string>
     <string name="settings_debug_log_viewer__title_log_captured_at">Преглед на дневника от: %s</string>
     <string name="link_handle_failed">Възникна грешка</string>
     <string name="settings_main_news__text_ui_overhaul">Приложението LinkSheet е прясно боядисано!</string>

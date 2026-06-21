@@ -33,8 +33,11 @@ import app.linksheet.feature.engine.eval.rule.ExpressionPreProcessorRule
 import app.linksheet.feature.libredirect.LibRedirectResolver
 import fe.composekit.mozilla.components.support.base.log.logger.Logger
 import fe.composekit.lifecycle.network.core.NetworkStateService
+import app.linksheet.api.preference.AppPreferenceRepository
+import com.google.gson.Gson
 import fe.linksheet.module.repository.AppSelectionHistoryRepository
 import fe.linksheet.module.repository.PreferredAppRepository
+import fe.linksheet.module.repository.HostBehaviorRepository
 import fe.linksheet.module.resolver.ImprovedBrowserHandler
 import fe.linksheet.module.resolver.InAppBrowserHandler
 import fe.linksheet.module.resolver.module.IntentResolverSettings
@@ -64,6 +67,9 @@ class RealLinkEngine(
     private val privateBrowsingService: PrivateBrowsingService,
     private val scenarioRepository: ScenarioRepository,
     private val personalLinkRuleEngine: PersonalLinkRuleEngine,
+    private val hostBehaviorRepository: HostBehaviorRepository,
+    private val appPreferenceRepository: AppPreferenceRepository,
+    private val gson: Gson,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
     private val logger = Logger("RealLinkEngine")
@@ -89,7 +95,10 @@ class RealLinkEngine(
             selector = ScenarioSelector(scenarioFlow = scenarios, dispatcher = dispatcher),
             privateBrowsingService = privateBrowsingService,
             settings = settings,
-            personalLinkRuleEngine = personalLinkRuleEngine
+            personalLinkRuleEngine = personalLinkRuleEngine,
+            hostBehaviorRepository = hostBehaviorRepository,
+            appPreferenceRepository = appPreferenceRepository,
+            gson = gson
         )
     }
 

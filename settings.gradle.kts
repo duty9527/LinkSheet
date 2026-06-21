@@ -87,10 +87,6 @@ include(":app", ":config")
 
 buildSettings {
     projects("features") {
-        projects("analytics") {
-            includeProject(":feature-analytics-service", "service")
-            includeProject(":feature-analytics-aptabase", "aptabase")
-        }
         includeProject(":feature-app", "app")
         projects("backup") {
             includeProject(":feature-backup-api", "api")
@@ -116,7 +112,6 @@ buildSettings {
     projects("lib") {
         includeProject(":lib-scaffold", "scaffold")
         includeProject(":lib-bottom-sheet", "bottom-sheet")
-        includeProject(":lib-bottom-sheet-new", "bottom-sheet-new")
         includeProject(":lib-hidden-api", "hidden-api")
         includeProject(":lib-http", "http")
         includeProject(":lib-util", "util")

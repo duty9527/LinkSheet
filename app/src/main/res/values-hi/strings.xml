@@ -9,13 +9,11 @@
     <string name="pretend_to_be_app_explainer">LinkSheetCompat के साथ समर्थित डोमेन के लिए एक मूल ऐप होने का दिखावा करें</string>
     <string name="compat_installed">LinkSheetCompat पहले से इंस्टॉल है</string>
     <string name="dismiss">ख़ारिज करें</string>
-    <string name="privacy_settings_explainer">रेफ़रर समावेशन जैसी सेटिंग्स</string>
     <string name="donate_explainer_crypto">क्रिप्टो के साथ दान करते समय, <b>LinkSheet Pro</b> का दावा करने के लिए, भुगतान का प्रमाण <annotation url="mailto:1fexd@420blaze.it">1fexd@420blaze.it</annotation> पर भेजें</string>
     <string name="join">जुड़ें</string>
     <string name="discord">डिस्कॉर्ड</string>
     <string name="discord_explainer">आइए हमारे डिस्कॉर्ड सर्वर पर चैट करें! इसके भविष्य और अन्य प्रयासों के बारे में लिंकशीट के उपयोगकर्ताओं और डेवलपर्स से बातचीत करें!</string>
     <string name="donate_crypto">क्रिप्टो के माध्यम से दान करें</string>
-    <string name="show_linksheet_referrer_explainer">जब कोई ऐप लॉन्च किया जाता है, तो यह यह देखने के लिए जांच कर सकता है कि कौन सा ऐप लॉन्च हुआ है, या उसे \"रेफ़र\" किया गया है। डिफ़ॉल्ट रूप से, जब लिंकशीट एक ऐप लॉन्च करता है, तो यह खुद को छुपाता है, यह कहते हुए कि लिंकशीट लॉन्च करने वाला ऐप वही है जिसने लक्ष्य लॉन्च किया है। लिंकशीट को खुलने वाले ऐप्स के लिए रेफ़रलकर्ता के रूप में पुनः सम्मिलित करने के लिए इसे सक्षम करें।</string>
     <string name="donate_card">कार्ड से दान करें (BuyMeACoffee के माध्यम से)</string>
     <string name="logs">लॉग्स</string>
     <string name="manual_build">1fexd द्वारा मैन्युअल रूप से निर्मित और हस्ताक्षरित</string>
@@ -24,22 +22,18 @@
     <string name="other">अन्य</string>
     <string name="app_setup">ऐप सेटअप</string>
     <string name="built_by_error">इस बिल्ड पर न तो 1fexd और न ही Github वर्कफ़्लो द्वारा हस्ताक्षर किए गए थे। इसका मतलब जरूरी नहीं कि कुछ बुरा हो क्योंकि कोई भी स्रोत कोड को फोर्क कर सकता है और अपना लिंकशीट संस्करण बना सकता है, लेकिन उनके दुआरा दुर्भावनापूर्ण इरादे से ऐसा करना मुमकिन हो सकता है।</string>
-    <string name="resolve_via_failed_toast">संकल्प विफल होने पर टोस्ट दिखाएँ</string>
     <string name="last_updated">अंतिम अपडेट की (यूटीसी):</string>
     <string name="export_to_file">फ़ाइल में निर्यात करें</string>
-    <string name="resolve_via_failed_toast_explainer">जब कोई URL किसी बाहरी सेवा के माध्यम से हल करने में विफल रहता है तो एक टोस्ट दिखाएं</string>
     <string name="dev_explainer">डेवलपर सेटिंग्स</string>
     <string name="opening_with_app_toast">जब कोई ऐप स्वचालित रूप से लॉन्च हो तो एक टोस्ट दिखाएं</string>
     <string name="download_started_toast_explainer">डाउनलोड शुरू होने पर एक टोस्ट दिखाएँ</string>
     <string name="url_copied_toast">URL कॉपी किया गया टोस्ट</string>
     <string name="dev_mode_enabled">बधाई हो, आपने डेव-मोड सक्षम कर दिया है। जरा सावधान रहें।</string>
     <string name="clear_urls_version">ClearURLs नियम</string>
-    <string name="resolve_via_toast">किसी URL का समाधान हो जाने पर एक टोस्ट दिखाएँ</string>
     <string name="download_started_toast">डाउनलोड प्रारंभ टोस्ट</string>
     <string name="notifications">नोटीफिकेशन</string>
     <string name="export_include_recommendation">हम अनुशंसा करते हैं कि आप निम्नलिखित सेटिंग्स तभी चालू करें जब आप अपना निर्यात किसी और के साथ साझा करने की योजना नहीं बनाते हैं!</string>
     <string name="export_file_name">linksheet_settings_export_%s</string>
-    <string name="resolve_via_toast_explainer">जब किसी URL का समाधान किसी बाहरी सेवा के माध्यम से किया जाता है तो एक टोस्ट दिखाएं</string>
     <string name="dev">डेवलपर</string>
     <string name="include_log_hash_key">लॉग हैश कुंजी शामिल करें (आपके लॉग को संशोधित करने के लिए उपयोग की जाने वाली कुंजी)</string>
     <string name="export_privacy">निर्यात गोपनीयता के बारे में जानने के लिए, आप इस <annotation url-id="privacy-exports">link</annotation> पर जा सकते हैं।</string>
@@ -64,7 +58,6 @@
     <string name="donate_learn_more">और अधिक जानें</string>
     <string name="no">नहीं</string>
     <string name="import_and_override">आयात करें और ओवरराइड करें</string>
-    <string name="show_linksheet_referrer">लिंकशीट रेफ़रलकर्ता दिखाएँ</string>
     <string name="yes">हां</string>
     <string name="built_at">(UTC) पर निर्मित:</string>
     <string name="linksheet_donation_explainer_2"><b>5€</b> से अधिक का दान (<b>4€</b> यदि आप क्रिप्टो के साथ दान करते हैं!) आपको <b>लिंकशीट प्रो</b> तक पहुंच की अनुमति देता है, जो वर्तमान में केवल छिपा हुआ है ऐप की मुख्य स्क्रीन पर दान बैनर, लेकिन भविष्य में, <b>प्रो एक्सक्लूसिव फीचर्स</b> होंगे।</string>
@@ -81,7 +74,6 @@
     <string name="no_browser_installed_explainer">लिंकशीट ब्राउज़र होने का दावा करने वाले कम से कम एक एप्लिकेशन का पता लगाने में असमर्थ रही। सर्वोत्तम अनुभव के लिए, एक ब्राउज़र इंस्टॉल करें।</string>
     <string name="export_explainer">अपनी वर्तमान ऐप सेटिंग को एक फ़ाइल में निर्यात करें</string>
     <string name="donate_card_subtitle">यदि आपको लिंकशीट पसंद है, तो GitHub पर एक स्टार छोड़ने और/या दान करने पर विचार करें। \n<b>5€</b> से अधिक दान करने वाले दानकर्ता <b>लिंकशीट प्रो</b> के लिए पात्र हैं, जिसमें विशिष्ट सुविधाएं होंगी।</string>
-    <string name="privacy">गोपनीयता</string>
     <string name="version_name">पूर्ण आईडेंटिफायर:</string>
     <string name="shizuku_manager_start_failed">Shizuku प्रबंधक प्रारंभ करने में विफल, कृपया इसे मैन्युअल रूप से प्रारंभ करें!</string>
 </resources>
